@@ -1,0 +1,15 @@
+{
+  "name": "csri-frontend",
+  "version": "1.0.0",
+  "description": "csri nist essential eight",
+  "main": "app.js",
+  "dependencies": {
+    "pm2-server-monit": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
