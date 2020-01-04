@@ -27,12 +27,20 @@ var daverage=0;
 var raverage=0;
 var reaverage=0;
 //weights
-var w=3;
+var w=1,w1=1,w2=2,w3=3;
+//total maximum weights
+var fi=50,fp=48,fd=40,fr=26,fre=12;
+//weights for each question multiplied by the value of response or answer of each question
 var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0,wi20=0,wi21=0,wi22=0,wi23=0,wi24=0,wi25=0;
 var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0,wp24=0;
-var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0,wd18=0;
-var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0,wr12=0;
+var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0,wd18=0,wd19=0,wd20=0;
+var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0,wr12=0,wr13=0;
 var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0,wre8=0;
+//client score for each PHASE
+var csi=0,csp=0,csd=0,csr=0,csre=0;
+//recommendations
+var one;
+//implementation
 var app = express();
 app.use(bodyParser.urlencoded({
     extended: true
@@ -150,41 +158,48 @@ app.post('/api/identify', function(req, res) {
 	console.log(i24);
 	var i25=parseInt(req.body.i25);
 	console.log(i25);
-	wi1=w*i1;
-	wi2=w*i2;
-	wi3=w*i3;
-	wi4=w*i4;
-	wi5=w*i5;
-	wi6=w*i6;
-	wi7=w*i7;
-	wi8=w*i8;
-	wi9=w*i9;
-	wi10=w*i10;
-	wi11=w*i11;
-	wi12=w*i12;
-	wi13=w*i13;
-	wi14=w*i14;
-	wi15=w*i15;
-	wi16=w*i16;
-	wi17=w*i17;
-	wi18=w*i18;
-	wi19=w*i19;
-	wi20=w*i20;
-	wi21=w*i21;
-	wi22=w*i22;
-	wi23=w*i23;
-	wi24=w*i24;
-	wi25=w*i25;
+  /*if(i1==1){
+    one = "Implement this control"
+  }*/
+	wi1=w2*i1;
+	wi2=w3*i2;
+	wi3=w1*i3;
+	wi4=w3*i4;
+	wi5=w2*i5;
+	wi6=w3*i6;
+	wi7=w2*i7;
+	wi8=w3*i8;
+	wi9=w3*i9;
+	wi10=w3*i10;
+	wi11=w3*i11;
+	wi12=w3*i12;
+	wi13=w3*i13;
+	wi14=w2*i14;
+	wi15=w1*i15;
+	wi16=w2*i16;
+	wi17=w1*i17;
+	wi18=w1*i18;
+	wi19=w1*i19;
+	wi20=w1*i20;
+	wi21=w1*i21;
+	wi22=w1*i22;
+	wi23=w1*i23;
+	wi24=w2*i24;
+	wi25=w1*i25;
 	wscore=wi1+wi2+wi3+wi4+wi5+wi6+wi7+wi8+wi9+wi10+wi11+wi12+wi13+wi14+wi15+wi16+wi17+wi18+wi19+wi20+wi21+wi22+wi23+wi24+wi25;
-	wresponse=i1+i2+i3+i4+i5+i6+i7+i8+i9+i10+i11+i12+i13+i14+i15+i16+i17+i18+i19+i20+i21+i22+i23+i24+i25;
-	waverage=wscore/wresponse;
-  console.log("TOTAL RESPONSE FOR IDENTIFY PHASE IS:" + wresponse);
-	console.log("TOTAL SCORE FOR IDENTIFY PHASE IS:" + wscore);
-	console.log("AVERAGE IS:" + waverage);
+  csi=Math.round((wscore/fi)*100);
+	//wresponse=i1+i2+i3+i4+i5+i6+i7+i8+i9+i10+i11+i12+i13+i14+i15+i16+i17+i18+i19+i20+i21+i22+i23+i24+i25;
+	//waverage=wscore/wresponse;
+  //console.log("TOTAL RESPONSE FOR IDENTIFY PHASE IS:" + wresponse);
+	console.log("TOTAL ANSWERED WEIGHT SCORE FOR IDENTIFY PHASE IS:" + wscore);
+  console.log("CLIENT SCORE FOR IDENTITY PHASE IS:" + csi);
+	//console.log("AVERAGE IS:" + waverage);
 	response={
-	wresponse : wresponse,
-	wscore : wscore,
-	waverage : waverage
+	//wresponse : wresponse,
+	//wscore : wscore,
+  csi : csi,
+	//waverage : waverage,
+  //one : one
 	}
 	res.json(response);
 });
@@ -238,40 +253,43 @@ app.post('/api/protect', function(req, res) {
 	console.log(p23);
 	var p24=parseInt(req.body.p24);
 	console.log(p24);
-	wp1=w*p1;
-	wp2=w*p2;
-	wp3=w*p3;
-	wp4=w*p4;
-	wp5=w*p5;
-	wp6=w*p6;
-	wp7=w*p7;
-	wp8=w*p8;
-	wp9=w*p9;
-	wp10=w*p10;
-	wp11=w*p11;
-	wp12=w*p12;
-	wp13=w*p13;
-	wp14=w*p14;
-	wp15=w*p15;
-	wp16=w*p16;
-	wp17=w*p17;
-	wp18=w*p18;
-	wp19=w*p19;
-	wp20=w*p20;
-	wp21=w*p21;
-	wp22=w*p22;
-	wp23=w*p23;
-	wp24=w*p24;
+	wp1=w3*p1;
+	wp2=w2*p2;
+	wp3=w3*p3;
+	wp4=w2*p4;
+	wp5=w2*p5;
+	wp6=w1*p6;
+	wp7=w3*p7;
+	wp8=w2*p8;
+	wp9=w3*p9;
+	wp10=w2*p10;
+	wp11=w3*p11;
+	wp12=w2*p12;
+	wp13=w1*p13;
+	wp14=w2*p14;
+	wp15=w1*p15;
+	wp16=w1*p16;
+	wp17=w2*p17;
+	wp18=w1*p18;
+	wp19=w1*p19;
+	wp20=w1*p20;
+	wp21=w2*p21;
+	wp22=w3*p22;
+	wp23=w2*p23;
+	wp24=w2*p24;
 	pscore=wp1+wp2+wp3+wp4+wp5+wp6+wp7+wp8+wp9+wp10+wp11+wp12+wp13+wp14+wp15+wp16+wp17+wp18+wp19+wp20+wp21+wp22+wp23+wp24;
-	presponse=p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+p18+p19+p20+p21+p22+p23+p24;
-	paverage=pscore/presponse;
-  console.log("TOTAL RESPONSE FOR PROTECT PHASE IS:" + presponse);
-	console.log("TOTAL SCORE FOR PROTECT PHASE IS:" + pscore);
-	console.log("AVERAGE IS:" + paverage);
+  csp=Math.round((pscore/fp)*100);
+	//presponse=p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+p18+p19+p20+p21+p22+p23+p24;
+	//paverage=pscore/presponse;
+  //console.log("TOTAL RESPONSE FOR PROTECT PHASE IS:" + presponse);
+	console.log("TOTAL ANSWERED WEIGHT SCORE FOR PROTECT PHASE IS:" + pscore);
+  console.log("CLIENT SCORE FOR PROTECT PHASE IS:" + csp);
+	//console.log("AVERAGE IS:" + paverage);
 	protectresponse={
-	presponse : presponse,
-	pscore : pscore,
-	paverage : paverage
+	//presponse : presponse,
+	//pscore : pscore,
+	//paverage : paverage
+  csp : csp
 	}
 	res.json(protectresponse);
 });
@@ -313,34 +331,43 @@ app.post('/api/detect', function(req, res) {
 	console.log(d17);
 	var d18=parseInt(req.body.d18);
 	console.log(d18);
-	wd1=w*d1;
-	wd2=w*d2;
-	wd3=w*d3;
-	wd4=w*d4;
-	wd5=w*d5;
-	wd6=w*d6;
-	wd7=w*d7;
-	wd8=w*d8;
-	wd9=w*d9;
-	wd10=w*d10;
-	wd11=w*d11;
-	wd12=w*d12;
-	wd13=w*d13;
-	wd14=w*d14;
-	wd15=w*d15;
-	wd16=w*d16;
-	wd17=w*d17;
-	wd18=w*d18;
-	dscore=wd1+wd2+wd3+wd4+wd5+wd6+wd7+wd8+wd9+wd10+wd11+wd12+wd13+wd14+wd15+wd16+wd17+wd18;
-	dresponse=d1+d2+d3+d4+d5+d6+d7+d8+d9+d10+d11+d12+d13+d14+d15+d16+d17+d18;
-	daverage=dscore/dresponse;
-  console.log("TOTAL RESPONSE FOR DETECT PHASE IS:" + dresponse);
-	console.log("TOTAL SCORE FOR DETECT PHASE IS:" + dscore);
-	console.log("AVERAGE IS:" + daverage);
+  var d19=parseInt(req.body.d19);
+	console.log(d19);
+  var d20=parseInt(req.body.d20);
+	console.log(d20);
+	wd1=w3*d1;
+	wd2=w2*d2;
+	wd3=w1*d3;
+	wd4=w1*d4;
+	wd5=w3*d5;
+	wd6=w3*d6;
+	wd7=w2*d7;
+	wd8=w1*d8;
+	wd9=w2*d9;
+	wd10=w2*d10;
+	wd11=w2*d11;
+	wd12=w3*d12;
+	wd13=w2*d13;
+	wd14=w3*d14;
+	wd15=w3*d15;
+	wd16=w2*d16;
+	wd17=w2*d17;
+	wd18=w1*d18;
+  w19=w2*d19;
+  w20=w2*d20;
+	dscore=wd1+wd2+wd3+wd4+wd5+wd6+wd7+wd8+wd9+wd10+wd11+wd12+wd13+wd14+wd15+wd16+wd17+wd18+w19+w20;
+  csd=Math.round((dscore/fd)*100);
+	//dresponse=d1+d2+d3+d4+d5+d6+d7+d8+d9+d10+d11+d12+d13+d14+d15+d16+d17+d18;
+	//daverage=dscore/dresponse;
+  //console.log("TOTAL RESPONSE FOR DETECT PHASE IS:" + dresponse);
+	console.log("TOTAL ANSWERED WEIGHT SCORE FOR DETECT PHASE IS:" + dscore);
+  console.log("CLIENT SCORE FOR DETECT PHASE IS:" + csd);
+	//console.log("AVERAGE IS:" + daverage);
 	detectresponse={
-	dresponse : dresponse,
-	dscore : dscore,
-	daverage : daverage
+	//dresponse : dresponse,
+	//dscore : dscore,
+  csd : csd
+	//daverage : daverage
 	}
 	res.json(detectresponse);
 });
@@ -370,28 +397,34 @@ app.post('/api/respond', function(req, res) {
 	console.log(r11);
 	var r12=parseInt(req.body.r12);
 	console.log(r12);
-	wr1=w*r1;
-	wr2=w*r2;
-	wr3=w*r3;
-	wr4=w*r4;
-	wr5=w*r5;
-	wr6=w*r6;
-	wr7=w*r7;
-	wr8=w*r8;
-	wr9=w*r9;
-	wr10=w*r10;
-	wr11=w*r11;
-	wr12=w*r12;
-	rscore=wr1+wr2+wr3+wr4+wr5+wr6+wr7+wr8+wr9+wr10+wr11+wr12;
-	rresponse=r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12;
-	raverage=rscore/rresponse;
-  console.log("TOTAL RESPONSE FOR RESPOND PHASE IS:" + rresponse);
-	console.log("TOTAL SCORE FOR RESPOND PHASE IS:" + rscore);
-	console.log("AVERAGE IS:" + raverage);
+  var r13=parseInt(req.body.r12);
+	console.log(r13);
+	wr1=w3*r1;
+	wr2=w2*r2;
+	wr3=w3*r3;
+	wr4=w1*r4;
+	wr5=w2*r5;
+	wr6=w2*r6;
+	wr7=w2*r7;
+	wr8=w3*r8;
+	wr9=w2*r9;
+	wr10=w3*r10;
+	wr11=w1*r11;
+	wr12=w3*r12;
+  wr13=w2*r13;
+	rscore=wr1+wr2+wr3+wr4+wr5+wr6+wr7+wr8+wr9+wr10+wr11+wr12+wr13;
+  csr=Math.round((rscore/fr)*100);
+	//rresponse=r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12;
+	//raverage=rscore/rresponse;
+  //console.log("TOTAL RESPONSE FOR RESPOND PHASE IS:" + rresponse);
+	console.log("TOTAL ANSWERED WEIGHT SCORE FOR RESPOND PHASE IS:" + rscore);
+  console.log("CLIENT SCORE FOR RESPOND PHASE IS:" + csr);
+	//console.log("AVERAGE IS:" + raverage);
 	respondresponse={
-	rresponse : rresponse,
-	rscore: rscore,
-	raverage : raverage
+	//rresponse : rresponse,
+	//rscore: rscore,
+  csr : csr
+	//raverage : raverage
 	}
 	res.json(respondresponse);
 });
@@ -413,24 +446,27 @@ app.post('/api/recover', function(req, res) {
 	console.log(re7);
 	var re8=parseInt(req.body.re8);
 	console.log(re8);
-	wre1=w*re1;
-	wre2=w*re2;
-	wre3=w*re3;
-	wre4=w*re4;
-	wre5=w*re5;
-	wre6=w*re6;
-	wre7=w*re7;
-	wre8=w*re8;
+	wre1=w3*re1;
+	wre2=w2*re2;
+	wre3=w1*re3;
+	wre4=w1*re4;
+	wre5=w2*re5;
+	wre6=w3*re6;
+	wre7=w2*re7;
+	wre8=w3*re8;
 	rescore=wre1+wre2+wre3+wre4+wre5+wre6+wre7+wre8;
-	reresponse=re1+re2+re3+re4+re5+re6+re7+re8;
-	reaverage=rescore/reresponse;
-  console.log("TOTAL RESPONSE FOR RECOVER PHASE IS:" + reresponse);
-	console.log("TOTAL SCORE FOR RECOVER PHASE IS:" + rescore);
-	console.log("AVERAGE IS:" + reaverage);
+  csre=Math.round((rescore/fre)*100);
+	//reresponse=re1+re2+re3+re4+re5+re6+re7+re8;
+	//reaverage=rescore/reresponse;
+  //console.log("TOTAL RESPONSE FOR RECOVER PHASE IS:" + reresponse);
+	console.log("TOTAL ANSWERED WEIGHTED SCORE FOR RECOVER PHASE IS:" + rescore);
+  console.log("CLIENT SCORE FOR RECOVER PHASE IS:" + csre);
+	//console.log("AVERAGE IS:" + reaverage);
 	recoverresponse={
-	reresponse : reresponse,
+	/*reresponse : reresponse,
 	rescore : rescore,
-	reaverage : reaverage
+	reaverage : reaverage*/
+  csre : csre
 	}
 	res.json(recoverresponse);
 });
