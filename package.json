@@ -4,7 +4,9 @@
   "description": "csri nist essential eight",
   "main": "app.js",
   "dependencies": {
-    "pm2-server-monit": "^1.1.0"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.4",
+    "pm2-server-monit": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

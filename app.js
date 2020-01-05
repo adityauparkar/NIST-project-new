@@ -1,6 +1,12 @@
 //Importing Express library
 var express = require('express');
 
+//Importing Mongoose library
+var mongoose = require('mongoose');
+
+//Importing score.js file
+var Score = require('./score');
+
 //Importing student.js file residing in models
 var bodyParser = require('body-parser');
 
@@ -42,9 +48,12 @@ var csi=0,csp=0,csd=0,csr=0,csre=0;
 var one;
 //implementation
 var app = express();
+
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
@@ -55,24 +64,35 @@ app.use(function(req, res, next) {
     next();
 });
 
+//Connecting to the MongoDB database 'StudentDB' running on 27017
+mongoose.connect('mongodb://localhost:27017/NISTEEDB',{ useNewUrlParser : true, useUnifiedTopology: true});
+//mongoose.connect('mongodb+srv://SIT782:SIT7a8b2c@cluster0-drm3u.mongodb.net/test?retryWrites=true&w=majority');
+//serving IDENTIFY PHASE
 app.get('/identify',function(req,res){
   res.sendFile( __dirname + "/Identify-Phase.html" );
 });
+//serving PROTECT PHASE
 app.get('/protect',function(req,res){
   res.sendFile( __dirname + "/Protect-Phase.html" );
 });
+//serving DETECT PHASE
 app.get('/detect',function(req,res){
   res.sendFile( __dirname + "/Detect-Phase.html" );
 });
+//serving RESPOND PHASE
 app.get('/respond',function(req,res){
   res.sendFile( __dirname + "/Respond-Phase.html" );
 });
+//serving RECOVER PHASE
 app.get('/recover',function(req,res){
   res.sendFile( __dirname + "/Recover-Phase.html" );
 });
+//serving RESULTS
 app.get('/result',function(req,res){
   res.sendFile( __dirname + "/result.html" );
 });
+
+//sending data to RESULTS
 app.get('/', function(req,res){
 	//res.json(this.response);
 	//res.json(this.protectresponse);
@@ -85,7 +105,7 @@ app.get('/', function(req,res){
 	total={ total: total}
 	res.json(total);*/
 	everything = {
-	identify: this.response,
+	identify: this.iresponse,
 	protect : this.protectresponse,
 	detect  : this.detectresponse,
 	respond : this.respondresponse,
@@ -94,18 +114,9 @@ app.get('/', function(req,res){
 	console.log(everything);
 	res.json(everything);
 });
-/*app.get('/', function(req,res){
-	res.json(this.protectresponse);
-});
-/*app.get('/detect', function(req,res){
-	res.json(this.detectresponse);
-});
-app.get('/respond', function(req,res){
-	res.json(this.respondresponse);
-});*/
-/*app.get('/respond', function(req,res){
-	res.json(this.recoverresponse);
-});*/
+
+
+//Calculation of IDENTIFY PHASE
 app.post('/api/identify', function(req, res) {
 	console.log("IDENTIFY PHASE");
 	var i1=parseInt(req.body.i1);
@@ -194,15 +205,61 @@ app.post('/api/identify', function(req, res) {
 	console.log("TOTAL ANSWERED WEIGHT SCORE FOR IDENTIFY PHASE IS:" + wscore);
   console.log("CLIENT SCORE FOR IDENTITY PHASE IS:" + csi);
 	//console.log("AVERAGE IS:" + waverage);
-	response={
+	iresponse={
 	//wresponse : wresponse,
 	//wscore : wscore,
   csi : csi,
 	//waverage : waverage,
   //one : one
 	}
-	res.json(response);
+  identifyscore={
+    _id: csi,
+    csi: csi,
+    i1: i1,
+    i2: i2,
+    i3: i3,
+    i4: i4,
+    i5: i5,
+    i6: i6,
+    i7: i7,
+    i8: i8,
+    i9: i9,
+    i10: i10,
+    i11: i11,
+    i12: i12,
+    i13: i13,
+    i14: i14,
+    i15: i15,
+    i16: i16,
+    i17: i17,
+    i18: i18,
+    i19: i19,
+    i20: i20,
+    i21: i21,
+    i22: i22,
+    i23: i23,
+    i24: i24,
+    i25: i25,
+  }
+  Score.addScore(identifyscore, function(err, student) {
+        if (identifyscore) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
+	res.json(iresponse);
 });
+
+//Calculation of PROTECT PHASE
 app.post('/api/protect', function(req, res) {
 	console.log("PROTECT PHASE");
 	var p1=parseInt(req.body.p1);
@@ -293,6 +350,8 @@ app.post('/api/protect', function(req, res) {
 	}
 	res.json(protectresponse);
 });
+
+//Calculation of DETECT PHASE
 app.post('/api/detect', function(req, res) {
 	console.log("DETECT PHASE");
 	var d1=parseInt(req.body.d1);
@@ -371,6 +430,8 @@ app.post('/api/detect', function(req, res) {
 	}
 	res.json(detectresponse);
 });
+
+//Calculation of RESPOND PHASE
 app.post('/api/respond', function(req, res) {
 	console.log("RESPOND PHASE");
 	var r1=parseInt(req.body.r1);
@@ -428,6 +489,8 @@ app.post('/api/respond', function(req, res) {
 	}
 	res.json(respondresponse);
 });
+
+//Calculation of RECOVER PHASE
 app.post('/api/recover', function(req, res) {
 	console.log("RECOVER PHASE");
 	var re1=parseInt(req.body.re1);
