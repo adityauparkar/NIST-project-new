@@ -4,9 +4,13 @@ var express = require('express');
 //Importing Mongoose library
 var mongoose = require('mongoose');
 
-//Importing score.js file
-var Score = require('./score');
-
+//Importing schema js files
+var IdentifyScore = require('./schemas/identifyschema');
+var ProtectScore = require('./schemas/protectschema');
+var DetectScore = require('./schemas/detectschema');
+var RespondScore = require('./schemas/respondschema');
+var RecoverScore = require('./schemas/recoverschema');
+var User = require('./user')
 //Importing student.js file residing in models
 var bodyParser = require('body-parser');
 
@@ -33,7 +37,7 @@ var daverage=0;
 var raverage=0;
 var reaverage=0;
 //weights
-var w=1,w1=1,w2=2,w3=3;
+var w1=1,w2=2,w3=3;
 //total maximum weights
 var fi=50,fp=48,fd=40,fr=26,fre=12;
 //weights for each question multiplied by the value of response or answer of each question
@@ -46,6 +50,8 @@ var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0,wre8=0;
 var csi=0,csp=0,csd=0,csr=0,csre=0;
 //recommendations
 var one;
+
+var cun;
 //implementation
 var app = express();
 
@@ -64,9 +70,17 @@ app.use(function(req, res, next) {
     next();
 });
 
-//Connecting to the MongoDB database 'StudentDB' running on 27017
-mongoose.connect('mongodb://localhost:27017/NISTEEDB',{ useNewUrlParser : true, useUnifiedTopology: true});
-//mongoose.connect('mongodb+srv://SIT782:SIT7a8b2c@cluster0-drm3u.mongodb.net/test?retryWrites=true&w=majority');
+//Connecting to the MongoDB database 'NISTEEDB' running on 27017
+mongoose.connect('mongodb://localhost:27017/NISTEEDB',{
+   useNewUrlParser : true, useUnifiedTopology: true
+});
+//mongoose.connect('mongodb+srv://SIT782:SIT7a8b2c@cluster0-drm3u.mongodb.net/test?retryWrites=true&w=majority',{ useNewUrlParser : true, useUnifiedTopology: true});
+app.get('/signup',function(req,res){
+  res.sendFile( __dirname + "/signup.html" );
+});
+app.get('/signin',function(req,res){
+  res.sendFile( __dirname + "/signin.html" );
+});
 //serving IDENTIFY PHASE
 app.get('/identify',function(req,res){
   res.sendFile( __dirname + "/Identify-Phase.html" );
@@ -91,6 +105,9 @@ app.get('/recover',function(req,res){
 app.get('/result',function(req,res){
   res.sendFile( __dirname + "/result.html" );
 });
+app.get('/directresult',function(req,res){
+  res.sendFile( __dirname + "/directresult.html" );
+});
 
 //sending data to RESULTS
 app.get('/', function(req,res){
@@ -105,6 +122,7 @@ app.get('/', function(req,res){
 	total={ total: total}
 	res.json(total);*/
 	everything = {
+  //dresponse : this.identifydataresponse.result,
 	identify: this.iresponse,
 	protect : this.protectresponse,
 	detect  : this.detectresponse,
@@ -114,7 +132,136 @@ app.get('/', function(req,res){
 	console.log(everything);
 	res.json(everything);
 });
+app.post('/', function(req,res){
+  data={
+    iresponse : this.identifydataresponse.identifyresult,
+    presponse : this.protectdataresponse.protectresult,
+    dresponse : this.detectdataresponse.detectresult,
+    rresponse : this.responddataresponse.respondresult,
+    reresponse : this.recoverdataresponse.recoverresult
+  }
+  res.json(data);
+});
+//signup
+app.post('/api/signup', function(req, res) {
+  var email=req.body.email;
+	console.log(email);
+	var password=req.body.password;
+	console.log(password);
+  creds={
+    _id: email,
+    email: email,
+    password: password
+  }
+  User.addUser(creds, function(err, creds) {
+        if (creds) {
+           response = {
+                "result": "User Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
+});
 
+//signin
+app.post('/api/signin', function(req, res) {
+  var email=req.body.email;
+	console.log(email);
+	var password=req.body.password;
+	console.log(password);
+  var _id=email;
+  /*User.getUserById(_id, function(err, credentials){
+    if (credentials) {
+     dataresponse = {
+            "result": credentials
+        }
+        //res.json(response);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });*/
+
+  IdentifyScore.getUserById(_id, function(err, identifyclientscore){
+    if (identifyclientscore) {
+     identifydataresponse = {
+            "identifyresult": identifyclientscore
+        }
+        //res.json(response);
+        console.log(identifyclientscore);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });
+  ProtectScore.getUserById(_id, function(err, protectclientscore){
+    if (protectclientscore) {
+     protectdataresponse = {
+            "protectresult": protectclientscore
+        }
+        //res.json(response);
+        console.log(protectclientscore);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });
+  DetectScore.getUserById(_id, function(err, detectclientscore){
+    if (detectclientscore) {
+     detectdataresponse = {
+            "detectresult": detectclientscore
+        }
+        //res.json(response);
+        console.log(detectclientscore);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });
+  RespondScore.getUserById(_id, function(err, respondclientscore){
+    if (respondclientscore) {
+    responddataresponse = {
+            "respondresult":respondclientscore
+        }
+        //res.json(response);
+        console.log(respondclientscore);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });
+  RecoverScore.getUserById(_id, function(err, recoverclientscore){
+    if (recoverclientscore) {
+    recoverdataresponse = {
+            "recoverresult":recoverclientscore
+        }
+        //res.json(response);
+        console.log(recoverclientscore);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+        res.json(error);
+    }
+  });
+});
 
 //Calculation of IDENTIFY PHASE
 app.post('/api/identify', function(req, res) {
@@ -172,6 +319,7 @@ app.post('/api/identify', function(req, res) {
   /*if(i1==1){
     one = "Implement this control"
   }*/
+
 	wi1=w2*i1;
 	wi2=w3*i2;
 	wi3=w1*i3;
@@ -212,8 +360,9 @@ app.post('/api/identify', function(req, res) {
 	//waverage : waverage,
   //one : one
 	}
+  console.log(this.creds);
   identifyscore={
-    _id: csi,
+    _id: this.creds.email,
     csi: csi,
     i1: i1,
     i2: i2,
@@ -239,9 +388,9 @@ app.post('/api/identify', function(req, res) {
     i22: i22,
     i23: i23,
     i24: i24,
-    i25: i25,
+    i25: i25
   }
-  Score.addScore(identifyscore, function(err, student) {
+  IdentifyScore.addIdentifyScore(identifyscore, function(err, identifyscore) {
         if (identifyscore) {
            response = {
                 "result": "Data inserted succesfully"
@@ -348,6 +497,50 @@ app.post('/api/protect', function(req, res) {
 	//paverage : paverage
   csp : csp
 	}
+  protectscore={
+    _id: this.creds.email,
+    csp: csp,
+    p1: p1,
+    p2: p2,
+    p3: p3,
+    p4: p4,
+    p5: p5,
+    p6: p6,
+    p7: p7,
+    p8: p8,
+    p9: p9,
+    p10: p10,
+    p11: p11,
+    p12: p12,
+    p13: p13,
+    p14: p14,
+    p15: p15,
+    p16: p16,
+    p17: p17,
+    p18: p18,
+    p19: p19,
+    p20: p20,
+    p21: p21,
+    p22: p22,
+    p23: p23,
+    p24: p24
+
+  }
+  ProtectScore.addProtectScore(protectscore, function(err, protectscore) {
+        if (protectscore) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
 	res.json(protectresponse);
 });
 
@@ -428,6 +621,46 @@ app.post('/api/detect', function(req, res) {
   csd : csd
 	//daverage : daverage
 	}
+  console.log(cun);
+  detectscore={
+    _id: this.creds.email,
+    csd: csd,
+    d1: d1,
+    d2: d2,
+    d3: d3,
+    d4: d4,
+    d5: d5,
+    d6: d6,
+    d7: d7,
+    d8: d8,
+    d9: d9,
+    d10: d10,
+    d11: d11,
+    d12: d12,
+    d13: d13,
+    d14: d14,
+    d15: d15,
+    d16: d16,
+    d17: d17,
+    d18: d18,
+    d19: d19,
+    d20: d20,
+  }
+  DetectScore.addDetectScore(detectscore, function(err, detectscore) {
+        if (detectscore) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
 	res.json(detectresponse);
 });
 
@@ -487,6 +720,38 @@ app.post('/api/respond', function(req, res) {
   csr : csr
 	//raverage : raverage
 	}
+  respondscore={
+    _id: this.creds.email,
+    csr: csr,
+    r1: r1,
+    r2: r2,
+    r3: r3,
+    r4: r4,
+    r5: r5,
+    r6: r6,
+    r7: r7,
+    r8: r8,
+    r9: r9,
+    r10: r10,
+    r11: r11,
+    r12: r12,
+    r13: r13
+  }
+  RespondScore.addRespondScore(respondscore, function(err, respondscore) {
+        if (respondscore) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
 	res.json(respondresponse);
 });
 
@@ -531,6 +796,33 @@ app.post('/api/recover', function(req, res) {
 	reaverage : reaverage*/
   csre : csre
 	}
+  recoverscore={
+    _id: this.creds.email,
+    csre: csre,
+    re1: re1,
+    re2: re2,
+    re3: re3,
+    re4: re4,
+    re5: re5,
+    re6: re6,
+    re7: re7,
+    re8: re8
+  }
+  RecoverScore.addRecoverScore(recoverscore, function(err, recoverscore) {
+        if (recoverscore) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            //res.json(response);
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            //res.json(error);
+            console.log(error);
+        }
+    });
 	res.json(recoverresponse);
 });
 app.listen(PORT);

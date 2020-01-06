@@ -1,114 +1,94 @@
 //Requiring Mongoose
 var mongoose = require('mongoose');
 
-//Defining Schema
-var identifyscoreSchema = mongoose.Schema({
+//Defining Schema for DETECT PHASE
+var detectscoreSchema = mongoose.Schema({
 
     _id: {
       type: String,
       required: true
     },
-    csi: {
+    csd: {
         type: String,
         required: true
     },
-    i1: {
+    d1: {
         type: String,
         required: true
     },
-    i2: {
+    d2: {
         type: String,
         required: true
     },
-    i3: {
+    d3: {
         type: String,
         required: true
     },
-    i4: {
+    d4: {
         type: String,
         required: true
     },
-    i5: {
+    d5: {
         type: String,
         required: true
     },
-    i6: {
+    d6: {
         type: String,
         required: true
     },
-    i7: {
+    d7: {
         type: String,
         required: true
     },
-    i8: {
+    d8: {
         type: String,
         required: true
     },
-    i9: {
+    d9: {
         type: String,
         required: true
     },
-    i10: {
+    d10: {
         type: String,
         required: true
     },
-    i11: {
+    d11: {
         type: String,
         required: true
     },
-    i12: {
+    d12: {
         type: String,
         required: true
     },
-    i13: {
+    d13: {
         type: String,
         required: true
     },
-    i14: {
+    d14: {
         type: String,
         required: true
     },
-    i15: {
+    d15: {
         type: String,
         required: true
     },
-    i16: {
+    d16: {
         type: String,
         required: true
     },
-    i17: {
+    d17: {
         type: String,
         required: true
     },
-    i18: {
+    d18: {
         type: String,
         required: true
     },
-    i19: {
+    d19: {
         type: String,
         required: true
     },
-    i20: {
-        type: String,
-        required: true
-    },
-    i21: {
-        type: String,
-        required: true
-    },
-    i22: {
-        type: String,
-        required: true
-    },
-    i23: {
-        type: String,
-        required: true
-    },
-    i24: {
-        type: String,
-        required: true
-    },
-    i25: {
+    d20: {
         type: String,
         required: true
     },
@@ -118,11 +98,13 @@ var identifyscoreSchema = mongoose.Schema({
     }
 });
 
-//Exporting the file
-var Score = module.exports = mongoose.model('IdentifyScoreCollection', identifyscoreSchema); //Binding schema to StudentCollection
+var DetectScore = module.exports = mongoose.model('DetectScoreCollection', detectscoreSchema); //Binding schema to StudentCollection
 
 //Inserting student Details
-module.exports.addScore = function(score, callback) {
-  console.log("HELLO");
-    Score.create(score, callback);
+module.exports.addDetectScore = function(detectDetectscore, callback) {
+  console.log("DETECT PHASE data saving");
+    DetectScore.create(detectscore, callback);
+}
+module.exports.getUserById = function(_id, callback) {
+    DetectScore.findById(_id, callback);
 }
