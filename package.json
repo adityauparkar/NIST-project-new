@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "mongoose": "^5.8.4",
     "pm2-server-monit": "^3.0.0"
   },

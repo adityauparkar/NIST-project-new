@@ -140,6 +140,7 @@ app.post('/', function(req,res){
     rresponse : this.responddataresponse.respondresult,
     reresponse : this.recoverdataresponse.recoverresult
   }
+  //console.log(this.inum.i);
   res.json(data);
 });
 //signup
@@ -190,13 +191,29 @@ app.post('/api/signin', function(req, res) {
         res.json(error);
     }
   });*/
-
+  User.getUserById(_id,function(err, userdetails){
+    if(userdetails){
+      userdetails={
+        "userdetails": userdetails
+      }
+      console.log(userdetails.userdetails.email);
+      if(userdetails.userdetails.email==email && password == userdetails.userdetails.password){
+        console.log(userdetails.userdetails.email);
+        console.log(userdetails.userdetails.password);
+        //res.redirect('/result')
+      }
+    } else {
+    error = {
+      "error" : "user does not exist"
+      }
+    }
+  });
   IdentifyScore.getUserById(_id, function(err, identifyclientscore){
     if (identifyclientscore) {
      identifydataresponse = {
             "identifyresult": identifyclientscore
         }
-        //res.json(response);
+
         console.log(identifyclientscore);
     } else {
       error = {
@@ -210,7 +227,7 @@ app.post('/api/signin', function(req, res) {
      protectdataresponse = {
             "protectresult": protectclientscore
         }
-        //res.json(response);
+
         console.log(protectclientscore);
     } else {
       error = {
@@ -224,7 +241,7 @@ app.post('/api/signin', function(req, res) {
      detectdataresponse = {
             "detectresult": detectclientscore
         }
-        //res.json(response);
+
         console.log(detectclientscore);
     } else {
       error = {
@@ -238,7 +255,7 @@ app.post('/api/signin', function(req, res) {
     responddataresponse = {
             "respondresult":respondclientscore
         }
-        //res.json(response);
+
         console.log(respondclientscore);
     } else {
       error = {
@@ -252,7 +269,7 @@ app.post('/api/signin', function(req, res) {
     recoverdataresponse = {
             "recoverresult":recoverclientscore
         }
-        //res.json(response);
+
         console.log(recoverclientscore);
     } else {
       error = {
@@ -360,8 +377,52 @@ app.post('/api/identify', function(req, res) {
 	//waverage : waverage,
   //one : one
 	}
-  console.log(this.creds);
+  var inumval=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21,i22,i23,i24,i25];
+  var i=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21,i22,i23,i24,i25];
+  inum={
+    i : inumval
+  }
+  console.log(inum);
+  for(j=0;j<i.length;j++){
+  if(i[j]==0)
+    i[j]="NOT IMPLEMENTED";
+  else if(i[j]==1)
+    i[j]="PARTIALLY IMPLEMENTED";
+  else
+    i[j]="FULLY IMPLEMENTED";
+  }
+
+  console.log(i);
   identifyscore={
+    _id: this.creds.email,
+    csi: csi,
+    i1: i[0],
+    i2: i[1],
+    i3: i[2],
+    i4: i[3],
+    i5: i[4],
+    i6: i[5],
+    i7: i[6],
+    i8: i[7],
+    i9: i[8],
+    i10: i[9],
+    i11: i[10],
+    i12: i[11],
+    i13: i[12],
+    i14: i[13],
+    i15: i[14],
+    i16: i[15],
+    i17: i[16],
+    i18: i[17],
+    i19: i[18],
+    i20: i[19],
+    i21: i[20],
+    i22: i[21],
+    i23: i[22],
+    i24: i[23],
+    i25: i[24]
+  }
+  /*identifyscore={
     _id: this.creds.email,
     csi: csi,
     i1: i1,
@@ -369,7 +430,7 @@ app.post('/api/identify', function(req, res) {
     i3: i3,
     i4: i4,
     i5: i5,
-    i6: i6,
+    i6: i5,
     i7: i7,
     i8: i8,
     i9: i9,
@@ -389,7 +450,7 @@ app.post('/api/identify', function(req, res) {
     i23: i23,
     i24: i24,
     i25: i25
-  }
+  }*/
   IdentifyScore.addIdentifyScore(identifyscore, function(err, identifyscore) {
         if (identifyscore) {
            response = {
@@ -497,7 +558,45 @@ app.post('/api/protect', function(req, res) {
 	//paverage : paverage
   csp : csp
 	}
+  var p=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24];
+  for(j=0;j<p.length;j++){
+  if(p[j]==0)
+    p[j]="NOT IMPLEMENTED";
+  else if(p[j]==1)
+    p[j]="PARTIALLY IMPLEMENTED";
+  else
+    p[j]="FULLY IMPLEMENTED";
+  }
+  console.log(p);
   protectscore={
+    _id: this.creds.email,
+    csp: csp,
+    p1: p[0],
+    p2: p[1],
+    p3: p[2],
+    p4: p[3],
+    p5: p[4],
+    p6: p[5],
+    p7: p[6],
+    p8: p[7],
+    p9: p[8],
+    p10: p[9],
+    p11: p[10],
+    p12: p[11],
+    p13: p[12],
+    p14: p[13],
+    p15: p[14],
+    p16: p[15],
+    p17: p[16],
+    p18: p[17],
+    p19: p[18],
+    p20: p[19],
+    p21: p[20],
+    p22: p[21],
+    p23: p[22],
+    p24: p[23]
+  }
+  /*protectscore={
     _id: this.creds.email,
     csp: csp,
     p1: p1,
@@ -524,8 +623,7 @@ app.post('/api/protect', function(req, res) {
     p22: p22,
     p23: p23,
     p24: p24
-
-  }
+  }*/
   ProtectScore.addProtectScore(protectscore, function(err, protectscore) {
         if (protectscore) {
            response = {
@@ -621,8 +719,41 @@ app.post('/api/detect', function(req, res) {
   csd : csd
 	//daverage : daverage
 	}
-  console.log(cun);
+  var d=[d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20];
+  for(j=0;j<d.length;j++){
+  if(d[j]==0)
+    d[j]="NOT IMPLEMENTED";
+  else if(d[j]==1)
+    d[j]="PARTIALLY IMPLEMENTED";
+  else
+    d[j]="FULLY IMPLEMENTED";
+  }
+  console.log(d);
   detectscore={
+    _id: this.creds.email,
+    csd: csd,
+    d1: d[0],
+    d2: d[1],
+    d3: d[2],
+    d4: d[3],
+    d5: d[4],
+    d6: d[5],
+    d7: d[6],
+    d8: d[7],
+    d9: d[8],
+    d10: d[9],
+    d11: d[10],
+    d12: d[11],
+    d13: d[12],
+    d14: d[13],
+    d15: d[14],
+    d16: d[15],
+    d17: d[16],
+    d18: d[17],
+    d19: d[18],
+    d20: d[19]
+  }
+  /*detectscore={
     _id: this.creds.email,
     csd: csd,
     d1: d1,
@@ -644,8 +775,8 @@ app.post('/api/detect', function(req, res) {
     d17: d17,
     d18: d18,
     d19: d19,
-    d20: d20,
-  }
+    d20: d20
+  }*/
   DetectScore.addDetectScore(detectscore, function(err, detectscore) {
         if (detectscore) {
            response = {
@@ -720,7 +851,34 @@ app.post('/api/respond', function(req, res) {
   csr : csr
 	//raverage : raverage
 	}
+  var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13];
+  for(j=0;j<r.length;j++){
+  if(r[j]==0)
+    r[j]="NOT IMPLEMENTED";
+  else if(r[j]==1)
+    r[j]="PARTIALLY IMPLEMENTED";
+  else
+    r[j]="FULLY IMPLEMENTED";
+  }
+  console.log(r);
   respondscore={
+    _id: this.creds.email,
+    csr: csr,
+    r1: r[0],
+    r2: r[1],
+    r3: r[2],
+    r4: r[3],
+    r5: r[4],
+    r6: r[5],
+    r7: r[6],
+    r8: r[7],
+    r9: r[8],
+    r10: r[9],
+    r11: r[10],
+    r12: r[11],
+    r13: r[12]
+  }
+  /*respondscore={
     _id: this.creds.email,
     csr: csr,
     r1: r1,
@@ -736,7 +894,7 @@ app.post('/api/respond', function(req, res) {
     r11: r11,
     r12: r12,
     r13: r13
-  }
+  }*/
   RespondScore.addRespondScore(respondscore, function(err, respondscore) {
         if (respondscore) {
            response = {
@@ -796,7 +954,29 @@ app.post('/api/recover', function(req, res) {
 	reaverage : reaverage*/
   csre : csre
 	}
+  var re=[re1,re2,re3,re4,re5,re6,re7,re8];
+  for(j=0;j<re.length;j++){
+  if(re[j]==0)
+    re[j]="NOT IMPLEMENTED";
+  else if(re[j]==1)
+    re[j]="PARTIALLY IMPLEMENTED";
+  else
+    re[j]="FULLY IMPLEMENTED";
+  }
+  console.log(re);
   recoverscore={
+    _id: this.creds.email,
+    csre: csre,
+    re1: re[0],
+    re2: re[1],
+    re3: re[2],
+    re4: re[3],
+    re5: re[4],
+    re6: re[5],
+    re7: re[6],
+    re8: re[7]
+  }
+  /*recoverscore={
     _id: this.creds.email,
     csre: csre,
     re1: re1,
@@ -807,7 +987,7 @@ app.post('/api/recover', function(req, res) {
     re6: re6,
     re7: re7,
     re8: re8
-  }
+  }*/
   RecoverScore.addRecoverScore(recoverscore, function(err, recoverscore) {
         if (recoverscore) {
            response = {
