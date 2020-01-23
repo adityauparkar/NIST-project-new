@@ -8,87 +8,179 @@ var detectscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    csd: {
+    /*csd: {
+        type: String,
+        required: true
+    },*/
+    DEAE1: {
         type: String,
         required: true
     },
-    d1: {
+    DEAE1D: {
         type: String,
         required: true
     },
-    d2: {
+    DEAE2: {
         type: String,
         required: true
     },
-    d3: {
+    DEAE2D: {
         type: String,
         required: true
     },
-    d4: {
+    DEAE3: {
         type: String,
         required: true
     },
-    d5: {
+    DEAE3D: {
         type: String,
         required: true
     },
-    d6: {
+    DECM1: {
         type: String,
         required: true
     },
-    d7: {
+    DECM1D: {
         type: String,
         required: true
     },
-    d8: {
+    DECM2: {
         type: String,
         required: true
     },
-    d9: {
+    DECM2D: {
         type: String,
         required: true
     },
-    d10: {
+    DECM3: {
         type: String,
         required: true
     },
-    d11: {
+    DECM3D: {
         type: String,
         required: true
     },
-    d12: {
+    DECM4: {
         type: String,
         required: true
     },
-    d13: {
+    DECM4D: {
         type: String,
         required: true
     },
-    d14: {
+    DECM5: {
         type: String,
         required: true
     },
-    d15: {
+    DECM5D: {
         type: String,
         required: true
     },
-    d16: {
+    DECM6: {
         type: String,
         required: true
     },
-    d17: {
+    DECM6D: {
         type: String,
         required: true
     },
-    d18: {
+    DECM7: {
         type: String,
         required: true
     },
-    d19: {
+    DECM7D: {
         type: String,
         required: true
     },
-    d20: {
+    DECM8: {
+        type: String,
+        required: true
+    },
+    DECM8D: {
+        type: String,
+        required: true
+    },
+    DEDP1: {
+        type: String,
+        required: true
+    },
+    DEDP1D: {
+        type: String,
+        required: true
+    },
+    DEDP2: {
+        type: String,
+        required: true
+    },
+    DEDP2D: {
+        type: String,
+        required: true
+    },
+    DEDP3: {
+        type: String,
+        required: true
+    },
+    DEDP3D: {
+        type: String,
+        required: true
+    },
+    DEDP4: {
+        type: String,
+        required: true
+    },
+    DEDP4D: {
+        type: String,
+        required: true
+    },
+    DEDP5: {
+        type: String,
+        required: true
+    },
+    DEDP5D: {
+        type: String,
+        required: true
+    },
+    DEDP6: {
+        type: String,
+        required: true
+    },
+    DEDP6D: {
+        type: String,
+        required: true
+    },
+    dsc1sr: {
+        type: String,
+        required: true
+    },
+    dsc1risk: {
+        type: String,
+        required: true
+    },
+    dsc2sr: {
+        type: String,
+        required: true
+    },
+    dsc2risk: {
+        type: String,
+        required: true
+    },
+    dsc3sr: {
+        type: String,
+        required: true
+    },
+    dsc3risk: {
+        type: String,
+        required: true
+    },
+    dor:{
+        type: String,
+        required: true
+    },
+    doml:{
+        type: String,
+        required: true
+    },
+    dpp:{
         type: String,
         required: true
     },

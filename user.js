@@ -4,9 +4,14 @@ var mongoose = require('mongoose');
 //Defining Schema for IDENTIFY PHASE
 var UserSchema = mongoose.Schema({
 
+
     _id: {
       type: String,
       required: true
+    },
+    orgn: {
+        type: String,
+        required: true
     },
     email: {
         type: String,

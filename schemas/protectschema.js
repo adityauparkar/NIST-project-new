@@ -8,103 +8,251 @@ var protectscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    csp: {
+    /*csp: {
+        type: String,
+        required: true
+    },*/
+    PRAC1: {
         type: String,
         required: true
     },
-    p1: {
+    PRAC1D: {
         type: String,
         required: true
     },
-    p2: {
+    PRAC2: {
         type: String,
         required: true
     },
-    p3: {
+    PRAC2D: {
         type: String,
         required: true
     },
-    p4: {
+    PRAC3: {
         type: String,
         required: true
     },
-    p5: {
+    PRAC3D: {
         type: String,
         required: true
     },
-    p6: {
+    PRAC4: {
         type: String,
         required: true
     },
-    p7: {
+    PRAC4D: {
         type: String,
         required: true
     },
-    p8: {
+    PRAT1: {
         type: String,
         required: true
     },
-    p9: {
+    PRAT1D: {
         type: String,
         required: true
     },
-    p10: {
+    PRAT2: {
         type: String,
         required: true
     },
-    p11: {
+    PRAT2D: {
         type: String,
         required: true
     },
-    p12: {
+    PRDS1: {
         type: String,
         required: true
     },
-    p13: {
+    PRDS1D: {
         type: String,
         required: true
     },
-    p14: {
+    PRDS2: {
         type: String,
         required: true
     },
-    p15: {
+    PRDS2D: {
         type: String,
         required: true
     },
-    p16: {
+    PRDS3: {
         type: String,
         required: true
     },
-    p17: {
+    PRDS3D: {
         type: String,
         required: true
     },
-    p18: {
+    PRDS4: {
         type: String,
         required: true
     },
-    p19: {
+    PRDS4D: {
         type: String,
         required: true
     },
-    p20: {
+    PRDS5: {
         type: String,
         required: true
     },
-    p21: {
+    PRDS5D: {
         type: String,
         required: true
     },
-    p22: {
+    PRIP1: {
         type: String,
         required: true
     },
-    p23: {
+    PRIP1D: {
         type: String,
         required: true
     },
-    p24: {
+    PRIP2: {
+        type: String,
+        required: true
+    },
+    PRIP2D: {
+        type: String,
+        required: true
+    },
+    PRIP3: {
+        type: String,
+        required: true
+    },
+    PRIP3D: {
+        type: String,
+        required: true
+    },
+    PRIP4: {
+        type: String,
+        required: true
+    },
+    PRIP4D: {
+        type: String,
+        required: true
+    },
+    PRIP5: {
+        type: String,
+        required: true
+    },
+    PRIP5D: {
+        type: String,
+        required: true
+    },
+    PRMA1: {
+        type: String,
+        required: true
+    },
+    PRMA1D: {
+        type: String,
+        required: true
+    },
+    PRMA2: {
+        type: String,
+        required: true
+    },
+    PRMA2D: {
+        type: String,
+        required: true
+    },
+    PRPT1: {
+        type: String,
+        required: true
+    },
+    PRPT1D: {
+        type: String,
+        required: true
+    },
+    PRPT2: {
+        type: String,
+        required: true
+    },
+    PRPT2D: {
+        type: String,
+        required: true
+    },
+    PRPT3: {
+        type: String,
+        required: true
+    },
+    PRPT3D: {
+        type: String,
+        required: true
+    },
+    PRPT4: {
+        type: String,
+        required: true
+    },
+    PRPT4D: {
+        type: String,
+        required: true
+    },
+    PRPT5: {
+        type: String,
+        required: true
+    },
+    PRPT5D: {
+        type: String,
+        required: true
+    },
+    psc1sr: {
+        type: String,
+        required: true
+    },
+    psc1risk: {
+        type: String,
+        required: true
+    },
+    psc2sr: {
+        type: String,
+        required: true
+    },
+    psc2risk: {
+        type: String,
+        required: true
+    },
+    psc3sr: {
+        type: String,
+        required: true
+    },
+    psc3risk: {
+        type: String,
+        required: true
+    },
+    psc4sr: {
+        type: String,
+        required: true
+    },
+    psc4risk: {
+        type: String,
+        required: true
+    },
+    psc5sr: {
+        type: String,
+        required: true
+    },
+    psc5risk: {
+        type: String,
+        required: true
+    },
+    psc6sr: {
+        type: String,
+        required: true
+    },
+    psc6risk: {
+        type: String,
+        required: true
+    },
+    por: {
+        type: String,
+        required: true
+    },
+    poml:{
+        type: String,
+        required: true
+    },
+    ppp:{
         type: String,
         required: true
     },

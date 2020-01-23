@@ -8,59 +8,147 @@ var respondscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    csr: {
+    /*csr: {
+        type: String,
+        required: true
+    },*/
+    RSRP1: {
         type: String,
         required: true
     },
-    r1: {
+    RSRP1D: {
         type: String,
         required: true
     },
-    r2: {
+    RSCO1: {
         type: String,
         required: true
     },
-    r3: {
+    RSCO1D: {
         type: String,
         required: true
     },
-    r4: {
+    RSCO2: {
         type: String,
         required: true
     },
-    r5: {
+    RSCO2D: {
         type: String,
         required: true
     },
-    r6: {
+    RSCO3: {
         type: String,
         required: true
     },
-    r7: {
+    RSCO3D: {
         type: String,
         required: true
     },
-    r8: {
+    RSCO4: {
         type: String,
         required: true
     },
-    r9: {
+    RSCO4D: {
         type: String,
         required: true
     },
-    r10: {
+    RSAN1: {
         type: String,
         required: true
     },
-    r11: {
+    RSAN1D: {
         type: String,
         required: true
     },
-    r12: {
+    RSAN2: {
         type: String,
         required: true
     },
-    r13: {
+    RSAN2D: {
+        type: String,
+        required: true
+    },
+    RSMI1: {
+        type: String,
+        required: true
+    },
+    RSMI1D: {
+        type: String,
+        required: true
+    },
+    RSMI2: {
+        type: String,
+        required: true
+    },
+    RSMI2D: {
+        type: String,
+        required: true
+    },
+    RSIM1: {
+        type: String,
+        required: true
+    },
+    RSIM1D: {
+        type: String,
+        required: true
+    },
+    RSIM2: {
+        type: String,
+        required: true
+    },
+    RSIM2D: {
+        type: String,
+        required: true
+    },
+    rsc1sr: {
+        type: String,
+        required: true
+    },
+    rsc1risk: {
+        type: String,
+        required: true
+    },
+    rsc2sr: {
+        type: String,
+        required: true
+    },
+    rsc2risk: {
+        type: String,
+        required: true
+    },
+    rsc3sr: {
+        type: String,
+        required: true
+    },
+    rsc3risk: {
+        type: String,
+        required: true
+    },
+    rsc4sr: {
+        type: String,
+        required: true
+    },
+    rsc4risk: {
+        type: String,
+        required: true
+    },
+    rsc5sr: {
+        type: String,
+        required: true
+    },
+    rsc5risk: {
+        type: String,
+        required: true
+    },
+    ror:{
+        type: String,
+        required: true
+    },
+    roml:{
+        type: String,
+        required: true
+    },
+    rpp:{
         type: String,
         required: true
     },

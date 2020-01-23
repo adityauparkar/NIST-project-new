@@ -8,107 +8,235 @@ var identifyscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    csi: {
+    /*csi: {
+        type: String,
+        required: true
+    },*/
+    IDAM1: {
         type: String,
         required: true
     },
-    i1: {
+    IDAM1D: {
         type: String,
         required: true
     },
-    i2: {
+    IDAM2: {
         type: String,
         required: true
     },
-    i3: {
+    IDAM2D: {
         type: String,
         required: true
     },
-    i4: {
+    IDAM3: {
         type: String,
         required: true
     },
-    i5: {
+    IDAM3D: {
         type: String,
         required: true
     },
-    i6: {
+    IDAM4: {
         type: String,
         required: true
     },
-    i7: {
+    IDAM4D: {
         type: String,
         required: true
     },
-    i8: {
+    IDBE1: {
         type: String,
         required: true
     },
-    i9: {
+    IDBE1D: {
         type: String,
         required: true
     },
-    i10: {
+    IDBE2: {
         type: String,
         required: true
     },
-    i11: {
+    IDBE2D: {
         type: String,
         required: true
     },
-    i12: {
+    IDBE3: {
         type: String,
         required: true
     },
-    i13: {
+    IDBE3D: {
         type: String,
         required: true
     },
-    i14: {
+    IDBE4: {
         type: String,
         required: true
     },
-    i15: {
+    IDBE4D: {
         type: String,
         required: true
     },
-    i16: {
+    IDGV1: {
         type: String,
         required: true
     },
-    i17: {
+    IDGV1D: {
         type: String,
         required: true
     },
-    i18: {
+    IDGV2: {
         type: String,
         required: true
     },
-    i19: {
+    IDGV2D: {
         type: String,
         required: true
     },
-    i20: {
+    IDGV3: {
         type: String,
         required: true
     },
-    i21: {
+    IDGV3D: {
         type: String,
         required: true
     },
-    i22: {
+    IDGV4: {
         type: String,
         required: true
     },
-    i23: {
+    IDGV4D: {
         type: String,
         required: true
     },
-    i24: {
+    IDRA1: {
         type: String,
         required: true
     },
-    i25: {
+    IDRA1D: {
+        type: String,
+        required: true
+    },
+    IDRA2: {
+        type: String,
+        required: true
+    },
+    IDRA2D: {
+        type: String,
+        required: true
+    },
+    IDRA3: {
+        type: String,
+        required: true
+    },
+    IDRA3D: {
+        type: String,
+        required: true
+    },
+    IDRA4: {
+        type: String,
+        required: true
+    },
+    IDRA4D: {
+        type: String,
+        required: true
+    },
+    IDRM1: {
+        type: String,
+        required: true
+    },
+    IDRM1D: {
+        type: String,
+        required: true
+    },
+    IDRM2: {
+        type: String,
+        required: true
+    },
+    IDRM2D: {
+        type: String,
+        required: true
+    },
+    IDSC1: {
+        type: String,
+        required: true
+    },
+    IDSC1D: {
+        type: String,
+        required: true
+    },
+    IDSC2: {
+        type: String,
+        required: true
+    },
+    IDSC2D: {
+        type: String,
+        required: true
+    },
+    IDSC3: {
+        type: String,
+        required: true
+    },
+    IDSC3D: {
+        type: String,
+        required: true
+    },
+    isc1sr: {
+        type: String,
+        required: true
+    },
+    isc1risk: {
+        type: String,
+        required: true
+    },
+    isc2sr: {
+        type: String,
+        required: true
+    },
+    isc2risk: {
+        type: String,
+        required: true
+    },
+    isc3sr: {
+        type: String,
+        required: true
+    },
+    isc3risk: {
+        type: String,
+        required: true
+    },
+    isc4sr: {
+        type: String,
+        required: true
+    },
+    isc4risk: {
+        type: String,
+        required: true
+    },
+    isc5sr: {
+        type: String,
+        required: true
+    },
+    isc5risk: {
+        type: String,
+        required: true
+    },
+    isc6sr: {
+        type: String,
+        required: true
+    },
+    isc6risk: {
+        type: String,
+        required: true
+    },
+    ior: {
+        type: String,
+        required: true
+    },
+    ioml: {
+        type: String,
+        required: true
+    },
+    ipp: {
         type: String,
         required: true
     },

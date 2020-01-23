@@ -8,39 +8,99 @@ var recoverscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    csre: {
+    /*csre: {
+        type: String,
+        required: true
+    },*/
+    RCRP1: {
         type: String,
         required: true
     },
-    re1: {
+    RCRP1D: {
         type: String,
         required: true
     },
-    re2: {
+    RCRP2: {
         type: String,
         required: true
     },
-    re3: {
+    RCRP2D: {
         type: String,
         required: true
     },
-    re4: {
+    RCRP3: {
         type: String,
         required: true
     },
-    re5: {
+    RCRP3D: {
         type: String,
         required: true
     },
-    re6: {
+    RCIM1: {
         type: String,
         required: true
     },
-    re7: {
+    RCIM1D: {
         type: String,
         required: true
     },
-    re8: {
+    RCIM2: {
+        type: String,
+        required: true
+    },
+    RCIM2D: {
+        type: String,
+        required: true
+    },
+    RCCO1: {
+        type: String,
+        required: true
+    },
+    RCCO1D: {
+        type: String,
+        required: true
+    },
+    RCCO2: {
+        type: String,
+        required: true
+    },
+    RCCO2D: {
+        type: String,
+        required: true
+    },
+    resc1sr: {
+        type: String,
+        required: true
+    },
+    resc1risk: {
+        type: String,
+        required: true
+    },
+    resc2sr: {
+        type: String,
+        required: true
+    },
+    resc2risk: {
+        type: String,
+        required: true
+    },
+    resc3sr: {
+        type: String,
+        required: true
+    },
+    resc3risk: {
+        type: String,
+        required: true
+    },
+    reor:{
+        type: String,
+        required: true
+    },
+    reoml:{
+        type: String,
+        required: true
+    },
+    repp:{
         type: String,
         required: true
     },
