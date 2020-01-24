@@ -1809,6 +1809,7 @@ app.post('/api/recover', function(req, res) {
      recom1 = {
             "recomon1": reco1
         }
+		console.log(recom1.recomon1._id);
         console.log(recom1.recomon1.rec);
     } else {
       error = {
@@ -1821,7 +1822,7 @@ app.post('/api/recover', function(req, res) {
      recom2 = {
             "recomon2": reco2
         }
-
+		console.log(recom2.recomon2._id);
         console.log(recom2.recomon2.rec);
     } else {
       error = {
@@ -1834,7 +1835,7 @@ app.post('/api/recover', function(req, res) {
       recom3 = {
             "recomon3": reco3
         }
-
+		console.log(recom3.recomon3._id);
         console.log(recom3.recomon3.rec);
     } else {
       error = {
@@ -1847,7 +1848,7 @@ app.post('/api/recover', function(req, res) {
      recom4 = {
             "recomon4": reco4
         }
-
+		console.log(recom4.recomon4._id);
         console.log(recom4.recomon4.rec);
     } else {
       error = {
@@ -1860,7 +1861,7 @@ app.post('/api/recover', function(req, res) {
      recom5 = {
             "recomon5": reco5
         }
-
+		console.log(recom5.recomon5._id);
         console.log(recom5.recomon5.rec);
     } else {
       error = {

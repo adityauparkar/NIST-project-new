@@ -641,6 +641,49 @@
                                           <p class="card-text" id="i5"></p>
                                         </div>
                                       </div>
+									  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i6"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i7"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i8"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i9"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i10"></p>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -702,11 +745,16 @@
     <script>
     $.post("http://localhost:7000/recommendations", null, function(response) {
     	if (response.error == undefined) {
-        document.getElementById('i1').innerHTML=response.rec1.rec;
-        document.getElementById('i2').innerHTML=response.rec2.rec;
-        document.getElementById('i3').innerHTML=response.rec3.rec;
-        document.getElementById('i4').innerHTML=response.rec4.rec;
-        document.getElementById('i5').innerHTML=response.rec5.rec;
+        document.getElementById('i1').innerHTML=response.rec1._id;
+        document.getElementById('i2').innerHTML=response.rec1.rec;
+        document.getElementById('i3').innerHTML=response.rec2._id;
+        document.getElementById('i4').innerHTML=response.rec2.rec;
+        document.getElementById('i5').innerHTML=response.rec3._id;
+		document.getElementById('i6').innerHTML=response.rec3.rec;
+        document.getElementById('i7').innerHTML=response.rec4._id;
+        document.getElementById('i8').innerHTML=response.rec4.rec;
+        document.getElementById('i9').innerHTML=response.rec5._id;
+        document.getElementById('i10').innerHTML=response.rec5.rec;
       } else {
   			showError(response.error)
   		}
