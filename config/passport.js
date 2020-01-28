@@ -1,77 +1,40 @@
-var passport = require('passport');
-var User = require('../user');
-var LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 
-passport.serializeUser(function(user, done){
-  console.log("PASSPORT");
-  done(null, user._id);
-});
+// Load User model
+const User = require('../models/User');
 
-passport.deserializeUser(function(_id, done){
-  User.findById(_id, function(err, user){
-    done(err, user);
+module.exports = function(passport) {
+  passport.use(
+    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+      // Match user
+      User.findOne({
+        email: email
+      }).then(user => {
+        if (!user) {
+          return done(null, false, { message: 'That email is not registered' });
+        }
+
+        // Match password
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Password incorrect' });
+          }
+        });
+      });
+    })
+  );
+
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
   });
-});
 
-passport.use('local.signup',new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-}, function(req, email, password, done){
-  req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-  req.checkBody('password', 'Inavalid password').notEmpty().isLength({min:4});
-  var errors = req.validationErrors();
-  if(errors){
-  var messages=[];
-  errors.forEach(function(error){
-    messages.push(error.msg);
-  });
-  return done(null, false, req.flash('error', messages));
-}
-  User.findOne({'email': email}, function(err, user){
-    if(err){
-      return done(err);
-    }
-    if(user){
-      return done(null, false, {message: 'Email is already in use.'});
-    }
-    var newUser = new User();
-    newUser.email = email;
-    newUser.password = newUser.encryptPassword(password);
-    newUser.save(function(err, result){
-      if(err){
-        return done(err);
-      }
-      return done(null, newUser);
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
     });
   });
-}));
-
-passport.use('local.signin', new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-},function(req, email, password, done){
-  req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-  req.checkBody('password', 'Inavalid password').notEmpty().isLength({min:4});
-  var errors = req.validationErrors();
-  if(errors){
-  var messages=[];
-  errors.forEach(function(error){
-    messages.push(error.msg);
-  });
-  return done(null, false, req.flash('error', messages));
-  }
-  User.findOne({'email': email}, function(err, user){
-    if(err){
-      return done(err);
-    }
-    if(!user){
-      return done(null, false, {message: 'No user found.'});
-    }
-    if(!user.validPassword(password)){
-            return done(null, false, {message: 'Wrong Password.'});
-    }
-    return done(null, user);
-  });
-}));
+};
