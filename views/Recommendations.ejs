@@ -650,6 +650,15 @@
                                       </div>
                                     </div>
                                   </div>
+								   <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-text" id="i11"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
                             <div class="page-title-actions">
@@ -708,7 +717,10 @@
     <script src="js/jquery.min.js"></script>
     <script>
     $.post("http://localhost:7000/recommendations", null, function(response) {
-    	if (response.error == undefined) {
+	if(response.rec!=undefined){
+	document.getElementById('i1').innerHTML=response.rec;
+	}
+	else if(response.error == undefined) {
         document.getElementById('i1').innerHTML=response.rec1._id;
         document.getElementById('i2').innerHTML=response.rec1.rec;
         document.getElementById('i3').innerHTML=response.rec2._id;
@@ -719,7 +731,9 @@
         document.getElementById('i8').innerHTML=response.rec4.rec;
         document.getElementById('i9').innerHTML=response.rec5._id;
         document.getElementById('i10').innerHTML=response.rec5.rec;
+		
       } else {
+	  
   			showError(response.error)
   		}
   	});

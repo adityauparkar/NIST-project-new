@@ -1720,7 +1720,14 @@ router.post('/api/recover', function(req, res) {
   console.log(rec3);
   console.log(rec4);
   console.log(rec5);
-  Rec.getRec(rec1, function(err, reco1){
+  for(i=0;i<79;i++){
+	console.log(sorted[i][1]);
+  }
+  for(i=0;i<79;i++){
+	console.log(sorted[i][1]);
+	if(sorted[i][1]!=0)
+	{
+	Rec.getRec(rec1, function(err, reco1){
     if (reco1) {
      recom1 = {
             "recomon1": reco1
@@ -1784,7 +1791,18 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-  });
+	
+	});
+	d={
+		d:0
+	}
+	console.log("d:"+d.d);
+	break;
+	}
+	d={
+		d:1
+	}
+	}
 });
 
 // Results 
@@ -1816,15 +1834,22 @@ router.get('/recommendations', ensureAuthenticated, (req, res) =>
 
 //showing recommendations
 router.post('/recommendations', function(req,res){
-  recommendations={
+	//if(this.recom1.recomon1!=undefined && this.recom2.recomon2!=undefined && this.recom3.recomon3!=undefined && this.recom4.recomon4!=undefined && this.recom5.recomon5!=undefined){
+	if(this.d.d!=1){
+	recommendations={
     rec1 : this.recom1.recomon1,
     rec2 : this.recom2.recomon2,
     rec3 : this.recom3.recomon3,
     rec4 : this.recom4.recomon4,
     rec5 : this.recom5.recomon5
-  }
+		}
+	}
+  else{
+	recommendations={
+		rec: 'you don\'t have any recommendations'
+	}  
+	}
   res.json(recommendations);
-  console.log("recs:"+recommendations);
 });
 
 module.exports = router;
