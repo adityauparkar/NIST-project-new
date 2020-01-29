@@ -565,7 +565,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv1">
                                           <p class="card-text" id="i1"></p>
                                         </div>
                                       </div>
@@ -574,7 +574,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv2">
                                           <p class="card-text" id="i2"></p>
                                         </div>
                                       </div>
@@ -583,7 +583,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv3">
                                           <p class="card-text" id="i3"></p>
                                         </div>
                                       </div>
@@ -592,7 +592,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv4">
                                           <p class="card-text" id="i4"></p>
                                         </div>
                                       </div>
@@ -601,14 +601,14 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv5">
                                           <p class="card-text" id="i5"></p>
                                         </div>
                                       </div>
 									  <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv6">
                                           <p class="card-text" id="i6"></p>
                                         </div>
                                       </div>
@@ -617,7 +617,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv7">
                                           <p class="card-text" id="i7"></p>
                                         </div>
                                       </div>
@@ -626,7 +626,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv8">
                                           <p class="card-text" id="i8"></p>
                                         </div>
                                       </div>
@@ -635,7 +635,7 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv9">
                                           <p class="card-text" id="i9"></p>
                                         </div>
                                       </div>
@@ -644,17 +644,8 @@
                                   <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:none" id="idiv10">
                                           <p class="card-text" id="i10"></p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-								   <div class="row">
-                                    <div class="col text-center">
-                                      <div class="card">
-                                        <div class="card-body">
-                                          <p class="card-text" id="i11"></p>
                                         </div>
                                       </div>
                                     </div>
@@ -719,21 +710,76 @@
     $.post("http://localhost:7000/recommendations", null, function(response) {
 	if(response.rec!=undefined){
 	document.getElementById('i1').innerHTML=response.rec;
+	document.getElementById('idiv1').style="display:block";
 	}
 	else if(response.error == undefined) {
-        document.getElementById('i1').innerHTML=response.rec1._id;
+	if(response.rec1._id!=undefined && response.rec1.rec!=undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
+	    document.getElementById('i1').innerHTML=response.rec1._id;
+		document.getElementById('idiv1').style="display:block";
         document.getElementById('i2').innerHTML=response.rec1.rec;
-        document.getElementById('i3').innerHTML=response.rec2._id;
+		document.getElementById('idiv2').style="display:block";
+		document.getElementById('i3').innerHTML=response.rec2._id;
+		document.getElementById('idiv3').style="display:block";
         document.getElementById('i4').innerHTML=response.rec2.rec;
-        document.getElementById('i5').innerHTML=response.rec3._id;
+		document.getElementById('idiv4').style="display:block";
+		document.getElementById('i5').innerHTML=response.rec3._id;
+		document.getElementById('idiv5').style="display:block";
 		document.getElementById('i6').innerHTML=response.rec3.rec;
-        document.getElementById('i7').innerHTML=response.rec4._id;
-        document.getElementById('i8').innerHTML=response.rec4.rec;
-        document.getElementById('i9').innerHTML=response.rec5._id;
+		document.getElementById('idiv6').style="display:block";
+		document.getElementById('i7').innerHTML=response.rec4._id;
+		document.getElementById('idiv7').style="display:block";
+        document.getElementById('i8').innerHTML=response.rec5.rec;
+		document.getElementById('idiv8').style="display:block";
+		document.getElementById('i9').innerHTML=response.rec5._id;
+		document.getElementById('idiv9').style="display:block";
         document.getElementById('i10').innerHTML=response.rec5.rec;
-		
-      } else {
-	  
+		document.getElementById('idiv10').style="display:block";
+	}else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
+		document.getElementById('i1').innerHTML=response.rec2._id;
+		document.getElementById('idiv1').style="display:block";
+        document.getElementById('i2').innerHTML=response.rec2.rec;
+		document.getElementById('idiv2').style="display:block";
+		document.getElementById('i3').innerHTML=response.rec3._id;
+		document.getElementById('idiv3').style="display:block";
+        document.getElementById('i4').innerHTML=response.rec3.rec;
+		document.getElementById('idiv4').style="display:block";
+		document.getElementById('i5').innerHTML=response.rec4._id;
+		document.getElementById('idiv5').style="display:block";
+		document.getElementById('i6').innerHTML=response.rec4.rec;
+		document.getElementById('idiv6').style="display:block";
+		document.getElementById('i7').innerHTML=response.rec5._id;
+		document.getElementById('idiv7').style="display:block";
+        document.getElementById('i8').innerHTML=response.rec5.rec;
+		document.getElementById('idiv8').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
+        document.getElementById('i1').innerHTML=response.rec3._id;
+		document.getElementById('idiv1').style="display:block";
+        document.getElementById('i2').innerHTML=response.rec3.rec;
+		document.getElementById('idiv2').style="display:block";
+		document.getElementById('i3').innerHTML=response.rec4._id;
+		document.getElementById('idiv3').style="display:block";
+        document.getElementById('i4').innerHTML=response.rec4.rec;
+		document.getElementById('idiv4').style="display:block";
+		document.getElementById('i5').innerHTML=response.rec5._id;
+		document.getElementById('idiv5').style="display:block";
+		document.getElementById('i6').innerHTML=response.rec5.rec;
+		document.getElementById('idiv6').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){   
+		document.getElementById('i1').innerHTML=response.rec4._id;
+		document.getElementById('idiv1').style="display:block";
+        document.getElementById('i2').innerHTML=response.rec4.rec;
+		document.getElementById('idiv2').style="display:block";
+		document.getElementById('i3').innerHTML=response.rec5._id;
+		document.getElementById('idiv3').style="display:block";
+        document.getElementById('i4').innerHTML=response.rec5.rec;
+		document.getElementById('idiv4').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id==undefined && response.rec4.rec==undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined ){
+		document.getElementById('i1').innerHTML=response.rec5._id;
+		document.getElementById('idiv1').style="display:block";
+        document.getElementById('i2').innerHTML=response.rec5.rec;
+		document.getElementById('idiv2').style="display:block";
+	}	
+    } else {
   			showError(response.error)
   		}
   	});

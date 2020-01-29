@@ -1723,9 +1723,7 @@ router.post('/api/recover', function(req, res) {
   for(i=0;i<79;i++){
 	console.log(sorted[i][1]);
   }
-  for(i=0;i<79;i++){
-	console.log(sorted[i][1]);
-	if(sorted[i][1]!=0)
+	if(sorted[74][1]!=0)
 	{
 	Rec.getRec(rec1, function(err, reco1){
     if (reco1) {
@@ -1739,7 +1737,18 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-  });
+	});
+    r1={
+		r1:1
+	}
+	}
+	else{
+	r1={
+		r1:0
+	}	
+	}
+	if(sorted[75][1]!=0)
+	{
   Rec.getRec(rec2, function(err, reco2){
     if (reco2) {
      recom2 = {
@@ -1752,7 +1761,18 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-  });
+	});
+  r2={
+	  r2:1
+	}
+	}
+	else{
+	r2={
+	  r2:0
+	}
+	}
+	if(sorted[76][1]!=0)
+	{
   Rec.getRec(rec3, function(err, reco3){
     if (reco3) {
       recom3 = {
@@ -1765,7 +1785,18 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-  });
+	});
+  r3={
+	  r3:1
+	}
+	}
+	else{
+	r3={
+	  r3:0
+	}
+	}
+  if(sorted[77][1]!=0)
+	{
   Rec.getRec(rec4, function(err, reco4){
     if (reco4) {
      recom4 = {
@@ -1778,7 +1809,17 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-  });
+	});
+  r4={
+	  r4:1
+	}
+	}
+	else{
+	r4={
+	  r4:0
+	}
+	}
+  if(sorted[78][1]!=0){
   Rec.getRec(rec5, function(err, reco5){
     if (reco5) {
      recom5 = {
@@ -1791,16 +1832,14 @@ router.post('/api/recover', function(req, res) {
             "error": "Please check entered ID"
         }
     }
-	
+	r5={
+	  r5:1
+	}
 	});
-	d={
-		d:0
 	}
-	console.log("d:"+d.d);
-	break;
-	}
-	d={
-		d:1
+	else{
+	r5={
+	  r5:0
 	}
 	}
 });
@@ -1834,17 +1873,20 @@ router.get('/recommendations', ensureAuthenticated, (req, res) =>
 
 //showing recommendations
 router.post('/recommendations', function(req,res){
-	//if(this.recom1.recomon1!=undefined && this.recom2.recomon2!=undefined && this.recom3.recomon3!=undefined && this.recom4.recomon4!=undefined && this.recom5.recomon5!=undefined){
-	if(this.d.d!=1){
+	var recommendation1=this.r1.r1==1;
+	var recommendation2=this.r2.r2==1;
+	var recommendation3=this.r3.r3==1;
+	var recommendation4=this.r4.r4==1;
+	var recommendation5=this.r5.r5==1;
 	recommendations={
-    rec1 : this.recom1.recomon1,
-    rec2 : this.recom2.recomon2,
-    rec3 : this.recom3.recomon3,
-    rec4 : this.recom4.recomon4,
-    rec5 : this.recom5.recomon5
-		}
+    rec1 : recommendation1 ? this.recom1.recomon1 : 'no recommendation',
+    rec2 : recommendation2 ? this.recom2.recomon2 : 'no recommendation',
+    rec3 : recommendation3 ? this.recom3.recomon3 : 'no recommendation',
+    rec4 : recommendation4 ? this.recom4.recomon4 : 'no recommendation',
+    rec5 : recommendation5 ? this.recom5.recomon5 : 'no recommendation'
 	}
-  else{
+	
+  if(this.r1.r1==0 && this.r2.r2==0 && this.r3.r3==0 && this.r4.r4==0 && this.r5.r5==0){
 	recommendations={
 		rec: 'you don\'t have any recommendations'
 	}  
