@@ -8,10 +8,6 @@ var protectscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    /*csp: {
-        type: String,
-        required: true
-    },*/
     PRAC1: {
         type: String,
         required: true
@@ -252,7 +248,7 @@ var protectscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    ppp:{
+    porm:{
         type: String,
         required: true
     },

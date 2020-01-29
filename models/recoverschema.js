@@ -100,7 +100,7 @@ var recoverscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    repp:{
+    reorm:{
         type: String,
         required: true
     },

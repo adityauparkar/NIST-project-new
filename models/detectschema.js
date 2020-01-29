@@ -8,10 +8,6 @@ var detectscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    /*csd: {
-        type: String,
-        required: true
-    },*/
     DEAE1: {
         type: String,
         required: true
@@ -180,7 +176,7 @@ var detectscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    dpp:{
+    dorm:{
         type: String,
         required: true
     },

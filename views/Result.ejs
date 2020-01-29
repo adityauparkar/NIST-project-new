@@ -319,7 +319,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Phase</th>
-                                                            <th scope="col">Range</th>
+                                                            <th scope="col">Score</th>
                                                             <th scope="col">Maturity Level</th>
                                                         </tr>
                                                     </thead>
@@ -379,7 +379,7 @@
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th scope="col">Category</th>
-                                                                                    <th scope="col">Range</th>
+                                                                                    <th scope="col">Score</th>
                                                                                     <th scope="col">Maturity Level</th>
                                                                                 </tr>
                                                                             </thead>
@@ -683,11 +683,11 @@
     <script>
         $.get("http://localhost:7000/show", null, function (response) {
             if (response.error == undefined) {
-                document.getElementById('ip').innerHTML = response.iresponse.ipp + "%";
-                document.getElementById('pp').innerHTML = response.presponse.ppp + "%";
-                document.getElementById('dp').innerHTML = response.dresponse.dpp + "%";
-                document.getElementById('rp').innerHTML = response.rresponse.rpp + "%";
-                document.getElementById('rep').innerHTML = response.reresponse.repp + "%";
+                document.getElementById('ip').innerHTML = response.iresponse.iorm + "%";
+                document.getElementById('pp').innerHTML = response.presponse.porm + "%";
+                document.getElementById('dp').innerHTML = response.dresponse.dorm + "%";
+                document.getElementById('rp').innerHTML = response.rresponse.rorm + "%";
+                document.getElementById('rep').innerHTML = response.reresponse.reorm + "%";
                 document.getElementById('i1').innerHTML = response.iresponse.isc1sr;
                 document.getElementById('i2').innerHTML = response.iresponse.isc1risk;
                 document.getElementById('i3').innerHTML = response.iresponse.isc2sr;

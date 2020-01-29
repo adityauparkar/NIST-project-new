@@ -232,7 +232,7 @@ var identifyscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    ipp: {
+    iorm: {
         type: String,
         required: true
     },

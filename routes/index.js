@@ -22,19 +22,19 @@ var RecoverScore = require('../models/recoverschema');
 var Rec = require('../models/recommendations');
 
 //for IDENTITY subcategories total question weight
-var isc1tw=14,isc2tw=6,isc3tw=9,isc4tw=6,isc5tw=2,isc6tw=4;
+var isc1tw=18,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=70;
 
 //for PROTECT subcategories total question weight
-var psc1tw=10,psc2tw=3,psc3tw=15,psc4tw=7,psc5tw=2,psc6tw=10;
+var psc1tw=20,psc2tw=8,psc3tw=26,psc4tw=16,psc5tw=4,psc6tw=22,psctotalw=96;
 
 //for DETECT subcategories total question weight
-var dsc1tw=10,dsc2tw=20,dsc3tw=12;
+var dsc1tw=12,dsc2tw=40,dsc3tw=22,dsctotalw=74;
 
 //for RESPOND subcategories total question weight
-var rsc1tw=3,rsc2tw=10,rsc3tw=7,rsc4tw=4,rsc5tw=5;
+var rsc1tw=4,rsc2tw=12,rsc3tw=10,rsc4tw=10,rsc5tw=4,rsctotalw=40;
 
 //for RECOVER subcategories total question weight
-var resc1tw=6,resc2tw=6,resc3tw=5;
+var resc1tw=12,resc2tw=8,resc3tw=8,restotalw=28;
 
 //for IDENTIFY subcategories client response to questions weight total
 var isc1cts=0,isc2cts=0,isc3cts=0,isc4cts=0,isc5cts=0,isc6cts=0;
@@ -54,8 +54,10 @@ var resc1cts=0,resc2cts=0,resc3cts=0;
 // for calculating overall score of each PHASE
 var iscac=0,pscac=0,dscac=0,rscac=0,resac=0;
 
-//for storing overall range for each phase
+//for storing overall score for each phase
 var ior=0,por=0,dor=0,ror=0,reor=0;
+//for storing overall maturity level for each phase
+var iorm=0,porm=0,dorm=0,rorm=0,reorm=0;
 
 //for storing overall maturity level for each phase
 var ioml,poml,doml,roml,reoml;
@@ -66,18 +68,28 @@ var ipp,ppp,dpp,rpp,repp;
 //for calulating clientscore by total weight of subcategory in each PHASE
 //for IDENTIFY PHASE
 var isc1sr=0;isc2sr=0;isc3sr=0,isc4sr=0,isc5sr=0,isc6sr=0;
+//for maturity of each sub category in Identify PHASE
+var isc1srm=0,isc2srm=0,isc4srm=0,isc5srm=0,isc6srm=0;
 
 //for PROTECT PHASE
 var psc1sr=0;psc2sr=0;psc3sr=0,psc4sr=0,psc5sr=0,psc6sr=0;
+//for maturity of each sub category in PROTECT PHASE
+var psc1srm=0;psc2srm=0;psc3srm=0,psc4srm=0,psc5srm=0,psc6srm=0;
 
 //for DETECT PHASE
 var dsc1sr=0,dsc2sr=0,dsc3sr=0;
+//for maturity of each sub category in DETECT PHASE
+var dsc1srm=0,dsc2srm=0,dsc3srm=0;
 
 //for RESPOND PHASE
 var rsc1sr=0,rsc2sr=0,rsc3sr=0,rsc4sr=0,rsc5sr=0;
+//for maturity of each sub category in RESPOND PHASE
+var rsc1srm=0,rsc2srm=0,rsc3srm=0,rsc4srm=0,rsc5srm=0;
 
 //for RECOVER PHASE
 var resc1sr=0,resc2sr=0,resc3sr=0;
+//for maturity of each sub category in RECOVER PHASE
+var resc1srm=0,resc2srm=0,resc3srm=0;
 
 //for risks of subcategories in each phase
 //for IDENTITY PHASE
@@ -98,8 +110,8 @@ var resc1risk,resc2risk,resc3risk;
 //weights
 var w1=1,w2=2,w3=3;
 
-//total maximum weights
-var fi=35,fp=48,fd=37,fr=20,fre=14;
+/*//total maximum weights
+var fi=35,fp=48,fd=37,fr=20,fre=14;*/
 
 //weights for each question multiplied by the value of response or answer of each question
 //weight variables for storing calculated weights according to question response in Identify Phase
@@ -298,13 +310,16 @@ router.post('/api/identify', function(req, res) {
   isc1cts= wi1+wi2+wi3+wi4;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF IDENTIFY PHASE:" + isc1cts);
   isc1sr= (isc1cts/isc1tw);
-  isc1sr=isc1sr.toFixed(2);
+  isc1sr= isc1sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-1 OF IDENTIFY PAHSE IS:" + isc1tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-1 OF IDENTIFY PHASE IS:" + isc1sr);
-  if(isc1sr>=0 && isc1sr <=1){
+  isc1srm=isc1sr*100;
+  isc1srm=Math.round(isc1srm);
+  console.log("maturity of sub-cat-1 of identify Phase:"+isc1srm);
+  if(isc1srm>=0 && isc1srm <=40){
     isc1risk = "HIGH RISK";
   }
-  else if(isc1sr>1 && isc1sr<=1.75){
+  else if(isc1srm>40 && isc1srm<=75){
     isc1risk = "MEDIUM RISK";
   }
   else {
@@ -321,10 +336,13 @@ router.post('/api/identify', function(req, res) {
   isc2sr=isc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF IDENTIFY PAHSE IS:" + isc2tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF IDENTIFY PHASE IS:" + isc2sr);
-  if(isc2sr>=0 && isc2sr <=1){
+  isc2srm=isc2sr*100;
+  isc2srm=Math.round(isc2srm);
+  console.log("maturity of sub-cat-2 of identify Phase:"+isc2srm);
+  if(isc2srm >=0 && isc2srm <=40){
     isc2risk = "HIGH RISK";
   }
-  else if(isc2sr>1 && isc2sr<=1.75){
+  else if(isc2srm >40 && isc2srm <=75){
     isc2risk = "MEDIUM RISK";
   }
   else {
@@ -341,10 +359,13 @@ router.post('/api/identify', function(req, res) {
   isc3sr=isc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF IDENTIFY PAHSE IS:" + isc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF IDENTIFY PHASE IS:" + isc3sr);
-  if(isc3sr>=0 && isc3sr <=1){
+  isc3srm=isc3sr*100;
+  isc3srm=Math.round(isc3srm);
+  console.log("maturity of sub-cat-3 of identify Phase:"+isc3srm);
+  if(isc3srm >=0 && isc3srm <40){
     isc3risk = "HIGH RISK";
   }
-  else if(isc3sr>1 && isc3sr<=1.75){
+  else if(isc3srm>40 && isc3srm<=75){
     isc3risk = "MEDIUM RISK";
   }
   else {
@@ -361,10 +382,13 @@ router.post('/api/identify', function(req, res) {
   isc4sr=isc4sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-4 OF IDENTIFY PAHSE IS:" + isc4tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-4 OF IDENTIFY PHASE IS:" + isc4sr);
-  if(isc4sr>=0 && isc4sr <=1){
+  isc4srm=isc4sr*100;
+  isc4srm=Math.round(isc4srm);
+  console.log("maturity of sub-cat-4 of identify Phase:"+isc4srm);
+  if(isc4srm >=0 && isc4srm <=40){
     isc4risk = "HIGH RISK";
   }
-  else if(isc4sr>1 && isc4sr<=1.75){
+  else if(isc4srm >40 && isc4srm <=75){
     isc4risk = "MEDIUM RISK";
   }
   else {
@@ -379,10 +403,13 @@ router.post('/api/identify', function(req, res) {
   isc5sr=isc5sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-5 OF IDENTIFY PAHSE IS:" + isc5tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-5 OF IDENTIFY PHASE IS:" + isc5sr);
-  if(isc5sr>=0 && isc5sr <=1){
+  isc5srm=isc5sr*100;
+  isc5srm=Math.round(isc5srm);
+  console.log("maturity of sub-cat-5 of identify Phase:"+isc5srm);
+  if(isc5srm >=0 && isc5srm <=40){
     isc5risk = "HIGH RISK";
   }
-  else if(isc5sr>1 && isc5sr<=1.75){
+  else if(isc5srm >40 && isc5srm<=75){
     isc5risk = "MEDIUM RISK";
   }
   else {
@@ -398,10 +425,13 @@ router.post('/api/identify', function(req, res) {
   isc6sr=isc6sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-6 OF IDENTIFY PAHSE IS:" + isc6tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-6 OF IDENTIFY PHASE IS:" + isc6sr);
-  if(isc6sr>=0 && isc6sr <=1){
+  isc6srm=isc6sr*100;
+  isc6srm=Math.round(isc6srm);
+  console.log("maturity of sub-cat-6 of identify Phase:"+isc6srm);
+  if(isc6srm>=0 && isc6srm <=40){
     isc6risk = "HIGH RISK";
   }
-  else if(isc6sr>1 && isc6sr<=1.75){
+  else if(isc6srm>40 && isc6srm<=75){
     isc6risk = "MEDIUM RISK";
   }
   else {
@@ -410,22 +440,24 @@ router.post('/api/identify', function(req, res) {
   console.log(isc6risk);
   iscac=isc1cts+isc2cts+isc3cts+isc4cts+isc5cts+isc6cts;
   console.log("OVERALL SCORE OF EACH SUBCATEGORY OF IDENTIFY PHASE IS:" + iscac);
-  ior=(iscac/fi);
+  ior=(iscac/isctotalw);
   ior=ior.toFixed(2);
-  console.log("OVERALL RANGE OF IDENTIFY PHASE IS:" + ior);
-  if(ior>=0 && ior<=1){
+  console.log("OVERALL SCORE OF IDENTIFY PHASE IS:" + ior);
+  iorm=ior*100;
+  iorm=Math.round(iorm);
+  if(iorm>=0 && iorm<=40){
     ioml = "HIGH RISK";
   }
-  else if(ior>1 && ior<=1.75){
+  else if(iorm>40 && iorm<=75){
     ioml = "MEDIUM RISK";
   }
   else {
     ioml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF IDENTIFY PHASE IS:" + ioml);
-  ipp=((ior*100)/2);
+  /*ipp=((ior*100)/2);
   ipp=Math.round(ipp);
-  console.log("IDENTIFY PHASE Percentage:" + ipp);
+  console.log("IDENTIFY PHASE Percentage:" + ipp);*/
   //claculation of difficulty in Identify Phase
   wis1=((2-i1)*(4-id1)*w2);
   console.log(wis1);
@@ -543,7 +575,7 @@ router.post('/api/identify', function(req, res) {
 	  isc6risk:isc6risk,
 	  ior:ior,
 	  ioml:ioml,
-	  ipp:ipp
+	  iorm:iorm
 	}
 	IdentifyScore.addIdentifyScore(identifyscore, function(err, identifyscore) {
 		  if (identifyscore) {
@@ -672,10 +704,13 @@ router.post('/api/protect', function(req, res) {
   psc1sr=psc1sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-1 OF PROTECT PAHSE IS:" + psc1tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-1 OF PROTECT PHASE IS:" + psc1sr);
-  if(psc1sr>=0 && psc1sr <=1){
+  psc1srm=psc1sr*100;
+  psc1srm=Math.round(psc1srm);
+  console.log("maturity of sub-cat-1 of protect Phase:"+psc1srm);
+  if(psc1srm>=0 && psc1srm <=40){
     psc1risk = "HIGH RISK";
   }
-  else if(psc1sr>1 && psc1sr<=1.75){
+  else if(psc1srm>40 && psc1srm<=75){
     psc1risk = "MEDIUM RISK";
   }
   else {
@@ -690,10 +725,13 @@ router.post('/api/protect', function(req, res) {
   psc2sr=psc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF PROTECT PAHSE IS:" + psc2tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF PROTECT PHASE IS:" + psc2sr);
-  if(psc2sr>=0 && psc2sr <=1){
+  psc2srm=psc2sr*100;
+  psc2srm=Math.round(psc2srm);
+  console.log("maturity of sub-cat-2 of protect Phase:"+psc2srm);
+  if(psc2srm>=0 && psc2srm <=40){
     psc2risk = "HIGH RISK";
   }
-  else if(psc2sr>1 && psc2sr<=1.75){
+  else if(psc2srm>40 && psc2srm<=75){
     psc2risk = "MEDIUM RISK";
   }
   else {
@@ -711,10 +749,13 @@ router.post('/api/protect', function(req, res) {
   psc3sr=psc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF PROTECT PAHSE IS:" + psc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF PROTECT PHASE IS:" + psc3sr);
-  if(psc3sr>=0 && psc3sr <=1){
+  psc3srm=psc3sr*100;
+  psc3srm=Math.round(psc3srm);
+  console.log("maturity of sub-cat-3 of protect Phase:"+psc3srm);
+  if(psc3srm>=0 && psc3srm <=40){
     psc3risk = "HIGH RISK";
   }
-  else if(psc3sr>1 && psc3sr<=1.75){
+  else if(psc3srm>40 && psc3srm<=75){
     psc3risk = "MEDIUM RISK";
   }
   else {
@@ -732,10 +773,13 @@ router.post('/api/protect', function(req, res) {
   psc4sr=psc4sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-4 OF PROTECT PAHSE IS:" + psc4tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-4 OF PROTECT PHASE IS:" + psc4sr);
-  if(psc4sr>=0 && psc4sr <=1){
+  psc4srm=psc4sr*100;
+  psc4srm=Math.round(psc4srm);
+  console.log("maturity of sub-cat-4 of protect Phase:"+psc4srm);
+  if(psc4srm>=0 && psc4srm <=40){
     psc4risk = "HIGH RISK";
   }
-  else if(psc4sr>1 && psc4sr<=1.75){
+  else if(psc4srm>40 && psc4srm<=75){
     psc4risk = "MEDIUM RISK";
   }
   else {
@@ -750,10 +794,13 @@ router.post('/api/protect', function(req, res) {
   psc5sr=psc5sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-5 OF PROTECT PAHSE IS:" + psc5tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-5 OF PROTECT PHASE IS:" + psc5sr);
-  if(psc5sr>=0 && psc5sr <=1){
+  psc5srm=psc5sr*100;
+  psc5srm=Math.round(psc5srm);
+  console.log("maturity of sub-cat-5 of protect Phase:"+psc5srm);
+  if(psc5srm>=0 && psc5srm <=40){
     psc5risk = "HIGH RISK";
   }
-  else if(psc5sr>1 && psc5sr<=1.75){
+  else if(psc5srm>40 && psc5srm<=75){
     psc5risk = "MEDIUM RISK";
   }
   else {
@@ -771,10 +818,13 @@ router.post('/api/protect', function(req, res) {
   psc6sr=psc6sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-6 OF PROTECT PAHSE IS:" + psc6tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-6 OF PROTECT PHASE IS:" + psc6sr);
-  if(psc6sr>=0 && psc6sr <=1){
+  psc6srm=psc6sr*100;
+  psc6srm=Math.round(psc6srm);
+  console.log("maturity of sub-cat-6 of protect Phase:"+psc6srm);
+  if(psc6srm>=0 && psc6srm <=40){
     psc6risk = "HIGH RISK";
   }
-  else if(psc6sr>1 && psc6sr<=1.75){
+  else if(psc6srm>40 && psc6srm<=75){
     psc6risk = "MEDIUM RISK";
   }
   else {
@@ -783,22 +833,24 @@ router.post('/api/protect', function(req, res) {
   console.log(psc6risk);
   pscac=psc1cts+psc2cts+psc3cts+psc4cts+psc5cts+psc6cts;
   console.log("OVERALL SCORE OF EACH SUBCATEGORY IN PROTECT PHASE IS:" + pscac);
-  por=(pscac/fp);
+  por=(pscac/psctotalw);
   por=por.toFixed(2);
-  console.log("OVERALL RANGE OF PROTECT PHASE IS:" + por);
-  if(por>=0 && por<=1){
+  console.log("OVERALL SCORE OF PROTECT PHASE IS:" + por);
+  porm=por*100;
+  porm=Math.round(porm);
+  if(porm>=0 && porm<=40){
     poml = "HIGH RISK";
   }
-  else if(por>1 && por<=1.75){
+  else if(porm>40 && porm<=75){
     poml = "MEDIUM RISK";
   }
   else {
     poml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF PROTECT PHASE IS:" + poml);
-  ppp=((por*100)/2);
+  /*ppp=((por*100)/2);
   ppp=Math.round(ppp);
-  console.log("PROTECT PHASE Percentage:" + ppp);
+  console.log("PROTECT PHASE Percentage:" + ppp);*/
   wps1=((2-p1)*(4-pd1)*w3);
   console.log(wps1);
 	wps2=((2-p2)*(4-pd2)*w2);
@@ -918,7 +970,7 @@ router.post('/api/protect', function(req, res) {
     psc6risk:psc6risk,
     por: por,
     poml: poml,
-    ppp: ppp
+    porm: porm
   }
   console.log(protectscore);
   ProtectScore.addProtectScore(protectscore, function(err, protectscore) {
@@ -1023,10 +1075,13 @@ router.post('/api/detect', function(req, res) {
   dsc1sr=dsc1sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-1 OF DETECT PAHSE IS:" + dsc1tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-1 OF DETECT PHASE IS:" + dsc1sr);
-  if(dsc1sr>=0 && dsc1sr <=1){
+  dsc1srm=dsc1sr*100;
+  dsc1srm=Math.round(dsc1srm);
+  console.log("maturity of sub-cat-1 of detect Phase:"+dsc1srm);
+  if(dsc1srm>=0 && dsc1srm <=40){
     dsc1risk = "HIGH RISK";
   }
-  else if(dsc1sr>1 && dsc1sr<=1.75){
+  else if(dsc1srm>40 && dsc1srm<=75){
     dsc1risk = "MEDIUM RISK";
   }
   else {
@@ -1047,10 +1102,13 @@ router.post('/api/detect', function(req, res) {
   dsc2sr=dsc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF DETECT PAHSE IS:" + dsc2tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF DETECT PHASE IS:" + psc2sr);
-  if(dsc2sr>=0 && dsc2sr <=1){
+  dsc2srm=dsc2sr*100;
+  dsc2srm=Math.round(dsc2srm);
+  console.log("maturity of sub-cat-2 of detect Phase:"+dsc2srm);
+  if(dsc2srm>=0 && dsc2srm <=40){
     dsc2risk = "HIGH RISK";
   }
-  else if(dsc2sr>1 && dsc2sr<=1.75){
+  else if(dsc2sr>40 && dsc2sr<=75){
     dsc2risk = "MEDIUM RISK";
   }
   else {
@@ -1069,10 +1127,13 @@ router.post('/api/detect', function(req, res) {
   dsc3sr=dsc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF DETECT PAHSE IS:" + dsc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF DETECT PHASE IS:" + dsc3sr);
-  if(dsc3sr>=0 && dsc3sr <=1){
+  dsc3srm=dsc3sr*100;
+  dsc3srm=Math.round(dsc3srm);
+  console.log("maturity of sub-cat-3 of detect Phase:"+dsc3srm);
+  if(dsc3srm>=0 && dsc3srm <=40){
     dsc3risk = "HIGH RISK";
   }
-  else if(dsc3sr>1 && dsc3sr<=1.75){
+  else if(dsc3srm>40 && dsc3srm<=75){
     dsc3risk = "MEDIUM RISK";
   }
   else {
@@ -1081,22 +1142,24 @@ router.post('/api/detect', function(req, res) {
   console.log(dsc3risk);
   dscac=dsc1cts+dsc2cts+dsc3cts;
   console.log("OVERALL SCORE OF EACH SUBCATEGORY IN DETECT PHASE IS:" + dscac);
-  dor=(dscac/fd);
+  dor=(dscac/dsctotalw);
   dor=dor.toFixed(2);
-  console.log("OVERALL RANGE OF DETECT PHASE IS:" + dor);
-  if(dor>=0 && dor<=1){
+  console.log("OVERALL SCORE OF DETECT PHASE IS:" + dor);
+  dorm=dor*100;
+  dorm=Math.round(dorm);
+  if(dorm>=0 && dorm<=40){
     doml = "HIGH RISK";
   }
-  else if(dor>1 && dor<=1.75){
+  else if(dorm>40 && dorm<=75){
     doml = "MEDIUM RISK";
   }
   else {
     doml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF DETECT PHASE IS:" + doml);
-  dpp=((dor*100)/2);
+  /*dpp=((dor*100)/2);
   dpp=Math.round(dpp);
-  console.log("DETECT PHASE Percentage:" + dpp);
+  console.log("DETECT PHASE Percentage:" + dpp);*/
   wds1=((2-d1)*(4-dd1)*w2);
   console.log(wds1);
 	wds2=((2-d2)*(4-dd2)*w2);
@@ -1186,7 +1249,7 @@ router.post('/api/detect', function(req, res) {
     dsc3risk:dsc3risk,
     dor: dor,
     doml: doml,
-    dpp: dpp,
+    dorm: dorm
   }
   console.log(detectscore);
   DetectScore.addDetectScore(detectscore, function(err, detectscore) {
@@ -1265,10 +1328,13 @@ router.post('/api/respond', function(req, res) {
   rsc1sr=rsc1sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-1 OF RESPOND PAHSE IS:" + rsc1tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-1 OF RESPOND PHASE IS:" + rsc1sr);
-  if(rsc1sr>=0 && rsc1sr <=1){
+  rsc1srm=rsc1sr*100;
+  rsc1srm=Math.round(rsc1srm);
+  console.log("maturity of sub-cat-1 of respond Phase:"+rsc1srm);
+  if(rsc1srm>=0 && rsc1srm <=40){
     rsc1risk = "HIGH RISK";
   }
-  else if(rsc1sr>1 && rsc1sr<=1.75){
+  else if(rsc1srm>40 && rsc1srm<=75){
     rsc1risk = "MEDIUM RISK";
   }
   else {
@@ -1285,10 +1351,13 @@ router.post('/api/respond', function(req, res) {
   rsc2sr=rsc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF RESPOND PAHSE IS:" + rsc2tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF RESPOND PHASE IS:" + rsc2sr);
-  if(rsc2sr>=0 && rsc2sr <=1){
+  rsc2srm=rsc2sr*100;
+  rsc2srm=Math.round(rsc2srm);
+  console.log("maturity of sub-cat-2 of respond Phase:"+rsc2srm);
+  if(rsc2srm>=0 && rsc2srm <=40){
     rsc2risk = "HIGH RISK";
   }
-  else if(rsc2sr>1 && rsc2sr<=1.75){
+  else if(rsc2srm>40 && rsc2srm<=75){
     rsc2risk = "MEDIUM RISK";
   }
   else {
@@ -1303,10 +1372,13 @@ router.post('/api/respond', function(req, res) {
   rsc3sr=rsc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF RESPOND PAHSE IS:" + rsc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF RESPOND PHASE IS:" + rsc3sr);
-  if(rsc3sr>=0 && rsc3sr <=1){
+  rsc3srm=rsc3sr*100;
+  rsc3srm=Math.round(rsc3srm);
+  console.log("maturity of sub-cat-3 of detect Phase:"+rsc3srm);
+  if(rsc3srm>=0 && rsc3srm <=40){
     rsc3risk = "HIGH RISK";
   }
-  else if(rsc3sr>1 && rsc3sr<=1.75){
+  else if(rsc3srm>40 && rsc3srm<=75){
     rsc3risk = "MEDIUM RISK";
   }
   else {
@@ -1321,10 +1393,13 @@ router.post('/api/respond', function(req, res) {
   rsc4sr=rsc4sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-4 OF RESPOND PAHSE IS:" + rsc4tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-4 OF RESPOND PHASE IS:" + rsc4sr);
-  if(rsc4sr>=0 && rsc4sr <=1){
+  rsc4srm=rsc4sr*100;
+  rsc4srm=Math.round(rsc4srm);
+  console.log("maturity of sub-cat-4 of respond Phase:"+rsc4srm);
+  if(rsc4srm>=0 && rsc4srm <=40){
     rsc4risk = "HIGH RISK";
   }
-  else if(rsc4sr>1 && rsc4sr<=1.75){
+  else if(rsc4srm>40 && rsc4srm<=75){
     rsc4risk = "MEDIUM RISK";
   }
   else {
@@ -1339,10 +1414,13 @@ router.post('/api/respond', function(req, res) {
   rsc5sr=rsc5sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-5 OF RESPOND PAHSE IS:" + rsc5tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-5 OF RESPOND PHASE IS:" + rsc5sr);
-  if(rsc5sr>=0 && rsc5sr <=1){
+  rsc5srm=rsc5sr*100;
+  rsc5srm=Math.round(rsc5srm);
+  console.log("maturity of sub-cat-5 of detect Phase:"+rsc5srm);
+  if(rsc5srm>=0 && rsc5srm <=1){
     rsc5risk = "HIGH RISK";
   }
-  else if(rsc5sr>1 && rsc5sr<=1.75){
+  else if(rsc5srm>1 && rsc5srm<=1.75){
     rsc5risk = "MEDIUM RISK";
   }
   else {
@@ -1351,22 +1429,24 @@ router.post('/api/respond', function(req, res) {
   console.log(rsc5risk);
   rscac=rsc1cts+rsc2cts+rsc3cts+rsc4cts+rsc5cts;
   console.log("OVERALL SCORE OF EACH SUBCATEGORY IN RESPOND PHASE IS:" + rscac);
-  ror=(rscac/fr);
+  ror=(rscac/rsctotalw);
   ror=ror.toFixed(2);
   console.log("OVERALL RANGE OF RESPOND PHASE IS:" + ror);
-  if(ror>=0 && ror<=1){
+  rorm=ror*100;
+  rorm=Math.round(rorm);
+  if(rorm>=0 && rorm<=40){
     roml = "HIGH RISK";
   }
-  else if(ror>1 && ror<=1.75){
+  else if(rorm>40 && rorm<=75){
     roml = "MEDIUM RISK";
   }
   else {
     roml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF RESPOND PHASE IS:" + roml);
-  rpp=((ror*100)/2);
+  /*rpp=((ror*100)/2);
   rpp=Math.round(rpp);
-  console.log("RESPOND PHASE Percentage:" + rpp);
+  console.log("RESPOND PHASE Percentage:" + rpp);*/
   	wrs1=((2-r1)*(4-rd1)*w2);
     console.log(wrs1);
     wrs2=((2-r2)*(4-rd2)*w1);
@@ -1436,7 +1516,7 @@ router.post('/api/respond', function(req, res) {
     rsc5risk:rsc5risk,
     ror: ror,
     roml: roml,
-    rpp: rpp
+    rorm: rorm
   }
   console.log(respondscore);
   RespondScore.addRespondScore(respondscore, function(err, respondscore) {
@@ -1501,10 +1581,13 @@ router.post('/api/recover', function(req, res) {
   resc1sr=resc1sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-1 OF RECOVER PAHSE IS:" + resc1tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-1 OF RECOVER PHASE IS:" + resc1sr);
-  if(resc1sr>=0 && resc1sr <=1){
+  resc1srm=resc1sr*100;
+  resc1srm=Math.round(resc1srm);
+  console.log("maturity of sub-cat-1 of recover Phase:"+resc1srm);
+  if(resc1srm>=0 && resc1srm <=40){
     resc1risk = "HIGH RISK";
   }
-  else if(resc1sr>1 && resc1sr<=1.75){
+  else if(resc1srm>40 && resc1srm<=75){
     resc1risk = "MEDIUM RISK";
   }
   else {
@@ -1519,10 +1602,13 @@ router.post('/api/recover', function(req, res) {
   resc2sr=resc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF RECOVER PAHSE IS:" + resc2tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF RECOVER PHASE IS:" + resc2sr);
-  if(resc2sr>=0 && resc2sr <=1){
+  resc2srm=resc2sr*100;
+  resc2srm=Math.round(resc2srm);
+  console.log("maturity of sub-cat-2 of recover Phase:"+resc2srm);
+  if(resc2srm>=0 && resc2srm <=40){
     resc2risk = "HIGH RISK";
   }
-  else if(resc2sr>1 && resc2sr<=1.75){
+  else if(resc2srm>40 && resc2srm<=75){
     resc2risk = "MEDIUM RISK";
   }
   else {
@@ -1537,10 +1623,13 @@ router.post('/api/recover', function(req, res) {
   resc3sr=resc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF RECOVER PAHSE IS:" + resc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF RECOVER PHASE IS:" + resc3sr);
-  if(resc3sr>=0 && resc3sr <=1){
+  rsc3srm=rsc3sr*100;
+  rsc3srm=Math.round(rsc3srm);
+  console.log("maturity of sub-cat-3 of respond Phase:"+rsc3srm);
+  if(resc3srm>=0 && resc3srm <=40){
     resc3risk = "HIGH RISK";
   }
-  else if(resc3sr>1 && resc3sr<=1.75){
+  else if(resc3srm>40 && resc3srm<=75){
     resc3risk = "MEDIUM RISK";
   }
   else {
@@ -1549,22 +1638,24 @@ router.post('/api/recover', function(req, res) {
   console.log(resc3risk);
   rescac=resc1cts+resc2cts+resc3cts;
   console.log("OVERALL SCORE OF EACH SUBCATEGORY IN RECOVER PHASE IS:" + rescac);
-  reor=(rescac/fre);
+  reor=(rescac/restotalw);
   reor=reor.toFixed(2);
   console.log("OVERALL RANGE OF RECOVER PHASE IS:" + reor);
-  if(reor>=0 && reor<=1){
+  reorm=reor*100;
+  reorm=Math.round(reorm);
+  if(reorm>=0 && reorm<=40){
     reoml = "HIGH RISK";
   }
-  else if(reor>1 && reor<=1.75){
+  else if(reorm>40 && reorm<=75){
     reoml = "MEDIUM RISK";
   }
   else {
     reoml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF RECOVER PHASE IS:" + reoml);
-  repp=((reor*100)/2);
+  /*repp=((reor*100)/2);
   repp=Math.round(repp);
-  console.log("RECOVER PHASE Percentage:" + repp);
+  console.log("RECOVER PHASE Percentage:" + repp);*/
   wres1=((2-re1)*(4-red1)*w3);
   console.log(wres1);
 	wres2=((2-re2)*(4-red2)*w1);
@@ -1614,7 +1705,7 @@ router.post('/api/recover', function(req, res) {
     resc3risk:resc3risk,
     reor: reor,
     reoml: reoml,
-    repp: repp
+    reorm: reorm
   }
   RecoverScore.addRecoverScore(recoverscore, function(err, recoverscore) {
         if (recoverscore) {

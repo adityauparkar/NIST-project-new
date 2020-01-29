@@ -8,10 +8,6 @@ var respondscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    /*csr: {
-        type: String,
-        required: true
-    },*/
     RSRP1: {
         type: String,
         required: true
@@ -148,7 +144,7 @@ var respondscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rpp:{
+    rorm:{
         type: String,
         required: true
     },
