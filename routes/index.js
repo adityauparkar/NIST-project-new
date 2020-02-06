@@ -62,9 +62,6 @@ var iorm=0,porm=0,dorm=0,rorm=0,reorm=0;
 //for storing overall maturity level for each phase
 var ioml,poml,doml,roml,reoml;
 
-//for storing percentages
-var ipp,ppp,dpp,rpp,repp;
-
 //for calulating clientscore by total weight of subcategory in each PHASE
 //for IDENTIFY PHASE
 var isc1sr=0;isc2sr=0;isc3sr=0,isc4sr=0,isc5sr=0,isc6sr=0;
@@ -110,40 +107,37 @@ var resc1risk,resc2risk,resc3risk;
 //weights
 var w1=1,w2=2,w3=3;
 
-/*//total maximum weights
-var fi=35,fp=48,fd=37,fr=20,fre=14;*/
-
 //weights for each question multiplied by the value of response or answer of each question
 //weight variables for storing calculated weights according to question response in Identify Phase
-var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0,wi20=0,wi21=0,wi22=0,wi23=0,wi24=0,wi25=0;
+var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0,wi20=0,wi21=0;
 
 //weight variables for storing calculated weights according to question response in Protect Phase
-var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0,wp24=0;
+var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0;
 
 //weight variables for storing calculated weights according to question response in Detect Phase
-var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0,wd18=0,wd19=0,wd20=0;
+var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0;
 
 //weight variables for storing calculated weights according to question response in Respond Phase
-var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0,wr12=0,wr13=0;
+var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0;
 
 //weight variables for storing calculated weights according to question response in Recover Phase
-var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0,wre8=0;
+var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0;
 
 //for score of RECOMMENDATIONS
 //weight variables for storing calculated weights according to question and  difficulty in Identify Phase
-var wis1=0,wis2=0,wis3=0,wis4=0,wis5=0,wis6=0,wis7=0,wis8=0,wis9=0,wis10=0,wis11=0,wis12=0,wis13=0,wis14=0,wis15=0,wis16=0,wis17=0,wis18=0,wis19=0,wis20=0,wis21=0,wis22=0,wis23=0,wis24=0,wis25=0;
+var wis1=0,wis2=0,wis3=0,wis4=0,wis5=0,wis6=0,wis7=0,wis8=0,wis9=0,wis10=0,wis11=0,wis12=0,wis13=0,wis14=0,wis15=0,wis16=0,wis17=0,wis18=0,wis19=0,wis20=0,wis21=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Protect Phase
-var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11=0,wps12=0,wps13=0,wps14=0,wps15=0,wps16=0,wps17=0,wps18=0,wps19=0,wps20=0,wps21=0,wps22=0,wps23=0,wps24=0;
+var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11=0,wps12=0,wps13=0,wps14=0,wps15=0,wps16=0,wps17=0,wps18=0,wps19=0,wps20=0,wps21=0,wps22=0,wps23=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Detect Phase
-var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0,wds18=0,wds19=0,wds20=0;
+var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Respond Phase
-var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs12=0,wrs13=0;
+var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Recover Phase
-var wres1=0,wres2=0,wres3=0,wres4=0,wres5=0,wres6=0,wres7=0,wres8=0;
+var wres1=0,wres2=0,wres3=0,wres4=0,wres5=0,wres6=0,wres7=0;
 
 
 // first Page
@@ -303,10 +297,10 @@ router.post('/api/identify', function(req, res) {
   console.log(id20);
   var id21=parseInt(req.body.id21);
   console.log(id21);
-	wi1=w2*i1;
-	wi2=w2*i2;
-	wi3=w2*i3;
-	wi4=w3*i4;
+  wi1=w2*i1; 
+  wi2=w2*i2;
+  wi3=w2*i3;
+  wi4=w3*i4;
   isc1cts= wi1+wi2+wi3+wi4;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF IDENTIFY PHASE:" + isc1cts);
   isc1sr= (isc1cts/isc1tw);
@@ -328,8 +322,8 @@ router.post('/api/identify', function(req, res) {
   console.log(isc1risk);
   wi5=w2*i5;
   wi6=w1*i6;
-	wi7=w1*i7;
-	wi8=w1*i8;
+  wi7=w1*i7;
+  wi8=w1*i8;
   isc2cts= wi5+wi6+wi7+wi8;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF IDENTIFY PHASE:" + isc2cts);
   isc2sr= (isc2cts/isc2tw);
@@ -350,9 +344,9 @@ router.post('/api/identify', function(req, res) {
   }
   console.log(isc2risk);
   wi9=w3*i9;
-	wi10=w2*i10;
-	wi11=w1*i11;
-	wi12=w1*i12;
+  wi10=w2*i10;
+  wi11=w1*i11;
+  wi12=w1*i12;
   isc3cts= wi9+wi10+wi11+wi12;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF IDENTIFY PHASE:" + isc3cts);
   isc3sr= (isc3cts/isc3tw);
@@ -373,9 +367,9 @@ router.post('/api/identify', function(req, res) {
   }
   console.log(isc3risk);
   wi13=w2*i13;
-	wi14=w3*i14;
-	wi15=w2*i15;
-	wi16=w1*i16;
+  wi14=w3*i14;
+  wi15=w2*i15;
+  wi16=w1*i16;
   isc4cts= wi13+wi14+wi15+wi16;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-4 OF IDENTIFY PHASE:" + isc4cts);
   isc4sr= (isc4cts/isc4tw);
@@ -396,7 +390,7 @@ router.post('/api/identify', function(req, res) {
   }
   console.log(isc4risk);
   wi17=w1*i17;
-	wi18=w1*i18;
+  wi18=w1*i18;
   isc5cts= wi17+wi18;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-5 OF IDENTIFY PHASE:" + isc5cts);
   isc5sr= (isc5cts/isc5tw);
@@ -417,8 +411,8 @@ router.post('/api/identify', function(req, res) {
   }
   console.log(isc5risk);
   wi19=w1*i19;
-	wi20=w2*i20;
-	wi21=w1*i21;
+  wi20=w2*i20;
+  wi21=w1*i21;
   isc6cts= wi19+wi20+wi21;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-6 OF IDENTIFY PHASE:" + isc6cts);
   isc6sr= (isc6cts/isc6tw);
@@ -455,9 +449,6 @@ router.post('/api/identify', function(req, res) {
     ioml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF IDENTIFY PHASE IS:" + ioml);
-  /*ipp=((ior*100)/2);
-  ipp=Math.round(ipp);
-  console.log("IDENTIFY PHASE Percentage:" + ipp);*/
   //claculation of difficulty in Identify Phase
   wis1=((2-i1)*(4-id1)*w2);
   console.log(wis1);
@@ -848,9 +839,7 @@ router.post('/api/protect', function(req, res) {
     poml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF PROTECT PHASE IS:" + poml);
-  /*ppp=((por*100)/2);
-  ppp=Math.round(ppp);
-  console.log("PROTECT PHASE Percentage:" + ppp);*/
+  //claculation of difficulty in Protect Phase
   wps1=((2-p1)*(4-pd1)*w3);
   console.log(wps1);
 	wps2=((2-p2)*(4-pd2)*w2);
@@ -1157,9 +1146,7 @@ router.post('/api/detect', function(req, res) {
     doml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF DETECT PHASE IS:" + doml);
-  /*dpp=((dor*100)/2);
-  dpp=Math.round(dpp);
-  console.log("DETECT PHASE Percentage:" + dpp);*/
+  //claculation of difficulty in Detect Phase
   wds1=((2-d1)*(4-dd1)*w2);
   console.log(wds1);
 	wds2=((2-d2)*(4-dd2)*w2);
@@ -1341,10 +1328,10 @@ router.post('/api/respond', function(req, res) {
     rsc1risk="MINIMUM RISK";
   }
   console.log(rsc1risk);
-	wr2=w1*r2;
-	wr3=w2*r3;
-	wr4=w1*r4;
-	wr5=w2*r5;
+  wr2=w1*r2;
+  wr3=w2*r3;
+  wr4=w1*r4;
+  wr5=w2*r5;
   rsc2cts= wr2+wr3+wr4+wr5;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF RESPOND PHASE:" + rsc2cts);
   rsc2sr= (rsc2cts/rsc2tw);
@@ -1386,7 +1373,7 @@ router.post('/api/respond', function(req, res) {
   }
   console.log(rsc3risk);
   wr8=w3*r8;
-	wr9=w2*r9;
+  wr9=w2*r9;
   rsc4cts= wr8+wr9;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-4 OF RESPOND PHASE:" + rsc4cts);
   rsc4sr= (rsc4cts/rsc4tw);
@@ -1407,7 +1394,7 @@ router.post('/api/respond', function(req, res) {
   }
   console.log(rsc4risk);
   wr10=w1*r10;
-	wr11=w1*r11;
+  wr11=w1*r11;
   rsc5cts= wr10+wr11;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-5 OF RESPOND PHASE:" + rsc5cts);
   rsc5sr= (rsc5cts/rsc5tw);
@@ -1444,9 +1431,7 @@ router.post('/api/respond', function(req, res) {
     roml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF RESPOND PHASE IS:" + roml);
-  /*rpp=((ror*100)/2);
-  rpp=Math.round(rpp);
-  console.log("RESPOND PHASE Percentage:" + rpp);*/
+  //claculation of difficulty in Respond Phase
   	wrs1=((2-r1)*(4-rd1)*w2);
     console.log(wrs1);
     wrs2=((2-r2)*(4-rd2)*w1);
@@ -1616,7 +1601,7 @@ router.post('/api/recover', function(req, res) {
   }
   console.log(resc2risk);
   wre6=w2*re6;
-	wre7=w2*re7;
+  wre7=w2*re7;
   resc3cts= wre6+wre7;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF RECOVER PHASE:" + resc3cts);
   resc3sr= (resc3cts/resc3tw);
@@ -1653,9 +1638,7 @@ router.post('/api/recover', function(req, res) {
     reoml ="MINIMUM RISK";
   }
   console.log("OVERALL RISK OF RECOVER PHASE IS:" + reoml);
-  /*repp=((reor*100)/2);
-  repp=Math.round(repp);
-  console.log("RECOVER PHASE Percentage:" + repp);*/
+  //claculation of difficulty in Recover Phase
   wres1=((2-re1)*(4-red1)*w3);
   console.log(wres1);
 	wres2=((2-re2)*(4-red2)*w1);
@@ -1853,7 +1836,7 @@ router.post('/api/recover', function(req, res) {
         }
     }
 	});
-  r2={
+    r2={
 	  r2:1
 	}
 	}
@@ -1877,7 +1860,7 @@ router.post('/api/recover', function(req, res) {
         }
     }
 	});
-  r3={
+    r3={
 	  r3:1
 	}
 	}
@@ -1901,7 +1884,7 @@ router.post('/api/recover', function(req, res) {
         }
     }
 	});
-  r4={
+    r4={
 	  r4:1
 	}
 	}
