@@ -1608,9 +1608,9 @@ router.post('/api/recover', function(req, res) {
   resc3sr=resc3sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-3 OF RECOVER PAHSE IS:" + resc3tw);
   console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-3 OF RECOVER PHASE IS:" + resc3sr);
-  rsc3srm=rsc3sr*100;
-  rsc3srm=Math.round(rsc3srm);
-  console.log("maturity of sub-cat-3 of respond Phase:"+rsc3srm);
+  resc3srm=resc3sr*100;
+  resc3srm=Math.round(resc3srm);
+  console.log("maturity of sub-cat-3 of respond Phase:"+resc3srm);
   if(resc3srm>=0 && resc3srm <=40){
     resc3risk = "HIGH RISK";
   }
