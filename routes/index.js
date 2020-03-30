@@ -1090,7 +1090,7 @@ router.post('/api/detect', function(req, res) {
   dsc2sr= (dsc2cts/dsc2tw);
   dsc2sr=dsc2sr.toFixed(2);
   console.log("TOTAL MAXIUM SCORE FOR SUBCATEGORY-2 OF DETECT PAHSE IS:" + dsc2tw);
-  console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF DETECT PHASE IS:" + psc2sr);
+  console.log("TOTAL RISK SCORING OF CLIENT FOR SUBCATEGORY-2 OF DETECT PHASE IS:" + dsc2sr);
   dsc2srm=dsc2sr*100;
   dsc2srm=Math.round(dsc2srm);
   console.log("maturity of sub-cat-2 of detect Phase:"+dsc2srm);
