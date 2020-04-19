@@ -1,7 +1,7 @@
 {
-  "name": "CSRI_NIST_CYBER_SECURITY_FRAMEWORK",
+  "name": "CSRI_NIST_CYBER_SECURITY_WEB_TOOLKIT",
   "version": "2.0.0",
-  "description": "CSRI NIST CYBER SECURITY FRAMEWORK",
+  "description": "CSRI NIST CYBER SECURITY WEB TOOLKIT",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
