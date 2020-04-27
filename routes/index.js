@@ -28,7 +28,7 @@ var isc1tw=18,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=70;
 var psc1tw=20,psc2tw=12,psc3tw=34,psc4tw=22,psc5tw=4,psc6tw=22,psctotalw=114;
 
 //for DETECT subcategories total question weight
-var dsc1tw=12,dsc2tw=40,dsc3tw=22,dsctotalw=74;
+var dsc1tw=14,dsc2tw=40,dsc3tw=24,dsctotalw=78;
 
 //for RESPOND subcategories total question weight
 var rsc1tw=4,rsc2tw=12,rsc3tw=10,rsc4tw=10,rsc5tw=4,rsctotalw=40;
@@ -203,7 +203,7 @@ router.post('/api/recs', function(req, res) {
     });
 });
 
-// Identify 
+// Identify
 router.get('/identify', ensureAuthenticated, (req, res) =>
   res.render('Identify-Phase', {
     user: req.user
@@ -297,7 +297,7 @@ router.post('/api/identify', function(req, res) {
   console.log(id20);
   var id21=parseInt(req.body.id21);
   console.log(id21);
-  wi1=w2*i1; 
+  wi1=w2*i1;
   wi2=w2*i2;
   wi3=w2*i3;
   wi4=w3*i4;
@@ -583,7 +583,7 @@ router.post('/api/identify', function(req, res) {
 	  });
 });
 
-// Protect 
+// Protect
 router.get('/protect', ensureAuthenticated, (req, res) =>
   res.render('Protect-Phase', {
     user: req.user
@@ -647,7 +647,7 @@ router.post('/api/protect', function(req, res) {
   console.log(p26);
   var p27=parseInt(req.body.p27);
   console.log(p27);
-  
+
   var pd1=parseInt(req.body.pd1);
   console.log(pd1);
   var pd2=parseInt(req.body.pd2);
@@ -1015,7 +1015,7 @@ router.post('/api/protect', function(req, res) {
     });
 });
 
-// Detect 
+// Detect
 router.get('/detect', ensureAuthenticated, (req, res) =>
   res.render('Detect-Phase', {
     user: req.user
@@ -1094,7 +1094,7 @@ router.post('/api/detect', function(req, res) {
   var dd17=parseInt(req.body.dd17);
   console.log(dd17);
 	wd1=w2*d1;
-	wd2=w2*d2;
+	wd2=w3*d2;
 	wd3=w2*d3;
   dsc1cts= wd1+wd2+wd3;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF DETECT PHASE:" + dsc1cts);
@@ -1120,8 +1120,8 @@ router.post('/api/detect', function(req, res) {
 	wd6=w3*d6;
 	wd7=w3*d7;
 	wd8=w3*d8;
-	wd9=w2*d9;
-	wd10=w2*d10;
+	wd9=w1*d9;
+	wd10=w3*d10;
 	wd11=w2*d11;
   dsc2cts= wd4+wd5+wd6+wd7+wd8+wd9+wd10+wd11;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF DETECT PHASE:" + dsc2cts);
@@ -1142,10 +1142,10 @@ router.post('/api/detect', function(req, res) {
     dsc2risk="MINIMUM RISK";
   }
   console.log(dsc2risk);
-  wd12=w3*d12;
+  wd12=w2*d12;
 	wd13=w1*d13;
 	wd14=w1*d14;
-	wd15=w1*d15;
+	wd15=w3*d15;
 	wd16=w3*d16;
 	wd17=w2*d17;
   dsc3cts= wd12+wd13+wd14+wd15+wd16+wd17;
@@ -1187,7 +1187,7 @@ router.post('/api/detect', function(req, res) {
   //claculation of difficulty in Detect Phase
   wds1=((2-d1)*(4-dd1)*w2);
   console.log(wds1);
-	wds2=((2-d2)*(4-dd2)*w2);
+	wds2=((2-d2)*(4-dd2)*w3);
   console.log(wds2);
 	wds3=((2-d3)*(4-dd3)*w2);
   console.log(wds3);
@@ -1201,19 +1201,19 @@ router.post('/api/detect', function(req, res) {
   console.log(wds7);
 	wds8=((2-d8)*(4-dd8)*w3);
   console.log(wds8);
-	wds9=((2-d9)*(4-dd9)*w2);
+	wds9=((2-d9)*(4-dd9)*w1);
   console.log(wds9);
-	wds10=((2-d10)*(4-dd10)*w2);
+	wds10=((2-d10)*(4-dd10)*w3);
   console.log(wds10);
 	wds11=((2-d11)*(4-dd11)*w2);
   console.log(wds11);
-	wds12=((2-d12)*(4-dd12)*w3);
+	wds12=((2-d12)*(4-dd12)*w2);
   console.log(wds12);
 	wds13=((2-d13)*(4-dd13)*w1);
   console.log(wds13);
 	wds14=((2-d14)*(4-dd14)*w1);
   console.log(wds14);
-  wds15=((2-d15)*(4-dd15)*w1);
+  wds15=((2-d15)*(4-dd15)*w3);
   console.log(wds15);
 	wds16=((2-d16)*(4-dd16)*w3);
   console.log(wds16);
@@ -1292,7 +1292,7 @@ router.post('/api/detect', function(req, res) {
     });
 });
 
-// Resond 
+// Resond
 router.get('/respond', ensureAuthenticated, (req, res) =>
   res.render('Respond-Phase', {
     user: req.user
@@ -1566,7 +1566,7 @@ router.post('/api/respond', function(req, res) {
     });
 });
 
-// Recover 
+// Recover
 router.get('/recover', ensureAuthenticated, (req, res) =>
   res.render('Recover-Phase', {
     user: req.user
@@ -1866,7 +1866,7 @@ router.post('/api/recover', function(req, res) {
 	else{
 	r1={
 		r1:0
-	}	
+	}
 	}
 	if(sorted[75][1]!=0)
 	{
@@ -1965,7 +1965,7 @@ router.post('/api/recover', function(req, res) {
 	}
 });
 
-// Results 
+// Results
 router.get('/result', ensureAuthenticated, (req, res) =>
   res.render('Result', {
     user: req.user
@@ -2006,11 +2006,11 @@ router.post('/recommendations', function(req,res){
     rec4 : recommendation4 ? this.recom4.recomon4 : 'no recommendation',
     rec5 : recommendation5 ? this.recom5.recomon5 : 'no recommendation'
 	}
-	
+
   if(this.r1.r1==0 && this.r2.r2==0 && this.r3.r3==0 && this.r4.r4==0 && this.r5.r5==0){
 	recommendations={
 		rec: 'you don\'t have any recommendations'
-	}  
+	}
 	}
   res.json(recommendations);
 });

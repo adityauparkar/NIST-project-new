@@ -67,11 +67,11 @@ var respondscoreSchema = mongoose.Schema({
     RSAN3: {
         type :String,
         required: true
-    }
+    },
     RSAN3D: {
         type :String,
         required: true
-    }
+    },
     RSMI1: {
         type: String,
         required: true
