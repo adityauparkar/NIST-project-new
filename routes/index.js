@@ -118,7 +118,7 @@ var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,w
 var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0;
 
 //weight variables for storing calculated weights according to question response in Respond Phase
-var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0;
+var wr1=0,wr2=0,wr3=0,wr4=0,wr5=0,wr6=0,wr7=0,wr8=0,wr9=0,wr10=0,wr11=0,wr12=0;
 
 //weight variables for storing calculated weights according to question response in Recover Phase
 var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0;
@@ -134,7 +134,7 @@ var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11
 var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Respond Phase
-var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0;
+var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs=12;
 
 //weight variables for storing calculated weights according to question and difficulty in Recover Phase
 var wres1=0,wres2=0,wres3=0,wres4=0,wres5=0,wres6=0,wres7=0;
@@ -1286,6 +1286,8 @@ router.post('/api/respond', function(req, res) {
 	console.log(r10);
 	var r11=parseInt(req.body.r11);
 	console.log(r11);
+  var r12=parseInt(req.body.r12);
+  console.log(r12);
   var rd1=parseInt(req.body.rd1);
   console.log(rd1);
   var rd2=parseInt(req.body.rd2);
@@ -1308,7 +1310,9 @@ router.post('/api/respond', function(req, res) {
   console.log(rd10);
   var rd11=parseInt(req.body.rd11);
   console.log(rd11);
-	wr1=w2*r1;
+  var rd12=parseInt(req.body.rd12);
+  console.log(rd12);
+	wr1=w3*r1;
   rsc1cts= wr1;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF RESPOND PHASE:" + rsc1cts);
   rsc1sr= (rsc1cts/rsc1tw);
@@ -1328,9 +1332,9 @@ router.post('/api/respond', function(req, res) {
     rsc1risk="MINIMUM RISK";
   }
   console.log(rsc1risk);
-  wr2=w1*r2;
+  wr2=w3*r2;
   wr3=w2*r3;
-  wr4=w1*r4;
+  wr4=w3*r4;
   wr5=w2*r5;
   rsc2cts= wr2+wr3+wr4+wr5;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF RESPOND PHASE:" + rsc2cts);
@@ -1351,9 +1355,10 @@ router.post('/api/respond', function(req, res) {
     rsc2risk="MINIMUM RISK";
   }
   console.log(rsc2risk);
-  wr6=w3*r6;
-  wr7=w2*r7;
-  rsc3cts= wr6+wr7;
+  wr6=w2*r6;
+  wr7=w3*r7;
+  wr8=w2*r8;
+  rsc3cts= wr6+wr7+wr8;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF RESPOND PHASE:" + rsc3cts);
   rsc3sr= (rsc3cts/rsc3tw);
   rsc3sr=rsc3sr.toFixed(2);
@@ -1372,9 +1377,9 @@ router.post('/api/respond', function(req, res) {
     rsc3risk="MINIMUM RISK";
   }
   console.log(rsc3risk);
-  wr8=w3*r8;
-  wr9=w2*r9;
-  rsc4cts= wr8+wr9;
+  wr9=w3*r9;
+  wr10=w3*r10;
+  rsc4cts= wr9+wr10;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-4 OF RESPOND PHASE:" + rsc4cts);
   rsc4sr= (rsc4cts/rsc4tw);
   rsc4sr=rsc4sr.toFixed(2);
@@ -1393,9 +1398,9 @@ router.post('/api/respond', function(req, res) {
     rsc4risk="MINIMUM RISK";
   }
   console.log(rsc4risk);
-  wr10=w1*r10;
-  wr11=w1*r11;
-  rsc5cts= wr10+wr11;
+  wr11=w2*r11;
+  wr12=w3*r12;
+  rsc5cts= wr11+wr12;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-5 OF RESPOND PHASE:" + rsc5cts);
   rsc5sr= (rsc5cts/rsc5tw);
   rsc5sr=rsc5sr.toFixed(2);
@@ -1432,28 +1437,30 @@ router.post('/api/respond', function(req, res) {
   }
   console.log("OVERALL RISK OF RESPOND PHASE IS:" + roml);
   //claculation of difficulty in Respond Phase
-  	wrs1=((2-r1)*(4-rd1)*w2);
+  	wrs1=((2-r1)*(4-rd1)*w3);
     console.log(wrs1);
-    wrs2=((2-r2)*(4-rd2)*w1);
+    wrs2=((2-r2)*(4-rd2)*w3);
     console.log(wrs2);
   	wrs3=((2-r3)*(4-rd3)*w2);
     console.log(wrs3);
-  	wrs4=((2-r4)*(4-rd4)*w1);
+  	wrs4=((2-r4)*(4-rd4)*w3);
     console.log(wrs4);
   	wrs5=((2-r5)*(4-rd5)*w2);
     console.log(wrs5);
-  	wrs6=((2-r6)*(4-rd6)*w3);
+  	wrs6=((2-r6)*(4-rd6)*w2);
     console.log(wrs6);
-    wrs7=((2-r7)*(4-rd7)*w2);
+    wrs7=((2-r7)*(4-rd7)*w3);
     console.log(wrs7);
   	wrs8=((2-r8)*(4-rd8)*w3);
     console.log(wrs8);
-  	wrs9=((2-r9)*(4-rd9)*w2);
+  	wrs9=((2-r9)*(4-rd9)*w3);
     console.log(wrs9);
-    wrs10=((2-r10)*(4-rd10)*w1);
+    wrs10=((2-r10)*(4-rd10)*w3);
     console.log(wrs10);
-  	wrs11=((2-r11)*(4-rd11)*w1);
+  	wrs11=((2-r11)*(4-rd11)*w2);
     console.log(wrs11);
+    wrs12=((2-r11)*(4-rd11)*w3);
+    console.log(wrs12);
     wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11};
   var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11];
   for(j=0;j<r.length;j++){
@@ -1481,14 +1488,16 @@ router.post('/api/respond', function(req, res) {
     RSAN1D: rd6,
     RSAN2: r[6],
     RSAN2D: rd7,
-    RSMI1: r[7],
-    RSMI1D: rd8,
-    RSMI2: r[8],
-    RSMI2D: rd9,
-    RSIM1: r[9],
-    RSIM1D: rd10,
-    RSIM2: r[10],
-    RSIM2D: rd11,
+    RSAN3: r[7],
+    RSAN3D: rd8,
+    RSMI1: r[8],
+    RSMI1D: rd9,
+    RSMI2: r[9],
+    RSMI2D: rd10,
+    RSIM1: r[10],
+    RSIM1D: rd11,
+    RSIM2: r[11],
+    RSIM2D: rd12,
     rsc1sr:rsc1sr,
     rsc1risk:rsc1risk,
     rsc2sr:rsc2sr,
@@ -1600,7 +1609,7 @@ router.post('/api/recover', function(req, res) {
     resc2risk="MINIMUM RISK";
   }
   console.log(resc2risk);
-  wre6=w2*re6;
+  wre6=w3*re6;
   wre7=w2*re7;
   resc3cts= wre6+wre7;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF RECOVER PHASE:" + resc3cts);
@@ -1649,7 +1658,7 @@ router.post('/api/recover', function(req, res) {
   console.log(wres4);
 	wres5=((2-re5)*(4-red5)*w3);
   console.log(wres5);
-	wres6=((2-re6)*(4-red6)*w2);
+	wres6=((2-re6)*(4-red6)*w3);
   console.log(wres6);
   wres7=((2-re7)*(4-red7)*w2);
   console.log(wres7);
@@ -1674,12 +1683,12 @@ router.post('/api/recover', function(req, res) {
     RCRP3D: red3,
     RCIM1: re[3],
     RCIM1D: red4,
-    RCIM2: re[4],
-    RCIM2D: red5,
-    RCCO1: re[5],
-    RCCO1D: red6,
-    RCCO2: re[6],
-    RCCO2D: red7,
+    RCIMP2: re[4],
+    RCIMP2D: red5,
+    RCCOM1: re[5],
+    RCCOM1D: red6,
+    RCCOM2: re[6],
+    RCCOM2D: red7,
     resc1sr:resc1sr,
     resc1risk:resc1risk,
     resc2sr:resc2sr,
@@ -1779,10 +1788,10 @@ router.post('/api/recover', function(req, res) {
     RCRP1: this.wress.wres1,
     RCRP2: this.wress.wres2,
     RCRP3: this.wress.wres3,
-    RCIM1: this.wress.wres4,
-    RCIM2: this.wress.wres5,
-    RCCO1: this.wress.wres6,
-    RCCO2: this.wress.wres7,
+    RCIMP1: this.wress.wres4,
+    RCIMP2: this.wress.wres5,
+    RCCOM1: this.wress.wres6,
+    RCCOM2: this.wress.wres7,
   }
   console.log(data);
   let entries= Object.entries(data);
