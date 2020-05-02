@@ -31,10 +31,10 @@ var psc1tw=20,psc2tw=8,psc3tw=26,psc4tw=16,psc5tw=4,psc6tw=22,psctotalw=96;
 var dsc1tw=12,dsc2tw=40,dsc3tw=22,dsctotalw=74;
 
 //for RESPOND subcategories total question weight
-var rsc1tw=4,rsc2tw=12,rsc3tw=10,rsc4tw=10,rsc5tw=4,rsctotalw=40;
+var rsc1tw=6,rsc2tw=20,rsc3tw=14,rsc4tw=12,rsc5tw=10,rsctotalw=62;
 
 //for RECOVER subcategories total question weight
-var resc1tw=12,resc2tw=8,resc3tw=8,restotalw=28;
+var resc1tw=12,resc2tw=8,resc3tw=10,restotalw=30;
 
 //for IDENTIFY subcategories client response to questions weight total
 var isc1cts=0,isc2cts=0,isc3cts=0,isc4cts=0,isc5cts=0,isc6cts=0;
@@ -134,7 +134,7 @@ var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11
 var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Respond Phase
-var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs=12;
+var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs12=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Recover Phase
 var wres1=0,wres2=0,wres3=0,wres4=0,wres5=0,wres6=0,wres7=0;
@@ -1461,8 +1461,8 @@ router.post('/api/respond', function(req, res) {
     console.log(wrs11);
     wrs12=((2-r11)*(4-rd11)*w3);
     console.log(wrs12);
-    wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11};
-  var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11];
+    wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11,wrs12};
+  var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12];
   for(j=0;j<r.length;j++){
   if(r[j]==0)
     r[j]="NOT IMPLEMENTED";
@@ -1781,10 +1781,11 @@ router.post('/api/recover', function(req, res) {
     RSCO4: this.wrss.wrs5,
     RSAN1: this.wrss.wrs6,
     RSAN2: this.wrss.wrs7,
-    RSMI1: this.wrss.wrs8,
-    RSMI2: this.wrss.wrs9,
-    RSIM1: this.wrss.wrs10,
-    RSIM2: this.wrss.wrs11,
+    RSAN3: this.wrss.wrs8,
+    RSMI1: this.wrss.wrs9,
+    RSMI2: this.wrss.wrs10,
+    RSIM1: this.wrss.wrs11,
+    RSIM2: this.wrss.wrs12,
     RCRP1: this.wress.wres1,
     RCRP2: this.wress.wres2,
     RCRP3: this.wress.wres3,
