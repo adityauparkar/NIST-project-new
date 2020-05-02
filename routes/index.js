@@ -25,10 +25,10 @@ var Rec = require('../models/recommendations');
 var isc1tw=18,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=70;
 
 //for PROTECT subcategories total question weight
-var psc1tw=20,psc2tw=8,psc3tw=26,psc4tw=16,psc5tw=4,psc6tw=22,psctotalw=96;
+var psc1tw=20,psc2tw=12,psc3tw=34,psc4tw=22,psc5tw=4,psc6tw=22,psctotalw=114;
 
 //for DETECT subcategories total question weight
-var dsc1tw=12,dsc2tw=40,dsc3tw=22,dsctotalw=74;
+var dsc1tw=14,dsc2tw=40,dsc3tw=24,dsctotalw=78;
 
 //for RESPOND subcategories total question weight
 var rsc1tw=6,rsc2tw=20,rsc3tw=14,rsc4tw=12,rsc5tw=10,rsctotalw=62;
@@ -112,7 +112,7 @@ var w1=1,w2=2,w3=3;
 var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0,wi20=0,wi21=0;
 
 //weight variables for storing calculated weights according to question response in Protect Phase
-var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0;
+var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0,wp24=0,wp25=0,wp26=0,wp27=0;
 
 //weight variables for storing calculated weights according to question response in Detect Phase
 var wd1=0,wd2=0,wd3=0,wd4=0,wd5=0,wd6=0,wd7=0,wd8=0,wd9=0,wd10=0,wd11=0,wd12=0,wd13=0,wd14=0,wd15=0,wd16=0,wd17=0;
@@ -128,7 +128,7 @@ var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0;
 var wis1=0,wis2=0,wis3=0,wis4=0,wis5=0,wis6=0,wis7=0,wis8=0,wis9=0,wis10=0,wis11=0,wis12=0,wis13=0,wis14=0,wis15=0,wis16=0,wis17=0,wis18=0,wis19=0,wis20=0,wis21=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Protect Phase
-var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11=0,wps12=0,wps13=0,wps14=0,wps15=0,wps16=0,wps17=0,wps18=0,wps19=0,wps20=0,wps21=0,wps22=0,wps23=0;
+var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11=0,wps12=0,wps13=0,wps14=0,wps15=0,wps16=0,wps17=0,wps18=0,wps19=0,wps20=0,wps21=0,wps22=0,wps23=0,wps24=0,wps25=0,wps26=0,wps27=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Detect Phase
 var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0;
@@ -203,7 +203,7 @@ router.post('/api/recs', function(req, res) {
     });
 });
 
-// Identify 
+// Identify
 router.get('/identify', ensureAuthenticated, (req, res) =>
   res.render('Identify-Phase', {
     user: req.user
@@ -297,7 +297,7 @@ router.post('/api/identify', function(req, res) {
   console.log(id20);
   var id21=parseInt(req.body.id21);
   console.log(id21);
-  wi1=w2*i1; 
+  wi1=w2*i1;
   wi2=w2*i2;
   wi3=w2*i3;
   wi4=w3*i4;
@@ -583,7 +583,7 @@ router.post('/api/identify', function(req, res) {
 	  });
 });
 
-// Protect 
+// Protect
 router.get('/protect', ensureAuthenticated, (req, res) =>
   res.render('Protect-Phase', {
     user: req.user
@@ -592,53 +592,62 @@ router.get('/protect', ensureAuthenticated, (req, res) =>
 
 //Calculation of PROTECT PHASE
 router.post('/api/protect', function(req, res) {
-	console.log("PROTECT PHASE");
-	var p1=parseInt(req.body.p1);
-	console.log(p1);
-	var p2=parseInt(req.body.p2);
-	console.log(p2);
-	var p3=parseInt(req.body.p3);
-	console.log(p3);
-	var p4=parseInt(req.body.p4);
-	console.log(p4);
-	var p5=parseInt(req.body.p5);
-	console.log(p5);
-	var p6=parseInt(req.body.p6);
-	console.log(p6);
-	var p7=parseInt(req.body.p7);
-	console.log(p7);
-	var p8=parseInt(req.body.p8);
-	console.log(p8);
-	var p9=parseInt(req.body.p9);
-	console.log(p9);
-	var p10=parseInt(req.body.p10);
-	console.log(p10);
-	var p11=parseInt(req.body.p11);
-	console.log(p11);
-	var p12=parseInt(req.body.p12);
-	console.log(p12);
-	var p13=parseInt(req.body.p13);
-	console.log(p13);
-	var p14=parseInt(req.body.p14);
-	console.log(p14);
-	var p15=parseInt(req.body.p15);
-	console.log(p15);
-	var p16=parseInt(req.body.p16);
-	console.log(p16);
-	var p17=parseInt(req.body.p17);
-	console.log(p17);
-	var p18=parseInt(req.body.p18);
-	console.log(p18);
-	var p19=parseInt(req.body.p19);
-	console.log(p19);
-	var p20=parseInt(req.body.p20);
-	console.log(p20);
-	var p21=parseInt(req.body.p21);
-	console.log(p21);
-	var p22=parseInt(req.body.p22);
-	console.log(p22);
-	var p23=parseInt(req.body.p23);
-	console.log(p23);
+  console.log("PROTECT PHASE");
+  var p1=parseInt(req.body.p1);
+  console.log(p1);
+  var p2=parseInt(req.body.p2);
+  console.log(p2);
+  var p3=parseInt(req.body.p3);
+  console.log(p3);
+  var p4=parseInt(req.body.p4);
+  console.log(p4);
+  var p5=parseInt(req.body.p5);
+  console.log(p5);
+  var p6=parseInt(req.body.p6);
+  console.log(p6);
+  var p7=parseInt(req.body.p7);
+  console.log(p7);
+  var p8=parseInt(req.body.p8);
+  console.log(p8);
+  var p9=parseInt(req.body.p9);
+  console.log(p9);
+  var p10=parseInt(req.body.p10);
+  console.log(p10);
+  var p11=parseInt(req.body.p11);
+  console.log(p11);
+  var p12=parseInt(req.body.p12);
+  console.log(p12);
+  var p13=parseInt(req.body.p13);
+  console.log(p13);
+  var p14=parseInt(req.body.p14);
+  console.log(p14);
+  var p15=parseInt(req.body.p15);
+  console.log(p15);
+  var p16=parseInt(req.body.p16);
+  console.log(p16);
+  var p17=parseInt(req.body.p17);
+  console.log(p17);
+  var p18=parseInt(req.body.p18);
+  console.log(p18);
+  var p19=parseInt(req.body.p19);
+  console.log(p19);
+  var p20=parseInt(req.body.p20);
+  console.log(p20);
+  var p21=parseInt(req.body.p21);
+  console.log(p21);
+  var p22=parseInt(req.body.p22);
+  console.log(p22);
+  var p23=parseInt(req.body.p23);
+  console.log(p23);
+  var p24=parseInt(req.body.p24);
+  console.log(p24);
+  var p25=parseInt(req.body.p25);
+  console.log(p25);
+  var p26=parseInt(req.body.p26);
+  console.log(p26);
+  var p27=parseInt(req.body.p27);
+  console.log(p27);
+
   var pd1=parseInt(req.body.pd1);
   console.log(pd1);
   var pd2=parseInt(req.body.pd2);
@@ -685,10 +694,18 @@ router.post('/api/protect', function(req, res) {
   console.log(pd22);
   var pd23=parseInt(req.body.pd23);
   console.log(pd23);
-	wp1=w3*p1;
-	wp2=w2*p2;
-	wp3=w3*p3;
-	wp4=w2*p4;
+  var pd24=parseInt(req.body.pd24);
+  console.log(pd24);
+  var pd25=parseInt(req.body.pd25);
+  console.log(pd25);
+  var pd26=parseInt(req.body.pd26);
+  console.log(pd26);
+  var pd27=parseInt(req.body.pd27);
+  console.log(pd27);
+  wp1=w3*p1;
+  wp2=w2*p2;
+  wp3=w3*p3;
+  wp4=w2*p4;
   psc1cts= wp1+wp2+wp3+wp4;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF PROTECT PHASE:" + psc1cts);
   psc1sr= (psc1cts/psc1tw);
@@ -708,9 +725,10 @@ router.post('/api/protect', function(req, res) {
     psc1risk="MINIMUM RISK";
   }
   console.log(psc1risk);
-	wp5=w2*p5;
-	wp6=w2*p6;
-  psc2cts= wp5+wp6;
+  wp5=w2*p5;
+  wp6=w2*p6;
+  wp7=w2*p7;
+  psc2cts= wp5+wp6+wp7;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF PROTECT PHASE:" + psc2cts);
   psc2sr= (psc2cts/psc2tw);
   psc2sr=psc2sr.toFixed(2);
@@ -729,12 +747,14 @@ router.post('/api/protect', function(req, res) {
     psc2risk="MINIMUM RISK";
   }
   console.log(psc2risk);
-	wp7=w3*p7;
-	wp8=w3*p8;
-	wp9=w2*p9;
-	wp10=w3*p10;
-	wp11=w2*p11;
-  psc3cts= wp7+wp8+wp9+wp10+wp11;
+  wp8=w3*p8;
+  wp9=w3*p9;
+  wp10=w1*p10;
+  wp11=w3*p11;
+  wp12=w1*p12;
+  wp13=w3*p13;
+  wp14=w3*p14;
+  psc3cts= wp8+wp9+wp10+wp11+w12+wp13+wp14;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF PROTECT PHASE:" + psc3cts);
   psc3sr= (psc3cts/psc3tw);
   psc3sr=psc3sr.toFixed(2);
@@ -753,12 +773,13 @@ router.post('/api/protect', function(req, res) {
     psc3risk="MINIMUM RISK";
   }
   console.log(psc3risk);
-  wp12=w1*p12;
-	wp13=w3*p13;
-	wp14=w1*p14;
-	wp15=w1*p15;
-	wp16=w2*p16;
-  psc4cts= wp12+wp13+wp14+wp15+wp16;
+  wp15=w1*p15;
+  wp16=w3*p16;
+  wp17=w1*p17;
+  wp18=w1*p18;
+  wp19=w3*p19;
+  wp20=w2*p20;
+  psc4cts= wp15+wp16+wp17+wp18+wp19+wp20;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-4 OF PROTECT PHASE:" + psc4cts);
   psc4sr= (psc4cts/psc4tw);
   psc4sr=psc4sr.toFixed(2);
@@ -777,9 +798,9 @@ router.post('/api/protect', function(req, res) {
     psc4risk="MINIMUM RISK";
   }
   console.log(psc4risk);
-  wp17=w1*p17;
-  wp18=w1*p18;
-  psc5cts= wp17+wp18;
+  wp21=w1*p21;
+  wp22=w1*p22;
+  psc5cts= wp21+wp22;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-5 OF PROTECT PHASE:" + psc5cts);
   psc5sr= (psc5cts/psc5tw);
   psc5sr=psc5sr.toFixed(2);
@@ -798,12 +819,12 @@ router.post('/api/protect', function(req, res) {
     psc5risk="MINIMUM RISK";
   }
   console.log(psc5risk);
-  wp19=w1*p19;
-	wp20=w2*p20;
-	wp21=w3*p21;
-	wp22=w2*p22;
-	wp23=w3*p23;
-  psc6cts= wp19+wp20+wp21+wp22+wp23;
+  wp23=w1*p23;
+  wp24=w2*p24;
+  wp25=w3*p25;
+  wp26=w2*p26;
+  wp27=w3*p27;
+  psc6cts= wp23+wp24+wp25+wp26+wp27;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-6 OF PROTECT PHASE:" + psc6cts);
   psc6sr= (psc6cts/psc6tw);
   psc6sr=psc6sr.toFixed(2);
@@ -842,52 +863,60 @@ router.post('/api/protect', function(req, res) {
   //claculation of difficulty in Protect Phase
   wps1=((2-p1)*(4-pd1)*w3);
   console.log(wps1);
-	wps2=((2-p2)*(4-pd2)*w2);
+  wps2=((2-p2)*(4-pd2)*w2);
   console.log(wps2);
-	wps3=((2-p3)*(4-pd3)*w3);
+  wps3=((2-p3)*(4-pd3)*w3);
   console.log(wps3);
-	wps4=((2-p4)*(4-pd4)*w2);
+  wps4=((2-p4)*(4-pd4)*w2);
   console.log(wps4);
   wps5=((2-p5)*(4-pd5)*w2);
   console.log(wps5);
-	wps6=((2-p6)*(4-pd6)*w2);
+  wps6=((2-p6)*(4-pd6)*w2);
   console.log(wps6);
-  wps7=((2-p7)*(4-pd7)*w3);
+  wps7=((2-p7)*(4-pd7)*w2);
   console.log(wps7);
-	wps8=((2-p8)*(4-pd8)*w3);
+  wps8=((2-p8)*(4-pd8)*w3);
   console.log(wps8);
-	wps9=((2-p9)*(4-pd9)*w2);
+  wps9=((2-p9)*(4-pd9)*w3);
   console.log(wps9);
-	wps10=((2-p10)*(4-pd10)*w3);
+  wps10=((2-p10)*(4-pd10)*w1);
   console.log(wps10);
-	wps11=((2-p11)*(4-pd11)*w2);
+  wps11=((2-p11)*(4-pd11)*w3);
   console.log(wps11);
-	wps12=((2-p12)*(4-pd12)*w1);
+  wps12=((2-p12)*(4-pd12)*w1);
   console.log(wps12);
   wps13=((2-p13)*(4-pd13)*w3);
   console.log(wps13);
-	wps14=((2-p14)*(4-pd14)*w1);
+  wps14=((2-p14)*(4-pd14)*w3);
   console.log(wps14);
-	wps15=((2-p15)*(4-pd15)*w1);
+  wps15=((2-p15)*(4-pd15)*w1);
   console.log(wps15);
-	wps16=((2-p16)*(4-pd16)*w2);
+  wps16=((2-p16)*(4-pd16)*w3);
   console.log(wps16);
-	wps17=((2-p17)*(4-pd17)*w1);
+  wps17=((2-p17)*(4-pd17)*w1);
   console.log(wps17);
   wps18=((2-p18)*(4-pd18)*w1);
   console.log(wps18);
-	wps19=((2-p19)*(4-pd19)*w1);
+  wps19=((2-p19)*(4-pd19)*w3);
   console.log(wps19);
   wps20=((2-p20)*(4-pd20)*w2);
   console.log(wps20);
-	wps21=((2-p21)*(4-pd21)*w3);
+  wps21=((2-p21)*(4-pd21)*w1);
   console.log(wps21);
-	wps22=((2-p22)*(4-pd22)*w2);
+  wps22=((2-p22)*(4-pd22)*w1);
   console.log(wps22);
-	wps23=((2-p23)*(4-pd23)*w3);
+  wps23=((2-p23)*(4-pd23)*w1);
   console.log(wps23);
-  wpss={wps1,wps2,wps3,wps4,wps5,wps6,wps7,wps8,wps9,wps10,wps11,wps12,wps13,wps14,wps15,wps16,wps17,wps18,wps19,wps20,wps21,wps22,wps23};
-  var p=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23];
+  wps24=((2-p24)*(4-pd24)*w2);
+  console.log(wps24);
+  wps25=((2-p25)*(4-pd25)*w3);
+  console.log(wps25);
+  wps26=((2-p26)*(4-pd26)*w2);
+  console.log(wps26);
+  wps27=((2-p27)*(4-pd27)*w3);
+  console.log(wps27);
+  wpss={wps1,wps2,wps3,wps4,wps5,wps6,wps7,wps8,wps9,wps10,wps11,wps12,wps13,wps14,wps15,wps16,wps17,wps18,wps19,wps20,wps21,wps22,wps23,wps24,wps25,wps26,wps27};
+  var p=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26,p27];
   for(j=0;j<p.length;j++){
   if(p[j]==0)
     p[j]="NOT IMPLEMENTED";
@@ -911,40 +940,49 @@ router.post('/api/protect', function(req, res) {
     PRAT1D: pd5,
     PRAT2: p[5],
     PRAT2D: pd6,
-    PRDS1: p[6],
-    PRDS1D: pd7,
-    PRDS2: p[7],
-    PRDS2D: pd8,
-    PRDS3: p[8],
-    PRDS3D: pd9,
-    PRDS4: p[9],
-    PRDS4D: pd10,
-    PRDS5: p[10],
-    PRDS5D: pd11,
-    PRIP1: p[11],
-    PRIP1D: pd12,
-    PRIP2: p[12],
-    PRIP2D: pd13,
-    PRIP3: p[13],
-    PRIP3D: pd14,
-    PRIP4: p[14],
-    PRIP4D: pd15,
-    PRIP5: p[15],
-    PRIP5D: pd16,
-    PRMA1: p[16],
-    PRMA1D: pd17,
-    PRMA2: p[17],
-    PRMA2D: pd18,
-    PRPT1: p[18],
-    PRPT1D: pd19,
-    PRPT2: p[19],
-    PRPT2D: pd20,
-    PRPT3: p[20],
-    PRPT3D: pd21,
-    PRPT4: p[21],
-    PRPT4D: pd22,
-    PRPT5: p[22],
-    PRPT5D: pd23,
+    PRAT3: p[6],
+    PRAT3D: pd7,
+    PRDS1: p[7],
+    PRDS1D: pd8,
+    PRDS2: p[8],
+    PRDS2D: pd9,
+    PRDS3: p[9],
+    PRDS3D: pd10,
+    PRDS4: p[10],
+    PRDS4D: pd11,
+    PRDS5: p[11],
+    PRDS5D: pd12,
+    PRDS6: p[12],
+    PRDS6D: pd13,
+    PRDS7: p[13],
+    PRDS7D: pd14,
+    PRIP1: p[14],
+    PRIP1D: pd15,
+    PRIP2: p[15],
+    PRIP2D: pd16,
+    PRIP3: p[16],
+    PRIP3D: pd17,
+    PRIP4: p[17],
+    PRIP4D: pd18,
+    PRIP5: p[18],
+    PRIP5D: pd19,
+    PRIP6: p[19],
+    PRIP6D: pd20,
+    PRMA1: p[20],
+    PRMA1D: pd21,
+    PRMA2: p[21],
+    PRMA2D: pd22,
+    PRPT1: p[22],
+    PRPT1D: pd23,
+    PRPT2: p[23],
+    PRPT2D: pd24,
+    PRPT3: p[24],
+    PRPT3D: pd25,
+    PRPT4: p[25],
+    PRPT4D: pd26,
+    PRPT5: p[26],
+    PRPT5D: pd27,
+
     psc1sr:psc1sr,
     psc1risk:psc1risk,
     psc2sr:psc2sr,
@@ -977,7 +1015,7 @@ router.post('/api/protect', function(req, res) {
     });
 });
 
-// Detect 
+// Detect
 router.get('/detect', ensureAuthenticated, (req, res) =>
   res.render('Detect-Phase', {
     user: req.user
@@ -1056,7 +1094,7 @@ router.post('/api/detect', function(req, res) {
   var dd17=parseInt(req.body.dd17);
   console.log(dd17);
 	wd1=w2*d1;
-	wd2=w2*d2;
+	wd2=w3*d2;
 	wd3=w2*d3;
   dsc1cts= wd1+wd2+wd3;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF DETECT PHASE:" + dsc1cts);
@@ -1082,8 +1120,8 @@ router.post('/api/detect', function(req, res) {
 	wd6=w3*d6;
 	wd7=w3*d7;
 	wd8=w3*d8;
-	wd9=w2*d9;
-	wd10=w2*d10;
+	wd9=w1*d9;
+	wd10=w3*d10;
 	wd11=w2*d11;
   dsc2cts= wd4+wd5+wd6+wd7+wd8+wd9+wd10+wd11;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF DETECT PHASE:" + dsc2cts);
@@ -1104,10 +1142,10 @@ router.post('/api/detect', function(req, res) {
     dsc2risk="MINIMUM RISK";
   }
   console.log(dsc2risk);
-  wd12=w3*d12;
+  wd12=w2*d12;
 	wd13=w1*d13;
 	wd14=w1*d14;
-	wd15=w1*d15;
+	wd15=w3*d15;
 	wd16=w3*d16;
 	wd17=w2*d17;
   dsc3cts= wd12+wd13+wd14+wd15+wd16+wd17;
@@ -1149,7 +1187,7 @@ router.post('/api/detect', function(req, res) {
   //claculation of difficulty in Detect Phase
   wds1=((2-d1)*(4-dd1)*w2);
   console.log(wds1);
-	wds2=((2-d2)*(4-dd2)*w2);
+	wds2=((2-d2)*(4-dd2)*w3);
   console.log(wds2);
 	wds3=((2-d3)*(4-dd3)*w2);
   console.log(wds3);
@@ -1163,19 +1201,19 @@ router.post('/api/detect', function(req, res) {
   console.log(wds7);
 	wds8=((2-d8)*(4-dd8)*w3);
   console.log(wds8);
-	wds9=((2-d9)*(4-dd9)*w2);
+	wds9=((2-d9)*(4-dd9)*w1);
   console.log(wds9);
-	wds10=((2-d10)*(4-dd10)*w2);
+	wds10=((2-d10)*(4-dd10)*w3);
   console.log(wds10);
 	wds11=((2-d11)*(4-dd11)*w2);
   console.log(wds11);
-	wds12=((2-d12)*(4-dd12)*w3);
+	wds12=((2-d12)*(4-dd12)*w2);
   console.log(wds12);
 	wds13=((2-d13)*(4-dd13)*w1);
   console.log(wds13);
 	wds14=((2-d14)*(4-dd14)*w1);
   console.log(wds14);
-  wds15=((2-d15)*(4-dd15)*w1);
+  wds15=((2-d15)*(4-dd15)*w3);
   console.log(wds15);
 	wds16=((2-d16)*(4-dd16)*w3);
   console.log(wds16);
@@ -1254,7 +1292,7 @@ router.post('/api/detect', function(req, res) {
     });
 });
 
-// Resond 
+// Resond
 router.get('/respond', ensureAuthenticated, (req, res) =>
   res.render('Respond-Phase', {
     user: req.user
@@ -1528,7 +1566,7 @@ router.post('/api/respond', function(req, res) {
     });
 });
 
-// Recover 
+// Recover
 router.get('/recover', ensureAuthenticated, (req, res) =>
   res.render('Recover-Phase', {
     user: req.user
@@ -1829,7 +1867,7 @@ router.post('/api/recover', function(req, res) {
 	else{
 	r1={
 		r1:0
-	}	
+	}
 	}
 	if(sorted[75][1]!=0)
 	{
@@ -1928,7 +1966,7 @@ router.post('/api/recover', function(req, res) {
 	}
 });
 
-// Results 
+// Results
 router.get('/result', ensureAuthenticated, (req, res) =>
   res.render('Result', {
     user: req.user
@@ -1969,11 +2007,11 @@ router.post('/recommendations', function(req,res){
     rec4 : recommendation4 ? this.recom4.recomon4 : 'no recommendation',
     rec5 : recommendation5 ? this.recom5.recomon5 : 'no recommendation'
 	}
-	
+
   if(this.r1.r1==0 && this.r2.r2==0 && this.r3.r3==0 && this.r4.r4==0 && this.r5.r5==0){
 	recommendations={
 		rec: 'you don\'t have any recommendations'
-	}  
+	}
 	}
   res.json(recommendations);
 });

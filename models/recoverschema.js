@@ -8,10 +8,6 @@ var recoverscoreSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    /*csre: {
-        type: String,
-        required: true
-    },*/
     RCRP1: {
         type: String,
         required: true

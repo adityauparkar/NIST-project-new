@@ -56,6 +56,14 @@ var protectscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    PRAT3: {
+        type: String,
+        required: true
+    },
+    PRAT3D: {
+        type: String,
+        required: true
+    },
     PRDS1: {
         type: String,
         required: true
@@ -96,6 +104,22 @@ var protectscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    PRDS6: {
+        type: String,
+        required: true
+    },
+    PRDS6D: {
+        type: String,
+        required: true
+    },
+    PRDS7: {
+        type: String,
+        required: true
+    },
+    PRDS7D: {
+        type: String,
+        required: true
+    },
     PRIP1: {
         type: String,
         required: true
@@ -133,6 +157,14 @@ var protectscoreSchema = mongoose.Schema({
         required: true
     },
     PRIP5D: {
+        type: String,
+        required: true
+    },
+    PRIP6: {
+        type: String,
+        required: true
+    },
+    PRIP6D: {
         type: String,
         required: true
     },
