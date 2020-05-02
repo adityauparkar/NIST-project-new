@@ -28,13 +28,13 @@ var isc1tw=18,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=70;
 var psc1tw=20,psc2tw=12,psc3tw=34,psc4tw=22,psc5tw=4,psc6tw=22,psctotalw=114;
 
 //for DETECT subcategories total question weight
-var dsc1tw=12,dsc2tw=40,dsc3tw=22,dsctotalw=74;
+var dsc1tw=14,dsc2tw=40,dsc3tw=24,dsctotalw=78;
 
 //for RESPOND subcategories total question weight
-var rsc1tw=4,rsc2tw=12,rsc3tw=10,rsc4tw=10,rsc5tw=4,rsctotalw=40;
+var rsc1tw=6,rsc2tw=20,rsc3tw=14,rsc4tw=12,rsc5tw=10,rsctotalw=62;
 
 //for RECOVER subcategories total question weight
-var resc1tw=12,resc2tw=8,resc3tw=8,restotalw=28;
+var resc1tw=12,resc2tw=8,resc3tw=10,restotalw=30;
 
 //for IDENTIFY subcategories client response to questions weight total
 var isc1cts=0,isc2cts=0,isc3cts=0,isc4cts=0,isc5cts=0,isc6cts=0;
@@ -134,7 +134,7 @@ var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11
 var wds1=0,wds2=0,wds3=0,wds4=0,wds5=0,wds6=0,wds7=0,wds8=0,wds9=0,wds10=0,wds11=0,wds12=0,wds13=0,wds14=0,wds15=0,wds16=0,wds17=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Respond Phase
-var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs=12;
+var wrs1=0,wrs2=0,wrs3=0,wrs4=0,wrs5=0,wrs6=0,wrs7=0,wrs8=0,wrs9=0,wrs10=0,wrs11=0,wrs12=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Recover Phase
 var wres1=0,wres2=0,wres3=0,wres4=0,wres5=0,wres6=0,wres7=0;
@@ -203,7 +203,7 @@ router.post('/api/recs', function(req, res) {
     });
 });
 
-// Identify 
+// Identify
 router.get('/identify', ensureAuthenticated, (req, res) =>
   res.render('Identify-Phase', {
     user: req.user
@@ -297,7 +297,7 @@ router.post('/api/identify', function(req, res) {
   console.log(id20);
   var id21=parseInt(req.body.id21);
   console.log(id21);
-  wi1=w2*i1; 
+  wi1=w2*i1;
   wi2=w2*i2;
   wi3=w2*i3;
   wi4=w3*i4;
@@ -583,7 +583,7 @@ router.post('/api/identify', function(req, res) {
 	  });
 });
 
-// Protect 
+// Protect
 router.get('/protect', ensureAuthenticated, (req, res) =>
   res.render('Protect-Phase', {
     user: req.user
@@ -647,7 +647,6 @@ router.post('/api/protect', function(req, res) {
   console.log(p26);
   var p27=parseInt(req.body.p27);
   console.log(p27);
-  
   var pd1=parseInt(req.body.pd1);
   console.log(pd1);
   var pd2=parseInt(req.body.pd2);
@@ -754,7 +753,7 @@ router.post('/api/protect', function(req, res) {
   wp12=w1*p12;
   wp13=w3*p13;
   wp14=w3*p14;
-  psc3cts= wp8+wp9+wp10+wp11+w12+wp13+wp14;
+  psc3cts= wp8+wp9+wp10+wp11+wp12+wp13+wp14;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF PROTECT PHASE:" + psc3cts);
   psc3sr= (psc3cts/psc3tw);
   psc3sr=psc3sr.toFixed(2);
@@ -982,7 +981,6 @@ router.post('/api/protect', function(req, res) {
     PRPT4D: pd26,
     PRPT5: p[26],
     PRPT5D: pd27,
-
     psc1sr:psc1sr,
     psc1risk:psc1risk,
     psc2sr:psc2sr,
@@ -1015,7 +1013,7 @@ router.post('/api/protect', function(req, res) {
     });
 });
 
-// Detect 
+// Detect
 router.get('/detect', ensureAuthenticated, (req, res) =>
   res.render('Detect-Phase', {
     user: req.user
@@ -1094,7 +1092,7 @@ router.post('/api/detect', function(req, res) {
   var dd17=parseInt(req.body.dd17);
   console.log(dd17);
 	wd1=w2*d1;
-	wd2=w2*d2;
+	wd2=w3*d2;
 	wd3=w2*d3;
   dsc1cts= wd1+wd2+wd3;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-1 OF DETECT PHASE:" + dsc1cts);
@@ -1120,8 +1118,8 @@ router.post('/api/detect', function(req, res) {
 	wd6=w3*d6;
 	wd7=w3*d7;
 	wd8=w3*d8;
-	wd9=w2*d9;
-	wd10=w2*d10;
+	wd9=w1*d9;
+	wd10=w3*d10;
 	wd11=w2*d11;
   dsc2cts= wd4+wd5+wd6+wd7+wd8+wd9+wd10+wd11;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF DETECT PHASE:" + dsc2cts);
@@ -1142,10 +1140,10 @@ router.post('/api/detect', function(req, res) {
     dsc2risk="MINIMUM RISK";
   }
   console.log(dsc2risk);
-  wd12=w3*d12;
+  wd12=w2*d12;
 	wd13=w1*d13;
 	wd14=w1*d14;
-	wd15=w1*d15;
+	wd15=w3*d15;
 	wd16=w3*d16;
 	wd17=w2*d17;
   dsc3cts= wd12+wd13+wd14+wd15+wd16+wd17;
@@ -1187,7 +1185,7 @@ router.post('/api/detect', function(req, res) {
   //claculation of difficulty in Detect Phase
   wds1=((2-d1)*(4-dd1)*w2);
   console.log(wds1);
-	wds2=((2-d2)*(4-dd2)*w2);
+	wds2=((2-d2)*(4-dd2)*w3);
   console.log(wds2);
 	wds3=((2-d3)*(4-dd3)*w2);
   console.log(wds3);
@@ -1201,19 +1199,19 @@ router.post('/api/detect', function(req, res) {
   console.log(wds7);
 	wds8=((2-d8)*(4-dd8)*w3);
   console.log(wds8);
-	wds9=((2-d9)*(4-dd9)*w2);
+	wds9=((2-d9)*(4-dd9)*w1);
   console.log(wds9);
-	wds10=((2-d10)*(4-dd10)*w2);
+	wds10=((2-d10)*(4-dd10)*w3);
   console.log(wds10);
 	wds11=((2-d11)*(4-dd11)*w2);
   console.log(wds11);
-	wds12=((2-d12)*(4-dd12)*w3);
+	wds12=((2-d12)*(4-dd12)*w2);
   console.log(wds12);
 	wds13=((2-d13)*(4-dd13)*w1);
   console.log(wds13);
 	wds14=((2-d14)*(4-dd14)*w1);
   console.log(wds14);
-  wds15=((2-d15)*(4-dd15)*w1);
+  wds15=((2-d15)*(4-dd15)*w3);
   console.log(wds15);
 	wds16=((2-d16)*(4-dd16)*w3);
   console.log(wds16);
@@ -1292,7 +1290,7 @@ router.post('/api/detect', function(req, res) {
     });
 });
 
-// Resond 
+// Resond
 router.get('/respond', ensureAuthenticated, (req, res) =>
   res.render('Respond-Phase', {
     user: req.user
@@ -1499,8 +1497,8 @@ router.post('/api/respond', function(req, res) {
     console.log(wrs11);
     wrs12=((2-r11)*(4-rd11)*w3);
     console.log(wrs12);
-    wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11};
-  var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11];
+    wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11,wrs12};
+  var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12];
   for(j=0;j<r.length;j++){
   if(r[j]==0)
     r[j]="NOT IMPLEMENTED";
@@ -1566,7 +1564,7 @@ router.post('/api/respond', function(req, res) {
     });
 });
 
-// Recover 
+// Recover
 router.get('/recover', ensureAuthenticated, (req, res) =>
   res.render('Recover-Phase', {
     user: req.user
@@ -1776,23 +1774,27 @@ router.post('/api/recover', function(req, res) {
     PRAC4: this.wpss.wps4,
     PRAT1: this.wpss.wps5,
     PRAT2: this.wpss.wps6,
-    PRDS1: this.wpss.wps7,
-    PRDS2: this.wpss.wps8,
-    PRDS3: this.wpss.wps9,
-    PRDS4: this.wpss.wps10,
-    PRDS5: this.wpss.wps11,
-    PRIP1: this.wpss.wps12,
-    PRIP2: this.wpss.wps13,
-    PRIP3: this.wpss.wps14,
-    PRIP4: this.wpss.wps15,
-    PRIP5: this.wpss.wps16,
-    PRMA1: this.wpss.wps17,
-    PRMA2: this.wpss.wps18,
-    PRPT1: this.wpss.wps19,
-    PRPT2: this.wpss.wps20,
-    PRPT3: this.wpss.wps21,
-    PRPT4: this.wpss.wps22,
-    PRPT5: this.wpss.wps23,
+    PRAT3: this.wpss.wps7,
+    PRDS1: this.wpss.wps8,
+    PRDS2: this.wpss.wps9,
+    PRDS3: this.wpss.wps10,
+    PRDS4: this.wpss.wps11,
+    PRDS5: this.wpss.wps12,
+    PRDS6: this.wpss.wps13,
+    PRDS7: this.wpss.wps14,
+    PRIP1: this.wpss.wps15,
+    PRIP2: this.wpss.wps16,
+    PRIP3: this.wpss.wps17,
+    PRIP4: this.wpss.wps18,
+    PRIP5: this.wpss.wps19,
+    PRIP6: this.wpss.wps20,
+    PRMA1: this.wpss.wps21,
+    PRMA2: this.wpss.wps22,
+    PRPT1: this.wpss.wps23,
+    PRPT2: this.wpss.wps24,
+    PRPT3: this.wpss.wps25,
+    PRPT4: this.wpss.wps26,
+    PRPT5: this.wpss.wps27,
     DEAE1: this.wdss.wds1,
     DEAE2: this.wdss.wds2,
     DEAE3: this.wdss.wds3,
@@ -1817,10 +1819,11 @@ router.post('/api/recover', function(req, res) {
     RSCO4: this.wrss.wrs5,
     RSAN1: this.wrss.wrs6,
     RSAN2: this.wrss.wrs7,
-    RSMI1: this.wrss.wrs8,
-    RSMI2: this.wrss.wrs9,
-    RSIM1: this.wrss.wrs10,
-    RSIM2: this.wrss.wrs11,
+    RSAN3: this.wrss.wrs8,
+    RSMI1: this.wrss.wrs9,
+    RSMI2: this.wrss.wrs10,
+    RSIM1: this.wrss.wrs11,
+    RSIM2: this.wrss.wrs12,
     RCRP1: this.wress.wres1,
     RCRP2: this.wress.wres2,
     RCRP3: this.wress.wres3,
@@ -1864,7 +1867,7 @@ router.post('/api/recover', function(req, res) {
 	else{
 	r1={
 		r1:0
-	}	
+	}
 	}
 	if(sorted[75][1]!=0)
 	{
@@ -1963,7 +1966,7 @@ router.post('/api/recover', function(req, res) {
 	}
 });
 
-// Results 
+// Results
 router.get('/result', ensureAuthenticated, (req, res) =>
   res.render('Result', {
     user: req.user
@@ -2004,11 +2007,11 @@ router.post('/recommendations', function(req,res){
     rec4 : recommendation4 ? this.recom4.recomon4 : 'no recommendation',
     rec5 : recommendation5 ? this.recom5.recomon5 : 'no recommendation'
 	}
-	
+
   if(this.r1.r1==0 && this.r2.r2==0 && this.r3.r3==0 && this.r4.r4==0 && this.r5.r5==0){
 	recommendations={
 		rec: 'you don\'t have any recommendations'
-	}  
+	}
 	}
   res.json(recommendations);
 });

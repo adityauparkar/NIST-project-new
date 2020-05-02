@@ -716,11 +716,11 @@
 	if(response.rec1._id!=undefined && response.rec1.rec!=undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
 	    document.getElementById('i1').innerHTML=response.rec1._id;
 		document.getElementById('idiv1').style="display:block";
-        document.getElementById('i2').innerHTML=response.rec1.rec;
+    document.getElementById('i2').innerHTML=response.rec1.rec;
 		document.getElementById('idiv2').style="display:block";
 		document.getElementById('i3').innerHTML=response.rec2._id;
 		document.getElementById('idiv3').style="display:block";
-        document.getElementById('i4').innerHTML=response.rec2.rec;
+    document.getElementById('i4').innerHTML=response.rec2.rec;
 		document.getElementById('idiv4').style="display:block";
 		document.getElementById('i5').innerHTML=response.rec3._id;
 		document.getElementById('idiv5').style="display:block";
@@ -728,11 +728,11 @@
 		document.getElementById('idiv6').style="display:block";
 		document.getElementById('i7').innerHTML=response.rec4._id;
 		document.getElementById('idiv7').style="display:block";
-        document.getElementById('i8').innerHTML=response.rec5.rec;
+    document.getElementById('i8').innerHTML=response.rec5.rec;
 		document.getElementById('idiv8').style="display:block";
 		document.getElementById('i9').innerHTML=response.rec5._id;
 		document.getElementById('idiv9').style="display:block";
-        document.getElementById('i10').innerHTML=response.rec5.rec;
+    document.getElementById('i10').innerHTML=response.rec5.rec;
 		document.getElementById('idiv10').style="display:block";
 	}else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
 		document.getElementById('i1').innerHTML=response.rec2._id;
@@ -741,7 +741,7 @@
 		document.getElementById('idiv2').style="display:block";
 		document.getElementById('i3').innerHTML=response.rec3._id;
 		document.getElementById('idiv3').style="display:block";
-        document.getElementById('i4').innerHTML=response.rec3.rec;
+    document.getElementById('i4').innerHTML=response.rec3.rec;
 		document.getElementById('idiv4').style="display:block";
 		document.getElementById('i5').innerHTML=response.rec4._id;
 		document.getElementById('idiv5').style="display:block";
@@ -749,7 +749,7 @@
 		document.getElementById('idiv6').style="display:block";
 		document.getElementById('i7').innerHTML=response.rec5._id;
 		document.getElementById('idiv7').style="display:block";
-        document.getElementById('i8').innerHTML=response.rec5.rec;
+    document.getElementById('i8').innerHTML=response.rec5.rec;
 		document.getElementById('idiv8').style="display:block";
 	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
         document.getElementById('i1').innerHTML=response.rec3._id;
@@ -764,7 +764,7 @@
 		document.getElementById('idiv5').style="display:block";
 		document.getElementById('i6').innerHTML=response.rec5.rec;
 		document.getElementById('idiv6').style="display:block";
-	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){   
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
 		document.getElementById('i1').innerHTML=response.rec4._id;
 		document.getElementById('idiv1').style="display:block";
         document.getElementById('i2').innerHTML=response.rec4.rec;
@@ -778,7 +778,7 @@
 		document.getElementById('idiv1').style="display:block";
         document.getElementById('i2').innerHTML=response.rec5.rec;
 		document.getElementById('idiv2').style="display:block";
-	}	
+	}
     } else {
   			showError(response.error)
   		}
