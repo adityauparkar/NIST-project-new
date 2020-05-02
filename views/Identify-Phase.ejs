@@ -377,7 +377,7 @@
                                                 scenario.</label>
                                             <label for="formGroupExampleInput"><i>Conduct an annual assessment of all
                                                     insurance policies.</i></label>
-                                            <select class="form-control" id="id10" name="id10">
+                                            <select class="form-control" id="i10" name="i10">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -399,7 +399,7 @@
                                                 identified and documented. </label>
                                             <label for="formGroupExampleInput"><i> Conduct an annual review of internal and
                                                     external threats. </i></label>
-                                            <select class="form-control" id="id11" name="id11">
+                                            <select class="form-control" id="i11" name="i11">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -420,7 +420,7 @@
                                             <label for="formGroupExampleInput"><i>Vulnerabilities are assessed and
                                                     documented prior to introducing new assets to the system. Conduct an
                                                     annual review of all assets.</i></label>
-                                            <select class="form-control" id="id12" name="id12">
+                                            <select class="form-control" id="i12" name="i12">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -441,7 +441,7 @@
                                                 likelihoods defined.</label>
                                             <label for="formGroupExampleInput"><i>An annual cyber security risk assessment
                                                     is undertaken.</i></label>
-                                            <select class="form-control" id="id13" name="id13">
+                                            <select class="form-control" id="i13" name="i13">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -461,7 +461,7 @@
                                                 communicated to related stakeholders.</label>
                                             <label for="formGroupExampleInput"><i>Report acceptable risk to stakeholders
                                                     every three years.</i></label>
-                                            <select class="form-control" id="id14" name="id14">
+                                            <select class="form-control" id="i14" name="i14">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -483,7 +483,7 @@
                                                 documented.</label>
                                             <label for="formGroupExampleInput"><i>Conduct an annual review of risk
                                                     rating.</i></label>
-                                            <select class="form-control" id="id15" name="id15">
+                                            <select class="form-control" id="i15" name="i15">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -502,7 +502,7 @@
                                             <label for="formGroupExampleInput2">2. Status of risk tolerance policy for critical infrastructure is identified.</label>
                                             <label for="formGroupExampleInput"><i>Annual review of critical infrastructure
                                                     risk.</i></label>
-                                            <select class="form-control" id="id16" name="id16">
+                                            <select class="form-control" id="i16" name="i16">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -524,7 +524,7 @@
                                                 have been developed and documented.</label>
                                             <label for="formGroupExampleInput"><i> Conduct an annual review of supply chain
                                                     risk. </i></label>
-                                            <select class="form-control" id="id17" name="id17">
+                                            <select class="form-control" id="i17" name="i17">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -544,7 +544,7 @@
                                                 hardware exists, with vendors contact details maintained.</label>
                                             <label for="formGroupExampleInput"><i>Conduct an annual review of vendor contact
                                                     details. </i></label>
-                                            <select class="form-control" id="id18" name="id18">
+                                            <select class="form-control" id="i18" name="i18">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -562,8 +562,8 @@
                                         <div class="form-group">
                                             <label for="formGroupExampleInput2">3. Suppliers, vendors and their services are
                                                 assessed against the organisation's risk assessment process.</label>
-    
-                                            <select class="form-control" id="id19" name="id19">
+
+                                            <select class="form-control" id="i19" name="i19">
                                                 <option value="-1"> Select </option>
                                                 <option value="0">Not implemented</option>
                                                 <option value="1">Partially implemented </option>
@@ -627,7 +627,7 @@
             }
             else {
                 alert("Proceed to the next page");
-                
+
               				var formData = {
               					'i1': $('#i1').val(),
               					'i2': $('#i2').val(),
@@ -648,7 +648,7 @@
               					'i17': $('#i17').val(),
               					'i18': $('#i18').val(),
               					'i19': $('#i19').val(),
-              			'id1':$("input[name=id1]:checked").val(),
+              			    'id1':$("input[name=id1]:checked").val(),
                         'id2':$("input[name=id2]:checked").val(),
                         'id3':$("input[name=id3]:checked").val(),
                         'id4':$("input[name=id4]:checked").val(),
@@ -670,7 +670,6 @@
               				};
               				console.log(formData);
               				$.post("http://localhost:7000/api/identify", formData, function(response) {
-              					console.log("hai")
               					if (response.error == undefined) {
               						console.log(response.response);
                                       window.location.href = "protect";
@@ -680,7 +679,7 @@
               				});
                       document.getElementById("Next").setAttribute("href","protect");
             }
-          
+
         });
 
     </script>

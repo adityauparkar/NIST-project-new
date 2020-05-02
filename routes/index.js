@@ -109,7 +109,7 @@ var w1=1,w2=2,w3=3;
 
 //weights for each question multiplied by the value of response or answer of each question
 //weight variables for storing calculated weights according to question response in Identify Phase
-var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0,wi20=0,wi21=0;
+var wi1=0,wi2=0,wi3=0,wi4=0,wi5=0,wi6=0,wi7=0,wi8=0,wi9=0,wi10=0,wi11=0,wi12=0,wi13=0,wi14=0,wi15=0,wi16=0,wi17=0,wi18=0,wi19=0;
 
 //weight variables for storing calculated weights according to question response in Protect Phase
 var wp1=0,wp2=0,wp3=0,wp4=0,wp5=0,wp6=0,wp7=0,wp8=0,wp9=0,wp10=0,wp11=0,wp12=0,wp13=0,wp14=0,wp15=0,wp16=0,wp17=0,wp18=0,wp19=0,wp20=0,wp21=0,wp22=0,wp23=0,wp24=0,wp25=0,wp26=0,wp27=0;
@@ -125,7 +125,7 @@ var wre1=0,wre2=0,wre3=0,wre4=0,wre5=0,wre6=0,wre7=0;
 
 //for score of RECOMMENDATIONS
 //weight variables for storing calculated weights according to question and  difficulty in Identify Phase
-var wis1=0,wis2=0,wis3=0,wis4=0,wis5=0,wis6=0,wis7=0,wis8=0,wis9=0,wis10=0,wis11=0,wis12=0,wis13=0,wis14=0,wis15=0,wis16=0,wis17=0,wis18=0,wis19=0,wis20=0,wis21=0;
+var wis1=0,wis2=0,wis3=0,wis4=0,wis5=0,wis6=0,wis7=0,wis8=0,wis9=0,wis10=0,wis11=0,wis12=0,wis13=0,wis14=0,wis15=0,wis16=0,wis17=0,wis18=0,wis19=0;
 
 //weight variables for storing calculated weights according to question and difficulty in Protect Phase
 var wps1=0,wps2=0,wps3=0,wps4=0,wps5=0,wps6=0,wps7=0,wps8=0,wps9=0,wps10=0,wps11=0,wps12=0,wps13=0,wps14=0,wps15=0,wps16=0,wps17=0,wps18=0,wps19=0,wps20=0,wps21=0,wps22=0,wps23=0,wps24=0,wps25=0,wps26=0,wps27=0;
@@ -289,7 +289,6 @@ router.post('/api/identify', function(req, res) {
   console.log(id18);
   var id19=parseInt(req.body.id19);
   console.log(id19);
-  console.log(id21);
   wi1=w3*i1;
   wi2=w2*i2;
   wi3=w2*i3;
@@ -441,7 +440,7 @@ router.post('/api/identify', function(req, res) {
   }
   console.log("OVERALL RISK OF IDENTIFY PHASE IS:" + ioml);
   //claculation of difficulty in Identify Phase
-  wis1=((2-i1)*(4-id1)*w2);
+  wis1=((2-i1)*(4-id1)*w3);
   console.log(wis1);
   wis2=((2-i2)*(4-id2)*w2);
   console.log(wis2);
@@ -451,41 +450,37 @@ router.post('/api/identify', function(req, res) {
   console.log(wis4);
 	wis5=((2-i5)*(4-id5)*w2);
   console.log(wis5);
-	wis6=((2-i6)*(4-id6)*w1);
+	wis6=((2-i6)*(4-id6)*w3);
   console.log(wis6);
-  wis7=((2-i7)*(4-id7)*w1);
+  wis7=((2-i7)*(4-id7)*w3);
   console.log(wis7);
-	wis8=((2-i8)*(4-id8)*w1);
+	wis8=((2-i8)*(4-id8)*w2);
   console.log(wis8);
-	wis9=((2-i9)*(4-id9)*w3);
+	wis9=((2-i9)*(4-id9)*w1);
   console.log(wis9);
-	wis10=((2-i10)*(4-id10)*w2);
+	wis10=((2-i10)*(4-id10)*w1);
   console.log(wis10);
-	wis11=((2-i11)*(4-id11)*w1);
+	wis11=((2-i11)*(4-id11)*w2);
   console.log(wis11);
-  wis12=((2-i12)*(4-id12)*w1);
+  wis12=((2-i12)*(4-id12)*w3);
   console.log(wis12);
 	wis13=((2-i13)*(4-id13)*w2);
   console.log(wis13);
-	wis14=((2-i14)*(4-id14)*w3);
+	wis14=((2-i14)*(4-id14)*w1);
   console.log(wis14);
-	wis15=((2-i15)*(4-id15)*w2);
+	wis15=((2-i15)*(4-id15)*w1);
   console.log(wis15);
 	wis16=((2-i16)*(4-id16)*w1);
   console.log(wis16);
   wis17=((2-i17)*(4-id17)*w1);
   console.log(wis17);
-	wis18=((2-i18)*(4-id18)*w1);
+	wis18=((2-i18)*(4-id18)*w2);
   console.log(wis18);
 	wis19=((2-i19)*(4-id19)*w1);
   console.log(wis19);
-	wis20=((2-i20)*(4-id20)*w2);
-  console.log(wis20);
-  wis21=((2-i21)*(4-id21)*w1);
-  console.log(wis21);
-  wiss={wis1,wis2,wis3,wis4,wis5,wis6,wis7,wis8,wis9,wis10,wis11,wis12,wis13,wis14,wis15,wis16,wis17,wis18,wis19,wis20,wis21};
-	var inumval=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21];
-	var i=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,i21];
+  wiss={wis1,wis2,wis3,wis4,wis5,wis6,wis7,wis8,wis9,wis10,wis11,wis12,wis13,wis14,wis15,wis16,wis17,wis18,wis19};
+	var inumval=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19];
+	var i=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19];
 	inum={
 	  i : inumval
 	}
@@ -513,36 +508,32 @@ router.post('/api/identify', function(req, res) {
 	  IDBE1D:id5,
 	  IDBE2: i[5],
 	  IDBE2D: id6,
-	  IDBE3: i[6],
-	  IDBE3D: id7,
-	  IDBE4: i[7],
-	  IDBE4D: id8,
-	  IDGV1: i[8],
-	  IDGV1D: id9,
-	  IDGV2: i[9],
-	  IDGV2D: id10,
-	  IDGV3: i[10],
-	  IDGV3D: id11,
-	  IDGV4: i[11],
-	  IDGV4D: id12,
-	  IDRA1: i[12],
-	  IDRA1D: id13,
-	  IDRA2: i[13],
-	  IDRA2D: id14,
-	  IDRA3: i[14],
-	  IDRA3D: id15,
-	  IDRA4: i[15],
-	  IDRA4D: id16,
-	  IDRM1: i[16],
-	  IDRM1D: id17,
-	  IDRM2: i[17],
-	  IDRM2D: id18,
-	  IDSC1: i[18],
-	  IDSC1D:id19,
-	  IDSC2: i[19],
-	  IDSC2D: id20,
-	  IDSC3: i[20],
-	  IDSC3D: id21,
+	  IDGV1: i[6],
+	  IDGV1D: id7,
+	  IDGV2: i[7],
+	  IDGV2D: id8,
+	  IDGV3: i[8],
+	  IDGV3D: id9,
+	  IDGV4: i[9],
+	  IDGV4D: id10,
+	  IDRA1: i[10],
+	  IDRA1D: id11,
+	  IDRA2: i[11],
+	  IDRA2D: id12,
+	  IDRA3: i[12],
+	  IDRA3D: id13,
+	  IDRA4: i[13],
+	  IDRA4D: id14,
+	  IDRM1: i[14],
+	  IDRM1D: id15,
+	  IDRM2: i[15],
+	  IDRM2D: id16,
+	  IDSC1: i[16],
+	  IDSC1D:id17,
+	  IDSC2: i[17],
+	  IDSC2D: id18,
+	  IDSC3: i[18],
+	  IDSC3D: id19,
 	  isc1sr:isc1sr,
 	  isc1risk:isc1risk,
 	  isc2sr:isc2sr,
