@@ -670,7 +670,6 @@
               				};
               				console.log(formData);
               				$.post("http://localhost:7000/api/identify", formData, function(response) {
-              					console.log("hai")
               					if (response.error == undefined) {
               						console.log(response.response);
                                       window.location.href = "protect";
