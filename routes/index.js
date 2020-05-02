@@ -647,7 +647,6 @@ router.post('/api/protect', function(req, res) {
   console.log(p26);
   var p27=parseInt(req.body.p27);
   console.log(p27);
-
   var pd1=parseInt(req.body.pd1);
   console.log(pd1);
   var pd2=parseInt(req.body.pd2);
@@ -754,7 +753,7 @@ router.post('/api/protect', function(req, res) {
   wp12=w1*p12;
   wp13=w3*p13;
   wp14=w3*p14;
-  psc3cts= wp8+wp9+wp10+wp11+w12+wp13+wp14;
+  psc3cts= wp8+wp9+wp10+wp11+wp12+wp13+wp14;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF PROTECT PHASE:" + psc3cts);
   psc3sr= (psc3cts/psc3tw);
   psc3sr=psc3sr.toFixed(2);
@@ -982,7 +981,6 @@ router.post('/api/protect', function(req, res) {
     PRPT4D: pd26,
     PRPT5: p[26],
     PRPT5D: pd27,
-
     psc1sr:psc1sr,
     psc1risk:psc1risk,
     psc2sr:psc2sr,
@@ -1778,23 +1776,27 @@ router.post('/api/recover', function(req, res) {
     PRAC4: this.wpss.wps4,
     PRAT1: this.wpss.wps5,
     PRAT2: this.wpss.wps6,
-    PRDS1: this.wpss.wps7,
-    PRDS2: this.wpss.wps8,
-    PRDS3: this.wpss.wps9,
-    PRDS4: this.wpss.wps10,
-    PRDS5: this.wpss.wps11,
-    PRIP1: this.wpss.wps12,
-    PRIP2: this.wpss.wps13,
-    PRIP3: this.wpss.wps14,
-    PRIP4: this.wpss.wps15,
-    PRIP5: this.wpss.wps16,
-    PRMA1: this.wpss.wps17,
-    PRMA2: this.wpss.wps18,
-    PRPT1: this.wpss.wps19,
-    PRPT2: this.wpss.wps20,
-    PRPT3: this.wpss.wps21,
-    PRPT4: this.wpss.wps22,
-    PRPT5: this.wpss.wps23,
+    PRAT3: this.wpss.wps7,
+    PRDS1: this.wpss.wps8,
+    PRDS2: this.wpss.wps9,
+    PRDS3: this.wpss.wps10,
+    PRDS4: this.wpss.wps11,
+    PRDS5: this.wpss.wps12,
+    PRDS6: this.wpss.wps13,
+    PRDS7: this.wpss.wps14,
+    PRIP1: this.wpss.wps15,
+    PRIP2: this.wpss.wps16,
+    PRIP3: this.wpss.wps17,
+    PRIP4: this.wpss.wps18,
+    PRIP5: this.wpss.wps19,
+    PRIP6: this.wpss.wps20,
+    PRMA1: this.wpss.wps21,
+    PRMA2: this.wpss.wps22,
+    PRPT1: this.wpss.wps23,
+    PRPT2: this.wpss.wps24,
+    PRPT3: this.wpss.wps25,
+    PRPT4: this.wpss.wps26,
+    PRPT5: this.wpss.wps27,
     DEAE1: this.wdss.wds1,
     DEAE2: this.wdss.wds2,
     DEAE3: this.wdss.wds3,
