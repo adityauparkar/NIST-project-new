@@ -56,22 +56,6 @@ var identifyscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    IDBE3: {
-        type: String,
-        required: true
-    },
-    IDBE3D: {
-        type: String,
-        required: true
-    },
-    IDBE4: {
-        type: String,
-        required: true
-    },
-    IDBE4D: {
-        type: String,
-        required: true
-    },
     IDGV1: {
         type: String,
         required: true

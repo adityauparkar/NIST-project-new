@@ -32,35 +32,35 @@ var recoverscoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    RCIMP1: {
+    RCIM1: {
         type: String,
         required: true
     },
-    RCIMP1D: {
+    RCIM1D: {
         type: String,
         required: true
     },
-    RCIMP2: {
+    RCIM2: {
         type: String,
         required: true
     },
-    RCIMP2D: {
+    RCIM2D: {
         type: String,
         required: true
     },
-    RCCOM1: {
+    RCCO1: {
         type: String,
         required: true
     },
-    RCCOM1D: {
+    RCCO1D: {
         type: String,
         required: true
     },
-    RCCOM2: {
+    RCCO2: {
         type: String,
         required: true
     },
-    RCCOM2D: {
+    RCCO2D: {
         type: String,
         required: true
     },

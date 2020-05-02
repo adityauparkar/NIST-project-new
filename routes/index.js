@@ -22,7 +22,7 @@ var RecoverScore = require('../models/recoverschema');
 var Rec = require('../models/recommendations');
 
 //for IDENTITY subcategories total question weight
-var isc1tw=18,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=70;
+var isc1tw=20,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=72;
 
 //for PROTECT subcategories total question weight
 var psc1tw=20,psc2tw=12,psc3tw=34,psc4tw=22,psc5tw=4,psc6tw=22,psctotalw=114;
@@ -251,10 +251,6 @@ router.post('/api/identify', function(req, res) {
 	console.log(i18);
 	var i19=parseInt(req.body.i19);
 	console.log(i19);
-	var i20=parseInt(req.body.i20);
-	console.log(i20);
-	var i21=parseInt(req.body.i21);
-	console.log(i21);
   var id1=parseInt(req.body.id1);
   console.log(id1);
   var id2=parseInt(req.body.id2);
@@ -293,11 +289,8 @@ router.post('/api/identify', function(req, res) {
   console.log(id18);
   var id19=parseInt(req.body.id19);
   console.log(id19);
-  var id20=parseInt(req.body.id20);
-  console.log(id20);
-  var id21=parseInt(req.body.id21);
   console.log(id21);
-  wi1=w2*i1;
+  wi1=w3*i1;
   wi2=w2*i2;
   wi3=w2*i3;
   wi4=w3*i4;
@@ -321,10 +314,8 @@ router.post('/api/identify', function(req, res) {
   }
   console.log(isc1risk);
   wi5=w2*i5;
-  wi6=w1*i6;
-  wi7=w1*i7;
-  wi8=w1*i8;
-  isc2cts= wi5+wi6+wi7+wi8;
+  wi6=w3*i6;
+  isc2cts= wi5+wi6;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-2 OF IDENTIFY PHASE:" + isc2cts);
   isc2sr= (isc2cts/isc2tw);
   isc2sr=isc2sr.toFixed(2);
@@ -343,11 +334,11 @@ router.post('/api/identify', function(req, res) {
     isc2risk="MINIMUM RISK";
   }
   console.log(isc2risk);
-  wi9=w3*i9;
-  wi10=w2*i10;
-  wi11=w1*i11;
-  wi12=w1*i12;
-  isc3cts= wi9+wi10+wi11+wi12;
+  wi7=w3*i7;
+  wi8=w2*i8;
+  wi9=w1*i9;
+  wi10=w1*i10;
+  isc3cts= wi7+wi8+wi9+wi10;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-3 OF IDENTIFY PHASE:" + isc3cts);
   isc3sr= (isc3cts/isc3tw);
   isc3sr=isc3sr.toFixed(2);
@@ -366,11 +357,11 @@ router.post('/api/identify', function(req, res) {
     isc3risk="MINIMUM RISK";
   }
   console.log(isc3risk);
+  wi11=w1*i11;
+  wi12=w3*i12;
   wi13=w2*i13;
-  wi14=w3*i14;
-  wi15=w2*i15;
-  wi16=w1*i16;
-  isc4cts= wi13+wi14+wi15+wi16;
+  wi14=w1*i14;
+  isc4cts= wi11+wi12+wi13+wi14;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-4 OF IDENTIFY PHASE:" + isc4cts);
   isc4sr= (isc4cts/isc4tw);
   isc4sr=isc4sr.toFixed(2);
@@ -389,9 +380,9 @@ router.post('/api/identify', function(req, res) {
     isc4risk="MINIMUM RISK";
   }
   console.log(isc4risk);
-  wi17=w1*i17;
-  wi18=w1*i18;
-  isc5cts= wi17+wi18;
+  wi15=w1*i15;
+  wi16=w1*i16;
+  isc5cts= wi15+wi16;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-5 OF IDENTIFY PHASE:" + isc5cts);
   isc5sr= (isc5cts/isc5tw);
   isc5sr=isc5sr.toFixed(2);
@@ -410,10 +401,10 @@ router.post('/api/identify', function(req, res) {
     isc5risk="MINIMUM RISK";
   }
   console.log(isc5risk);
+  wi17=w1*i17;
+  wi18=w2*i18;
   wi19=w1*i19;
-  wi20=w2*i20;
-  wi21=w1*i21;
-  isc6cts= wi19+wi20+wi21;
+  isc6cts= wi17+wi18+wi19;
   console.log("TOTAL CLIENT RESPONSE OF SUBCATEGORY-6 OF IDENTIFY PHASE:" + isc6cts);
   isc6sr= (isc6cts/isc6tw);
   isc6sr=isc6sr.toFixed(2);
@@ -1495,7 +1486,7 @@ router.post('/api/respond', function(req, res) {
     console.log(wrs10);
   	wrs11=((2-r11)*(4-rd11)*w2);
     console.log(wrs11);
-    wrs12=((2-r11)*(4-rd11)*w3);
+    wrs12=((2-r12)*(4-rd12)*w3);
     console.log(wrs12);
     wrss={wrs1,wrs2,wrs3,wrs4,wrs5,wrs6,wrs7,wrs8,wrs9,wrs10,wrs11,wrs12};
   var r=[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12];
@@ -1719,12 +1710,12 @@ router.post('/api/recover', function(req, res) {
     RCRP3D: red3,
     RCIM1: re[3],
     RCIM1D: red4,
-    RCIMP2: re[4],
-    RCIMP2D: red5,
-    RCCOM1: re[5],
-    RCCOM1D: red6,
-    RCCOM2: re[6],
-    RCCOM2D: red7,
+    RCIM2: re[4],
+    RCIM2D: red5,
+    RCCO1: re[5],
+    RCCO1D: red6,
+    RCCO2: re[6],
+    RCCO2D: red7,
     resc1sr:resc1sr,
     resc1risk:resc1risk,
     resc2sr:resc2sr,
@@ -1755,21 +1746,19 @@ router.post('/api/recover', function(req, res) {
     IDAM4: this.wiss.wis4,
     IDBE1: this.wiss.wis5,
     IDBE2: this.wiss.wis6,
-    IDBE3: this.wiss.wis7,
-    IDBE4: this.wiss.wis8,
-    IDGV1: this.wiss.wis9,
-    IDGV2: this.wiss.wis10,
-    IDGV3: this.wiss.wis11,
-    IDGV4: this.wiss.wis12,
-    IDRA1: this.wiss.wis13,
-    IDRA2: this.wiss.wis14,
-    IDRA3: this.wiss.wis15,
-    IDRA4: this.wiss.wis16,
-    IDRM1: this.wiss.wis17,
-    IDRM2: this.wiss.wis18,
-    IDSC1: this.wiss.wis19,
-    IDSC2: this.wiss.wis20,
-    IDSC3: this.wiss.wis21,
+    IDGV1: this.wiss.wis7,
+    IDGV2: this.wiss.wis8,
+    IDGV3: this.wiss.wis9,
+    IDGV4: this.wiss.wis10,
+    IDRA1: this.wiss.wis11,
+    IDRA2: this.wiss.wis12,
+    IDRA3: this.wiss.wis13,
+    IDRA4: this.wiss.wis14,
+    IDRM1: this.wiss.wis15,
+    IDRM2: this.wiss.wis16,
+    IDSC1: this.wiss.wis17,
+    IDSC2: this.wiss.wis18,
+    IDSC3: this.wiss.wis19,
     PRAC1: this.wpss.wps1,
     PRAC2: this.wpss.wps2,
     PRAC3: this.wpss.wps3,
@@ -1829,16 +1818,16 @@ router.post('/api/recover', function(req, res) {
     RCRP1: this.wress.wres1,
     RCRP2: this.wress.wres2,
     RCRP3: this.wress.wres3,
-    RCIMP1: this.wress.wres4,
-    RCIMP2: this.wress.wres5,
-    RCCOM1: this.wress.wres6,
-    RCCOM2: this.wress.wres7,
+    RCIM1: this.wress.wres4,
+    RCIM2: this.wress.wres5,
+    RCCO1: this.wress.wres6,
+    RCCO2: this.wress.wres7
   }
   console.log(data);
   let entries= Object.entries(data);
   let sorted = entries.sort((a, b) => a[1] - b[1]);
   console.log(sorted);
-  var rec1=sorted[74][0],rec2=sorted[75][0],rec3=sorted[76][0],rec4=sorted[77][0],rec5=sorted[78][0];
+  var rec1=sorted[77][0],rec2=sorted[78][0],rec3=sorted[79][0],rec4=sorted[80][0],rec5=sorted[81][0];
   console.log(rec1);
   console.log(rec2);
   console.log(rec3);
@@ -1847,7 +1836,7 @@ router.post('/api/recover', function(req, res) {
   for(i=0;i<79;i++){
 	console.log(sorted[i][1]);
   }
-	if(sorted[74][1]!=0)
+	if(sorted[77][1]!=0)
 	{
 	Rec.getRec(rec1, function(err, reco1){
     if (reco1) {
@@ -1871,7 +1860,7 @@ router.post('/api/recover', function(req, res) {
 		r1:0
 	}
 	}
-	if(sorted[75][1]!=0)
+	if(sorted[78][1]!=0)
 	{
   Rec.getRec(rec2, function(err, reco2){
     if (reco2) {
@@ -1895,7 +1884,7 @@ router.post('/api/recover', function(req, res) {
 	  r2:0
 	}
 	}
-	if(sorted[76][1]!=0)
+	if(sorted[79][1]!=0)
 	{
   Rec.getRec(rec3, function(err, reco3){
     if (reco3) {
@@ -1919,7 +1908,7 @@ router.post('/api/recover', function(req, res) {
 	  r3:0
 	}
 	}
-  if(sorted[77][1]!=0)
+  if(sorted[80][1]!=0)
 	{
   Rec.getRec(rec4, function(err, reco4){
     if (reco4) {
@@ -1943,7 +1932,7 @@ router.post('/api/recover', function(req, res) {
 	  r4:0
 	}
 	}
-  if(sorted[78][1]!=0){
+  if(sorted[81][1]!=0){
   Rec.getRec(rec5, function(err, reco5){
     if (reco5) {
      recom5 = {
