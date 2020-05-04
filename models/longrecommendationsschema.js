@@ -20,12 +20,12 @@ var recSchema = mongoose.Schema({
 });
 
 //Exporting the file
-var Rec = module.exports = mongoose.model('recommendations', recSchema); //Binding schema to StudentCollection
+var Rec3 = module.exports = mongoose.model('longrecommendations', recSchema); //Binding schema to StudentCollection
 //Inserting student Details
 module.exports.addRec = function(recs, callback) {
-  Rec.create(recs, callback);
+  Rec3.create(recs, callback);
 }
 
 module.exports.getRec = function(_id, callback) {
-      Rec.findById(_id, callback);
+      Rec3.findById(_id, callback);
 }

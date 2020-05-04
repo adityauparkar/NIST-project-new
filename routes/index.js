@@ -19,7 +19,9 @@ var RespondScore = require('../models/respondschema');
 var RecoverScore = require('../models/recoverschema');
 
 //Recommendations Schema
-var Rec = require('../models/recommendations');
+var Rec = require('../models/shortrecommendationsschema');
+var Rec2 = require('../models/mediumrecommendationsschema');
+var Rec3 = require('../models/longrecommendationsschema');
 
 //for IDENTITY subcategories total question weight
 var isc1tw=20,isc2tw=10,isc3tw=14,isc4tw=16,isc5tw=4,isc6tw=8, isctotalw=72;
@@ -171,14 +173,14 @@ router.get('/ua', ensureAuthenticated, (req, res) =>
   })
 );
 
-// Recommendations Storing page
+// SHORT TERM Recommendations Storing page
 router.get('/recs', ensureAuthenticated, (req, res) =>
   res.render('recs', {
     user: req.user
   })
 );
 
-//storing recommendations
+//storing SHORT TERM recommendations
 router.post('/api/recs', function(req, res) {
 	var _id=req.body._id;
 	console.log(_id);
@@ -189,6 +191,70 @@ router.post('/api/recs', function(req, res) {
   rec: rec
   }
   Rec.addRec(rec, function(err, recs) {
+        if (recs) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            console.log(error);
+        }
+    });
+});
+
+// MEDIUM TERM Recommendations Storing page
+router.get('/recs2', ensureAuthenticated, (req, res) =>
+  res.render('recs2', {
+    user: req.user
+  })
+);
+
+//storing MEDIUM TERM recommendations
+router.post('/api/recs2', function(req, res) {
+	var _id=req.body._id;
+	console.log(_id);
+	var rec=req.body.rec;
+	console.log(rec);
+  rec={
+  _id : _id,
+  rec: rec
+  }
+  Rec2.addRec(rec, function(err, recs) {
+        if (recs) {
+           response = {
+                "result": "Data inserted succesfully"
+            }
+            console.log(response);
+        } else {
+           error = {
+                "error": "Sorry insertion failed"
+            }
+            console.log(error);
+        }
+    });
+});
+
+// LONG TERM Recommendations Storing page
+router.get('/recs3', ensureAuthenticated, (req, res) =>
+  res.render('recs3', {
+    user: req.user
+  })
+);
+
+//storing LONG TERM recommendations
+router.post('/api/recs3', function(req, res) {
+	var _id=req.body._id;
+	console.log(_id);
+	var rec=req.body.rec;
+	console.log(rec);
+  rec={
+  _id : _id,
+  rec: rec
+  }
+  Rec3.addRec(rec, function(err, recs) {
         if (recs) {
            response = {
                 "result": "Data inserted succesfully"
