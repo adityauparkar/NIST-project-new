@@ -422,7 +422,7 @@ router.post('/api/identify', function(req, res) {
     isc3risk="MINIMUM RISK";
   }
   console.log(isc3risk);
-  wi11=w1*i11;
+  wi11=w2*i11;
   wi12=w3*i12;
   wi13=w2*i13;
   wi14=w1*i14;
@@ -1901,12 +1901,38 @@ router.post('/api/recover', function(req, res) {
             "recomon1": reco1
         }
 		console.log(recom1.recomon1._id);
-        console.log(recom1.recomon1.rec);
+    console.log(recom1.recomon1.rec);
     } else {
       error = {
             "error": "Please check entered ID"
         }
     }
+  });
+    Rec2.getRec(rec1, function(err, reco2){
+      if (reco2) {
+       recom2 = {
+              "recomon2": reco2
+          }
+  		console.log(recom2.recomon2._id);
+      console.log(recom2.recomon2.rec);
+      } else {
+        error = {
+              "error": "Please check entered ID"
+          }
+      }
+    });
+      Rec3.getRec(rec1, function(err, reco3){
+        if (reco3) {
+         recom3 = {
+                "recomon3": reco3
+            }
+    		console.log(recom3.recomon3._id);
+        console.log(recom3.recomon3.rec);
+        } else {
+          error = {
+                "error": "Please check entered ID"
+            }
+        }
 	});
     r1={
 		r1:1
@@ -1919,13 +1945,39 @@ router.post('/api/recover', function(req, res) {
 	}
 	if(sorted[78][1]!=0)
 	{
-  Rec.getRec(rec2, function(err, reco2){
-    if (reco2) {
-     recom2 = {
-            "recomon2": reco2
+  Rec.getRec(rec2, function(err, reco4){
+    if (reco4) {
+     recom4 = {
+            "recomon4": reco4
         }
-		console.log(recom2.recomon2._id);
-        console.log(recom2.recomon2.rec);
+		console.log(recom4.recomon4._id);
+    console.log(recom4.recomon4.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec2.getRec(rec2, function(err, reco5){
+    if (reco5) {
+     recom5 = {
+            "recomon5": reco5
+        }
+		console.log(recom5.recomon5._id);
+    console.log(recom5.recomon5.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec3.getRec(rec2, function(err, reco6){
+    if (reco6) {
+     recom6 = {
+            "recomon6": reco6
+        }
+		console.log(recom6.recomon6._id);
+    console.log(recom6.recomon6.rec);
     } else {
       error = {
             "error": "Please check entered ID"
@@ -1943,13 +1995,39 @@ router.post('/api/recover', function(req, res) {
 	}
 	if(sorted[79][1]!=0)
 	{
-  Rec.getRec(rec3, function(err, reco3){
-    if (reco3) {
-      recom3 = {
-            "recomon3": reco3
+  Rec.getRec(rec3, function(err, reco7){
+    if (reco7) {
+      recom7 = {
+            "recomon7": reco7
         }
-		console.log(recom3.recomon3._id);
-        console.log(recom3.recomon3.rec);
+		console.log(recom7.recomon7._id);
+    console.log(recom7.recomon7.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec2.getRec(rec3, function(err, reco8){
+    if (reco8) {
+      recom8 = {
+            "recomon8": reco8
+        }
+		console.log(recom8.recomon8._id);
+    console.log(recom8.recomon8.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec3.getRec(rec3, function(err, reco9){
+    if (reco9) {
+      recom9 = {
+            "recomon9": reco9
+        }
+		console.log(recom9.recomon9._id);
+    console.log(recom9.recomon9.rec);
     } else {
       error = {
             "error": "Please check entered ID"
@@ -1967,13 +2045,39 @@ router.post('/api/recover', function(req, res) {
 	}
   if(sorted[80][1]!=0)
 	{
-  Rec.getRec(rec4, function(err, reco4){
-    if (reco4) {
-     recom4 = {
-            "recomon4": reco4
+  Rec.getRec(rec4, function(err, reco10){
+    if (reco10) {
+     recom10 = {
+            "recomon10": reco10
         }
-		console.log(recom4.recomon4._id);
-        console.log(recom4.recomon4.rec);
+		console.log(recom10.recomon10._id);
+    console.log(recom10.recomon10.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec2.getRec(rec4, function(err, reco11){
+    if (reco11) {
+     recom11 = {
+            "recomon11": reco11
+        }
+		console.log(recom11.recomon11._id);
+    console.log(recom11.recomon11.rec);
+    } else {
+      error = {
+            "error": "Please check entered ID"
+        }
+    }
+	});
+  Rec3.getRec(rec4, function(err, reco12){
+    if (reco12) {
+     recom12 = {
+            "recomon12": reco12
+        }
+		console.log(recom12.recomon12._id);
+    console.log(recom12.recomon12.rec);
     } else {
       error = {
             "error": "Please check entered ID"
@@ -1990,22 +2094,48 @@ router.post('/api/recover', function(req, res) {
 	}
 	}
   if(sorted[81][1]!=0){
-  Rec.getRec(rec5, function(err, reco5){
-    if (reco5) {
-     recom5 = {
-            "recomon5": reco5
+  Rec.getRec(rec5, function(err, reco13){
+    if (reco13) {
+     recom13 = {
+            "recomon13": reco13
         }
-		console.log(recom5.recomon5._id);
-        console.log(recom5.recomon5.rec);
+		console.log(recom13.recomon13._id);
+    console.log(recom13.recomon13.rec);
     } else {
       error = {
             "error": "Please check entered ID"
         }
     }
+  });
+    Rec2.getRec(rec5, function(err, reco14){
+      if (reco14) {
+       recom14 = {
+              "recomon14": reco14
+          }
+  		console.log(recom14.recomon14._id);
+      console.log(recom14.recomon14.rec);
+      } else {
+        error = {
+              "error": "Please check entered ID"
+          }
+      }
+    });
+      Rec3.getRec(rec5, function(err, reco15){
+        if (reco15) {
+         recom15 = {
+                "recomon15": reco15
+            }
+    		console.log(recom15.recomon15._id);
+        console.log(recom15.recomon15.rec);
+        } else {
+          error = {
+                "error": "Please check entered ID"
+            }
+        }
+  });
 	r5={
 	  r5:1
 	}
-	});
 	}
 	else{
 	r5={
@@ -2050,10 +2180,20 @@ router.post('/recommendations', function(req,res){
 	var recommendation5=this.r5.r5==1;
 	recommendations={
     rec1 : recommendation1 ? this.recom1.recomon1 : 'no recommendation',
-    rec2 : recommendation2 ? this.recom2.recomon2 : 'no recommendation',
-    rec3 : recommendation3 ? this.recom3.recomon3 : 'no recommendation',
-    rec4 : recommendation4 ? this.recom4.recomon4 : 'no recommendation',
-    rec5 : recommendation5 ? this.recom5.recomon5 : 'no recommendation'
+    rec2 : recommendation1 ? this.recom2.recomon2 : 'no recommendation',
+    rec3 : recommendation1 ? this.recom3.recomon3 : 'no recommendation',
+    rec4 : recommendation2 ? this.recom4.recomon4 : 'no recommendation',
+    rec5 : recommendation2 ? this.recom5.recomon5 : 'no recommendation',
+    rec6 : recommendation2 ? this.recom6.recomon6 : 'no recommendation',
+    rec7 : recommendation3 ? this.recom7.recomon7 : 'no recommendation',
+    rec8 : recommendation3 ? this.recom8.recomon8 : 'no recommendation',
+    rec9 : recommendation3 ? this.recom9.recomon9 : 'no recommendation',
+    rec10 : recommendation4 ? this.recom10.recomon10 : 'no recommendation',
+    rec11 : recommendation4 ? this.recom11.recomon11 : 'no recommendation',
+    rec12 : recommendation4 ? this.recom12.recomon12 : 'no recommendation',
+    rec13 : recommendation5 ? this.recom13.recomon13 : 'no recommendation',
+    rec14 : recommendation5 ? this.recom14.recomon14 : 'no recommendation',
+    rec15 : recommendation5 ? this.recom15.recomon15 : 'no recommendation'
 	}
 
   if(this.r1.r1==0 && this.r2.r2==0 && this.r3.r3==0 && this.r4.r4==0 && this.r5.r5==0){

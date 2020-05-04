@@ -605,7 +605,9 @@
                                           <p class="card-text" id="i5"></p>
                                         </div>
                                       </div>
-									  <div class="row">
+                                    </div>
+                                  </div>
+									                <div class="row">
                                     <div class="col text-center">
                                       <div class="card">
                                         <div class="card-body" style="display:none" id="idiv6">
@@ -650,10 +652,101 @@
                                       </div>
                                     </div>
                                   </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv11">
+                                          <p class="card-text" id="i11"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv12">
+                                          <p class="card-text" id="i12"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv13">
+                                          <p class="card-text" id="i13"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv14">
+                                          <p class="card-text" id="i14"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv15">
+                                          <p class="card-text" id="i15"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv16">
+                                          <p class="card-text" id="i16"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv17">
+                                          <p class="card-text" id="i17"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv18">
+                                          <p class="card-text" id="i18"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv19">
+                                          <p class="card-text" id="i19"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <div class="card">
+                                        <div class="card-body" style="display:none" id="idiv20">
+                                          <p class="card-text" id="i20"></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
+                          </div>
+                      </div>
                             <div class="page-title-actions">
-
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
                                     <ul class="nav flex-column">
@@ -697,9 +790,7 @@
                         </div>
                     </div>
                  </div>
-
             </div>
-
         </div>
         <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     </div>
@@ -713,71 +804,131 @@
 	document.getElementById('idiv1').style="display:block";
 	}
 	else if(response.error == undefined) {
-	if(response.rec1._id!=undefined && response.rec1.rec!=undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
-	    document.getElementById('i1').innerHTML=response.rec1._id;
+	if(response.rec1._id!=undefined && response.rec1.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec7._id!=undefined && response.rec7.rec!=undefined && response.rec10._id!=undefined && response.rec10.rec!=undefined && response.rec13._id!=undefined && response.rec13.rec!=undefined){
+	  document.getElementById('i1').innerHTML="<b>" + response.rec1._id + "</b>";
 		document.getElementById('idiv1').style="display:block";
-    document.getElementById('i2').innerHTML=response.rec1.rec;
+    document.getElementById('i2').innerHTML="<b>SHORT TERM: </b>" + response.rec1.rec;
 		document.getElementById('idiv2').style="display:block";
-		document.getElementById('i3').innerHTML=response.rec2._id;
+    document.getElementById('i3').innerHTML="<b>MEDIUM TERM: </b>" + response.rec2.rec;
 		document.getElementById('idiv3').style="display:block";
-    document.getElementById('i4').innerHTML=response.rec2.rec;
+		document.getElementById('i4').innerHTML="<b>LONG TERM: </b>" + response.rec3.rec;
 		document.getElementById('idiv4').style="display:block";
-		document.getElementById('i5').innerHTML=response.rec3._id;
+		document.getElementById('i5').innerHTML="<b>" + response.rec4._id + "</b>";
 		document.getElementById('idiv5').style="display:block";
-		document.getElementById('i6').innerHTML=response.rec3.rec;
+    document.getElementById('i6').innerHTML="<b>SHORT TERM: </b>" + response.rec4.rec;
 		document.getElementById('idiv6').style="display:block";
-		document.getElementById('i7').innerHTML=response.rec4._id;
+    document.getElementById('i7').innerHTML="<b>MEDIUM TERM: </b>" + response.rec5.rec;
 		document.getElementById('idiv7').style="display:block";
-    document.getElementById('i8').innerHTML=response.rec5.rec;
+    document.getElementById('i8').innerHTML="<b>LONG TERM: </b>" + response.rec6.rec;
 		document.getElementById('idiv8').style="display:block";
-		document.getElementById('i9').innerHTML=response.rec5._id;
+		document.getElementById('i9').innerHTML="<b>" + response.rec7._id + "</b>";
 		document.getElementById('idiv9').style="display:block";
-    document.getElementById('i10').innerHTML=response.rec5.rec;
+    document.getElementById('i10').innerHTML="<b>SHORT TERM: </b>" + response.rec7.rec;
 		document.getElementById('idiv10').style="display:block";
-	}else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id!=undefined && response.rec2.rec!=undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
-		document.getElementById('i1').innerHTML=response.rec2._id;
+		document.getElementById('i11').innerHTML="<b>MEDIUM TERM: </b>" + response.rec8.rec;
+		document.getElementById('idiv11').style="display:block";
+    document.getElementById('i12').innerHTML="<b>LONG TERM: </b>" + response.rec9.rec;
+		document.getElementById('idiv12').style="display:block";
+		document.getElementById('i13').innerHTML="<b>" + response.rec10._id + "</b>";
+		document.getElementById('idiv13').style="display:block";
+    document.getElementById('i14').innerHTML="<b>SHORT TERM: </b>" + response.rec10.rec;
+		document.getElementById('idiv14').style="display:block";
+    document.getElementById('i15').innerHTML="<b>MEDIUM TERM: </b>" + response.rec11.rec;
+		document.getElementById('idiv15').style="display:block";
+    document.getElementById('i16').innerHTML="<b>LONG TERM: </b>" + response.rec12.rec;
+		document.getElementById('idiv16').style="display:block";
+		document.getElementById('i17').innerHTML="<b>" + response.rec13._id + "</b>";
+		document.getElementById('idiv17').style="display:block";
+		document.getElementById('i18').innerHTML="<b>SHORT TERM: </b>" + response.rec13.rec;
+		document.getElementById('idiv18').style="display:block";
+    document.getElementById('i19').innerHTML="<b>MEDIUM TERM: </b>" + response.rec14.rec;
+		document.getElementById('idiv19').style="display:block";
+    document.getElementById('i20').innerHTML="<b>LONG TERM: </b>" + response.rec15.rec;
+		document.getElementById('idiv20').style="display:block";
+	}else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec7._id!=undefined && response.rec7.rec!=undefined && response.rec10._id!=undefined && response.rec10.rec!=undefined && response.rec13._id!=undefined && response.rec13.rec!=undefined){
+    document.getElementById('i1').innerHTML="<b>" + response.rec4._id + "</b>";
 		document.getElementById('idiv1').style="display:block";
-        document.getElementById('i2').innerHTML=response.rec2.rec;
+    document.getElementById('i2').innerHTML="<b>SHORT TERM: </b>" + response.rec4.rec;
 		document.getElementById('idiv2').style="display:block";
-		document.getElementById('i3').innerHTML=response.rec3._id;
+    document.getElementById('i3').innerHTML="<b>MEDIUM TERM: </b>" + response.rec5.rec;
 		document.getElementById('idiv3').style="display:block";
-    document.getElementById('i4').innerHTML=response.rec3.rec;
+    document.getElementById('i4').innerHTML="<b>LONG TERM: </b>" + response.rec6.rec;
 		document.getElementById('idiv4').style="display:block";
-		document.getElementById('i5').innerHTML=response.rec4._id;
+		document.getElementById('i5').innerHTML="<b>" + response.rec7._id + "</b>";
 		document.getElementById('idiv5').style="display:block";
-		document.getElementById('i6').innerHTML=response.rec4.rec;
+    document.getElementById('i6').innerHTML="<b>SHORT TERM: </b>" + response.rec7.rec;
 		document.getElementById('idiv6').style="display:block";
-		document.getElementById('i7').innerHTML=response.rec5._id;
+		document.getElementById('i7').innerHTML="<b>MEDIUM TERM: </b>" + response.rec8.rec;
 		document.getElementById('idiv7').style="display:block";
-    document.getElementById('i8').innerHTML=response.rec5.rec;
+    document.getElementById('i8').innerHTML="<b>LONG TERM: </b>" + response.rec9.rec;
 		document.getElementById('idiv8').style="display:block";
-	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id!=undefined && response.rec3.rec!=undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
-        document.getElementById('i1').innerHTML=response.rec3._id;
+		document.getElementById('i9').innerHTML="<b>" + response.rec10._id + "</b>";
+		document.getElementById('idiv9').style="display:block";
+    document.getElementById('i10').innerHTML="<b>SHORT TERM: </b>" + response.rec10.rec;
+		document.getElementById('idiv10').style="display:block";
+    document.getElementById('i11').innerHTML="<b>MEDIUM TERM: </b>" + response.rec11.rec;
+		document.getElementById('idiv11').style="display:block";
+    document.getElementById('i12').innerHTML="<b>LONG TERM: </b>" + response.rec12.rec;
+		document.getElementById('idiv12').style="display:block";
+		document.getElementById('i13').innerHTML="<b>" + response.rec13._id + "</b>";
+		document.getElementById('idiv13').style="display:block";
+		document.getElementById('i14').innerHTML="<b>SHORT TERM: </b>" + response.rec13.rec;
+		document.getElementById('idiv14').style="display:block";
+    document.getElementById('i15').innerHTML="<b>MEDIUM TERM: </b>" + response.rec14.rec;
+		document.getElementById('idiv15').style="display:block";
+    document.getElementById('i16').innerHTML="<b>LONG TERM: </b>" + response.rec15.rec;
+		document.getElementById('idiv16').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec4._id==undefined && response.rec4.rec==undefined && response.rec7._id!=undefined && response.rec7.rec!=undefined && response.rec10._id!=undefined && response.rec10.rec!=undefined && response.rec13._id!=undefined && response.rec13.rec!=undefined){
+    document.getElementById('i1').innerHTML="<b>" + response.rec7._id + "</b>";
 		document.getElementById('idiv1').style="display:block";
-        document.getElementById('i2').innerHTML=response.rec3.rec;
+    document.getElementById('i2').innerHTML="<b>SHORT TERM: </b>" + response.rec7.rec;
 		document.getElementById('idiv2').style="display:block";
-		document.getElementById('i3').innerHTML=response.rec4._id;
+		document.getElementById('i3').innerHTML="<b>MEDIUM TERM: </b>" + response.rec8.rec;
 		document.getElementById('idiv3').style="display:block";
-        document.getElementById('i4').innerHTML=response.rec4.rec;
+    document.getElementById('i4').innerHTML="<b>LONG TERM: </b>" + response.rec9.rec;
 		document.getElementById('idiv4').style="display:block";
-		document.getElementById('i5').innerHTML=response.rec5._id;
+		document.getElementById('i5').innerHTML="<b>" + response.rec10._id + "</b>";
 		document.getElementById('idiv5').style="display:block";
-		document.getElementById('i6').innerHTML=response.rec5.rec;
+    document.getElementById('i6').innerHTML="<b>SHORT TERM: </b>" + response.rec10.rec;
 		document.getElementById('idiv6').style="display:block";
-	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id!=undefined && response.rec4.rec!=undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined){
-		document.getElementById('i1').innerHTML=response.rec4._id;
+    document.getElementById('i7').innerHTML="<b>MEDIUM TERM: </b>" + response.rec11.rec;
+		document.getElementById('idiv7').style="display:block";
+    document.getElementById('i8').innerHTML="<b>LONG TERM: </b>" + response.rec12.rec;
+		document.getElementById('idiv8').style="display:block";
+		document.getElementById('i9').innerHTML="<b>" + response.rec13._id + "</b>";
+		document.getElementById('idiv9').style="display:block";
+		document.getElementById('i10').innerHTML="<b>SHORT TERM: </b>" + response.rec13.rec;
+		document.getElementById('idiv10').style="display:block";
+    document.getElementById('i11').innerHTML="<b>MEDIUM TERM: </b>" + response.rec14.rec;
+		document.getElementById('idiv11').style="display:block";
+    document.getElementById('i12').innerHTML="<b>LONG TERM: </b>" + response.rec15.rec;
+		document.getElementById('idiv12').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec4._id==undefined && response.rec4.rec==undefined && response.rec7._id==undefined && response.rec7.rec==undefined && response.rec10._id!=undefined && response.rec10.rec!=undefined && response.rec13._id!=undefined && response.rec13.rec!=undefined){
+    document.getElementById('i1').innerHTML="<b>" + response.rec10._id + "</b>";
 		document.getElementById('idiv1').style="display:block";
-        document.getElementById('i2').innerHTML=response.rec4.rec;
+    document.getElementById('i2').innerHTML="<b>SHORT TERM: </b>" + response.rec10.rec;
 		document.getElementById('idiv2').style="display:block";
-		document.getElementById('i3').innerHTML=response.rec5._id;
+    document.getElementById('i3').innerHTML="<b>MEDIUM TERM: </b>" + response.rec11.rec;
 		document.getElementById('idiv3').style="display:block";
-        document.getElementById('i4').innerHTML=response.rec5.rec;
+    document.getElementById('i4').innerHTML="<b>LONG TERM: </b>" + response.rec12.rec;
 		document.getElementById('idiv4').style="display:block";
-	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec2._id==undefined && response.rec2.rec==undefined && response.rec3._id==undefined && response.rec3.rec==undefined && response.rec4._id==undefined && response.rec4.rec==undefined && response.rec5._id!=undefined && response.rec5.rec!=undefined ){
-		document.getElementById('i1').innerHTML=response.rec5._id;
+		document.getElementById('i5').innerHTML="<b>" + response.rec13._id + "</b>";
+		document.getElementById('idiv5').style="display:block";
+		document.getElementById('i6').innerHTML="<b>SHORT TERM: </b>" + response.rec13.rec;
+		document.getElementById('idiv6').style="display:block";
+    document.getElementById('i7').innerHTML="<b>MEDIUM TERM: </b>" + response.rec14.rec;
+		document.getElementById('idiv7').style="display:block";
+    document.getElementById('i8').innerHTML="<b>LONG TERM: </b>" + response.rec15.rec;
+		document.getElementById('idiv8').style="display:block";
+	} else if(response.rec1._id==undefined && response.rec1.rec==undefined && response.rec4._id==undefined && response.rec4.rec==undefined && response.rec7._id==undefined && response.rec7.rec==undefined && response.rec10._id==undefined && response.rec10.rec==undefined && response.rec13._id!=undefined && response.rec13.rec!=undefined ){
+    document.getElementById('i1').innerHTML="<b>" + response.rec13._id + "</b>";
 		document.getElementById('idiv1').style="display:block";
-        document.getElementById('i2').innerHTML=response.rec5.rec;
+		document.getElementById('i2').innerHTML="<b>SHORT TERM: </b>" + response.rec13.rec;
 		document.getElementById('idiv2').style="display:block";
+    document.getElementById('i3').innerHTML="<b>MEDIUM TERM: </b>" + response.rec14.rec;
+		document.getElementById('idiv3').style="display:block";
+    document.getElementById('i4').innerHTML="<b>LONG TERM: </b>" + response.rec15.rec;
+		document.getElementById('idiv4').style="display:block";
 	}
     } else {
   			showError(response.error)
